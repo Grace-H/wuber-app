@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Input } from 'react-nativ-elements';
 
 export default function App() {
   return (
@@ -20,4 +20,3 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
-
