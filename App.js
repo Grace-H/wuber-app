@@ -5,9 +5,7 @@ import { Input } from 'react-native-elements';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Input
-        placeholder='Destination' 
-      />
+      <Text>Hello</Text>
     </View>
   );
 }

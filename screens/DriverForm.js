@@ -1,13 +1,17 @@
+/*
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import { Input } from 'react-nativ-elements';
+import { StyleSheet, View } from 'react-native';
+import { Input } from 'react-native-elements';
 
-export default function App() {
+export default function DriverScreen() {
   return (
     <View style={styles.container}>
       <Input
-        placeholder='Destination' 
+        placeholder='' 
+        rightIcon={{ type: 'font-awesome', name: 'comment' }}
+        label="Destination"
       />
+      
     </View>
   );
 }
@@ -20,3 +24,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+*/
