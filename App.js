@@ -6,8 +6,11 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
+  const [returnTime, setReturnTime] = useState(new Date());
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
+  const [showReturnTime, setShowReturnTime] = useState(false);
+  const [rtChecked, setrtChecked] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -18,6 +21,22 @@ export default function App() {
     const currentTime = selectedTime || time;
     setTime(currentTime);
   };
+
+  const onReturnTimeChange = (event, selectedTime) => {
+    const currentTime = selectedTime || returnTime;
+    setReturnTime(currentTime);
+  };
+
+  const showReturnTimeOption = () => {
+    if(rtChecked){
+      setShowReturnTime(false);
+    }
+    setrtChecked(!rtChecked);
+  };
+
+  const showReturnTimePicker = () => {
+    setShowReturnTime(!showReturnTime);
+  }
 
   const showDatePicker = () => {
     setShowDate(!showDate);
@@ -31,7 +50,7 @@ export default function App() {
 
   return (
     
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Input
         placeholder='Search' 
         label="Departing from"
@@ -62,9 +81,34 @@ export default function App() {
           onPress={showTimePicker}
         />
       {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
-
-    </ScrollView>
-    
+      <Input
+        placeholder='1 - 10' 
+        label="Passenger Seats"
+      />
+      <Button
+        title={"Round Trip?" }
+        type="clear"
+        iconRight
+        titleStyle={styles.label}
+        icon={{ type: 'font-awesome', name: (rtChecked ? 'check-square-o' : 'square-o' )}}
+        buttonStyle={{justifyContent: "space-between"}}
+        onPress={showReturnTimeOption}
+      />
+      {rtChecked && <Button
+          title={"\t\tReturn Time\t\t" + (returnTime.getHours() - 12 <= 0 ? returnTime.getHours() : returnTime.getHours() - 12) + ':' + returnTime.getMinutes() + " " + (returnTime.getHours() - 12 <= 0 ? "AM" : "PM")}
+          type="clear"
+          iconRight
+          titleStyle={styles.label}
+          icon={{ type: 'font-awesome', name: 'chevron-down' }}
+          buttonStyle={{justifyContent: "space-between"}}
+          onPress={showReturnTimePicker}
+        />}
+      {showReturnTime && <RNDateTimePicker value={returnTime} mode="time" style={{ width: "100%" }} onChange={onReturnTimeChange} />}
+      <Button
+        title={"Submit" }
+        iconRight
+      />
+    </View>
   );
 }
 
@@ -72,6 +116,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    padding: 10
   },
   label: {
     color: colors.grey3, 
