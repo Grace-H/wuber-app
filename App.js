@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView } from 'react-native';
-import { Input, Button, Icon, colors } from 'react-native-elements';
+import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 
 export default function App() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [showDate, setShowDate] = useState(false);
-  const [showTime, setShowTIme] = useState(false);
+  const [showTime, setShowTime] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -15,19 +15,22 @@ export default function App() {
   };
 
   const onTimeChange = (event, selectedTime) => {
-    const currentTime = selectedDate || time;
+    const currentTime = selectedTime || time;
     setTime(currentTime);
   };
 
   const showDatePicker = () => {
     setShowDate(!showDate);
+    setShowTime(false);
   };
 
   const showTimePicker = () => {
-    setShowTime(!true);
+    setShowTime(!showTime);
+    setShowDate(false);
   };
 
   return (
+    
     <ScrollView style={styles.container}>
       <Input
         placeholder='Search' 
@@ -40,7 +43,7 @@ export default function App() {
         rightIcon={{ type: 'font-awesome', name: 'search' }}
       />
       <Button
-        title={"Date " + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() }
+        title={"On\t\t" + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() }
         type="clear"
         iconRight
         titleStyle={styles.label}
@@ -50,7 +53,7 @@ export default function App() {
       />
       {showDate && <RNDateTimePicker value={date} mode="date" style={{ width: "100%" }} onChange={onDateChange} />}
       <Button
-          title={"Time " + time}
+          title={"At\t\t" + (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) + ':' + time.getMinutes() + " " + (time.getHours() - 12 <= 0 ? "AM" : "PM")}
           type="clear"
           iconRight
           titleStyle={styles.label}
@@ -58,9 +61,10 @@ export default function App() {
           buttonStyle={{justifyContent: "space-between"}}
           onPress={showTimePicker}
         />
-      {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} />}
+      {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
 
     </ScrollView>
+    
   );
 }
 
