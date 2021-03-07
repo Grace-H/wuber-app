@@ -62,6 +62,10 @@ export default function PassengerForm() {
             onPress={showTimePicker}
             />
         {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
+        <Button
+        title={"Submit" }
+        iconRight
+      />
         </View>
     );
 }
