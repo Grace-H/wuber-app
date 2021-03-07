@@ -3,16 +3,11 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { render } from 'react-dom';
-<<<<<<< HEAD
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer, StackActions } from '@react-navigation/native';
 import DriverForm from './screens/DriverForm.js';
 import PassengerForm from './screens/PassengerForm.js';
 
-export default function App() {
-    return(<PassengerForm />);
-}
-=======
-import { createStackNavigator } from '@react-navigation/stack';
-import { NavigationContainer, StackActions } from '@react-navigation/native';
 
 const Stack = createStackNavigator(); 
 
@@ -20,12 +15,12 @@ export default function App() {
   return( 
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name = "" component = {LoginScreen} />
-        <Stack.Screen name = "Home" component = {HomeScreen} />
+        <Stack.Screen name = "Take a Trip" component = {HomeScreen} />
+        <Stack.Screen name = "Find a Ride" component = {DriverForm} />
+        <Stack.Screen name = "Offer a Ride" component = {PassengerForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );}
->>>>>>> e536d52a800f557921958278fa80d506ca759781
 
 const styles = StyleSheet.create({
   container: {
@@ -35,3 +30,18 @@ const styles = StyleSheet.create({
   }
 });
 
+function HomeScreen({navigation}) {
+  return (
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+    <Text> What do you want to do today?</Text>
+    <Button
+    title = "Find a Ride" 
+    onPress = {() => navigation.navigate('Find a Ride')}
+    />
+    <Button
+    title = "Offer a Ride"
+    onPress = {() => navigation.navigate('Offer a Ride')}
+    />
+    </View>
+  );
+}
