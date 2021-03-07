@@ -3,9 +3,11 @@ import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { render } from 'react-dom';
+import DriverForm from './screens/DriverForm.js';
+import PassengerForm from './screens/PassengerForm.js';
 
 export default function App() {
-    return(<View><Text>Hello</Text></View>);
+    return(<PassengerForm />);
 }
 
 const styles = StyleSheet.create({
