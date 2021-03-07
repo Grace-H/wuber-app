@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import { render } from 'react-dom';
 
 export default function PassengerForm() {
 
@@ -20,22 +19,6 @@ export default function PassengerForm() {
     const currentTime = selectedTime || time;
     setTime(currentTime);
   };
-
-  const onReturnTimeChange = (event, selectedTime) => {
-    const currentTime = selectedTime || returnTime;
-    setReturnTime(currentTime);
-  };
-
-  const showReturnTimeOption = () => {
-    if(rtChecked){
-      setShowReturnTime(false);
-    }
-    setrtChecked(!rtChecked);
-  };
-
-  const showReturnTimePicker = () => {
-    setShowReturnTime(!showReturnTime);
-  }
 
   const showDatePicker = () => {
     setShowDate(!showDate);
