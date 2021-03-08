@@ -133,7 +133,8 @@ export default function DriverForm() {
         type = "clear"
         buttonStyle={{justifyContent: "space-between"}}
         onPress={showPaymentItems}
-      /> && <Button
+      /> }
+      {opChecked && <Button
         title={"Cash"}
         type = "clear"
         buttonStyle={{justifyContent: "space-between"}}
