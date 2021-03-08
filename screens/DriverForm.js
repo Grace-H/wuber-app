@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-
+import { TextInput } from 'react-native-gesture-handler';
+import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 export default function DriverForm() {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -11,6 +12,8 @@ export default function DriverForm() {
   const [showTime, setShowTime] = useState(false);
   const [showReturnTime, setShowReturnTime] = useState(false);
   const [rtChecked, setrtChecked] = useState(false);
+  const [opChecked, setopChecked] = useState(false);
+  const [showPayment, setPayment] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -47,6 +50,17 @@ export default function DriverForm() {
     setShowTime(!showTime);
     setShowDate(false);
   };
+
+  const showPaymentOption = () => {
+    if(opChecked) {
+      setPayment(false);
+    }
+    setopChecked(!opChecked);
+  }
+
+  const showPaymentItems = () => {
+    setPayment(!showPayment);
+  }
 
   return (
     
@@ -104,6 +118,32 @@ export default function DriverForm() {
           onPress={showReturnTimePicker}
         />}
       {showReturnTime && <RNDateTimePicker value={returnTime} mode="time" style={{ width: "100%" }} onChange={onReturnTimeChange} />}
+      
+      <Button
+      title={"Payment Option?"}
+      type = "clear"
+      iconRight
+      titleStyle = {styles.label}
+      icon={{ type: 'font-awesome', name: (opChecked ? 'check-square-o' : 'square-o')}}
+      buttonStyle={{justifyContent: "space-between"}}
+      onPress={showPaymentOption}
+      />
+      {opChecked && <Button
+        title={"Venmo"}
+        type = "clear"
+        buttonStyle={{justifyContent: "space-between"}}
+        onPress={showPaymentItems}
+      /> && <Button
+        title={"Cash"}
+        type = "clear"
+        buttonStyle={{justifyContent: "space-between"}}
+        onPress={showPaymentItems}
+      />
+      }
+      {showPayment && <Input
+        placeholder= "How much $?"
+      />}
+
       <Button
         title={"Submit" }
         iconRight
@@ -111,6 +151,7 @@ export default function DriverForm() {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {

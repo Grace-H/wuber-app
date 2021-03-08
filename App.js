@@ -16,8 +16,8 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name = "Take a Trip" component = {HomeScreen} />
-        <Stack.Screen name = "Find a Ride" component = {DriverForm} />
-        <Stack.Screen name = "Offer a Ride" component = {PassengerForm} />
+        <Stack.Screen name = "Find a Ride" component = {PassengerForm} />
+        <Stack.Screen name = "Offer a Ride" component = {DriverForm} />
       </Stack.Navigator>
     </NavigationContainer>
   );}
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
 
 function HomeScreen({navigation}) {
   return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text> What do you want to do today?</Text>
+    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
+    <Text style={{}}> What do you want to do today?</Text>
     <Button
     title = "Find a Ride" 
     onPress = {() => navigation.navigate('Find a Ride')}
