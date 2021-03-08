@@ -1,3 +1,10 @@
+/*
+ * App.js
+ * 
+ * Author: Gordon Olson, Grace Hunter
+ * Date: 05 March 2021 
+ */
+
 import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';

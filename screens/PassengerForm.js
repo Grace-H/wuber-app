@@ -1,3 +1,11 @@
+/*
+ * PassengerForm.js
+ * Form for passenger to search for a trip.
+ * 
+ * Author: Grace Hunter
+ * Date: 06 March 2021
+ */
+
 import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
