@@ -1,7 +1,7 @@
 /*
  * App.js
  * 
- * Author: Gordon Olson, Grace Hunter
+ * Author: Gordon Olson
  * Date: 05 March 2021 
  */
 
