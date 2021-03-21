@@ -1,7 +1,14 @@
-// RideInfoScreen.js
+/*
+ * RideInfoScreen.js
+ * Displays the information for an individual trip once it is selected. 
+ * 
+ * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Date Created: 05 March 21
+ * Last Edited: 21 March 21 by Brendan Keefer
+ */
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 
 export default function RideInfoScreen({ navigation }) {
     return (
@@ -63,7 +70,7 @@ export default function RideInfoScreen({ navigation }) {
 
             <TouchableOpacity 
             style = {stylesCommon.customBtnBG}
-            onPress = {() => {navigation.navigate('Success!')}}>
+            onPress = {() => {navigation.navigate('Ride Requested')}}>
               <Text style={stylesCommon.customBtnTextWhite}>
                 Join Ride 
               </Text>
@@ -75,7 +82,7 @@ export default function RideInfoScreen({ navigation }) {
 
             <TouchableOpacity 
             style = {stylesCommon.customBtnBG}
-            onPress = {() => {navigation.navigate('Rides')}}>
+            onPress = {() => {navigation.navigate('List of Rides')}}>
               <Text style={stylesCommon.customBtnTextWhite}>
                 Back
               </Text>

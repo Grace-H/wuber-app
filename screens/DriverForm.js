@@ -1,8 +1,9 @@
 /*
  * DriverForm.js
  * Form for driver to input details for a ride they would like to offer.
- * Author: Grace Hunter, Gordon Olson
- * Date: 05 March 2021
+ * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
+ * Date Created: 05 March 21
+ * Last Edited: 21 March 21 by Brendan Keefer
  */
 import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
@@ -10,7 +11,9 @@ import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
-export default function DriverForm() {
+import stylesCommon from './styles/stylesCommon';
+
+export default function DriverForm( {navigation}) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [returnTime, setReturnTime] = useState(new Date());
@@ -71,6 +74,10 @@ export default function DriverForm() {
   return (
     
     <View style={styles.container}>
+
+      <Text style = {stylesCommon.appHeader}>
+       Wuber
+      </Text>
       <Input
         placeholder='Search' 
         label="Departing from"

@@ -2,16 +2,18 @@
  * PassengerForm.js
  * Form for passenger to search for a trip.
  * 
- * Author: Grace Hunter
- * Date: 06 March 2021
+ * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Date Created: 06 March 21
+ * Last Edited: 21 March 21 by Brendan Keefer
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
+import stylesCommon from './styles/stylesCommon';
 
-export default function PassengerForm() {
+export default function PassengerForm( {navigation} ) {
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -40,6 +42,10 @@ export default function PassengerForm() {
   
   return (
         <View style={styles.container}>
+
+        <Text style = {stylesCommon.appHeader}>
+          Wuber
+        </Text>
         <Input
             placeholder='Search' 
             label="Departing from"
@@ -68,12 +74,13 @@ export default function PassengerForm() {
             icon={{ type: 'font-awesome', name: 'chevron-down' }}
             buttonStyle={{justifyContent: "space-between"}}
             onPress={showTimePicker}
-            />
+        />
         {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
         <Button
+        onPress = {() => {navigation.navigate('List of Rides')}}
         title={"Submit" }
         iconRight
-      />
+        />
         </View>
     );
 }

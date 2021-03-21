@@ -1,8 +1,16 @@
-// RideListScreen.js
+/*
+ * RideListScreen.js
+ * Displays a working list of active or pending rides that fit the 
+ * users search qualifications. 
+ * 
+ * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Date Created: 05 March 21
+ * Last Edited: 21 March 21 by Brendan Keefer
+ */
 import React, { Component, useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
-import stylesCommon from './Styles/stylesCommon';
-import Card from './Styles/Card';
+import stylesCommon from './styles/stylesCommon';
+import Card from './styles/Card';
 
 export default function RideListScreen({ navigation }) {
 
@@ -33,7 +41,7 @@ export default function RideListScreen({ navigation }) {
           data = {trip}
           renderItem = {({ item }) => (
 
-            <TouchableOpacity onPress = {() => {navigation.navigate('Info', item)}}>
+            <TouchableOpacity onPress = {() => {navigation.navigate('Ride Details', item)}}>
               <Card>
                   <Text style={stylesCommon.customBtnTextBlue}>{ item.name }</Text>
               </Card>
