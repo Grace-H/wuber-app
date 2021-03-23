@@ -10,10 +10,18 @@
 
 //The different styles and features that are being used.
 import React, {useState} from 'react';
+<<<<<<< HEAD
+import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
+=======
 import { StyleSheet, Text, ScrollView, View, } from 'react-native';
+>>>>>>> f6d3f1b09ed39c5b96595aa7a49a542e18d4fb91
 import { Input, Button, Header, colors } from 'react-native-elements';
 import { render } from 'react-dom';
+<<<<<<< HEAD
+import stylesCommon from './screens/styles/stylesCommon';
+=======
 import stylesCommon from './screens/styles/stylesCommon.js';
+>>>>>>> f6d3f1b09ed39c5b96595aa7a49a542e18d4fb91
 
 //The active screens for this application.
 import DriverForm from './screens/DriverForm.js';
@@ -99,6 +107,8 @@ export default function App() {
   */
   function HomeScreen({navigation}) {
   return (
+<<<<<<< HEAD
+=======
 
     /* (Grace) Playground for testing screen with lists of rides user is signed up for
     until menu is connected
@@ -125,10 +135,16 @@ export default function App() {
     </SafeAreaView>
     */
     
+>>>>>>> f6d3f1b09ed39c5b96595aa7a49a542e18d4fb91
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
     <Text style = {stylesCommon.appHeader}>
     Wuber
     </Text>
+
+    <Image
+        source = {require('./assets/WuberLogo.png')}
+      />
+    
       
     <Text style={{}}> What do you want to do today?</Text>
     <Button
@@ -139,6 +155,11 @@ export default function App() {
     title = "Offer a Ride"
     onPress = {() => navigation.navigate('Offer a Ride')}
     />
+
+    
     </View>
   );
+
+  
+
 }
