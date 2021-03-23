@@ -89,7 +89,7 @@ export default function App() {
       />
       <Button
       title = "Submit" 
-      onPress = {() => navigation.navigate('Home')}
+      onPress = {() => navigation.navigate('Take a Trip')}
       />
       </View> 
     )
