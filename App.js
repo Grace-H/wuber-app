@@ -10,12 +10,11 @@
 
 //The different styles and features that are being used.
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, Image } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { render } from 'react-dom';
 import stylesCommon from './screens/styles/stylesCommon';
-
 
 //The active screens for this application.
 import DriverForm from './screens/DriverForm.js';
@@ -65,11 +64,15 @@ export default function App() {
 
 function HomeScreen({navigation}) {
   return (
-    
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
     <Text style = {stylesCommon.appHeader}>
     Wuber
     </Text>
+
+    <Image
+        source = {require('./assets/WuberLogo.png')}
+      />
+    
       
     <Text style={{}}> What do you want to do today?</Text>
     <Button
@@ -80,7 +83,12 @@ function HomeScreen({navigation}) {
     title = "Offer a Ride"
     onPress = {() => navigation.navigate('Offer a Ride')}
     />
+
+    
     </View>
     
   );
+
+  
+
 }
