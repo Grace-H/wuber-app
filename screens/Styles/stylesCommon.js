@@ -1,6 +1,8 @@
 /**
  * Common Text, Button, View styles
  * stored in one accessible location.
+ * 
+ * Last editted: 22 Mar Grace
  */
 
 //stylesCommon.js
@@ -62,6 +64,7 @@ export default StyleSheet.create( {
         fontWeight: '200',
         color: '#000000',
     },
+    //use absolute positioning to keep it right below the app header?
     appHeader : {
         height : 100, 
         width : 1000,
@@ -69,7 +72,7 @@ export default StyleSheet.create( {
         fontSize: 75,
         color: '#EE8A22',
         fontWeight: '300',
-        marginTop: 50,
+        //marginTop: 50,
         backgroundColor : '#47ab',
     },
 });
