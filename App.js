@@ -35,6 +35,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
+          name = "Login"
+          component = {LoginScreen}
+        />
+        <Stack.Screen
           name = "Take a Trip" 
           component = {HomeScreen} 
         />
@@ -62,8 +66,38 @@ export default function App() {
     </NavigationContainer>
   );}
 
-
-function HomeScreen({navigation}) {
+  /*
+  * Serves as the Login Screen format for the app
+  */
+  function LoginScreen({navigation}) {
+  
+    return(
+     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'space-evenly' }}>
+      <Text style = {stylesCommon.appHeader}>
+        Wuber
+      </Text>
+      
+      <Text> Username: </Text>
+      <TextInput 
+          style = {{ height: 30, borderColor: 'black', borderWidth: 5}}
+          placeholder = "                "
+      />
+      <Text> Password: </Text>
+      <TextInput 
+          style = {{ height: 30, borderColor: 'black', borderWidth: 5}}
+          placeholder = "                "
+      />
+      <Button
+      title = "Submit" 
+      onPress = {() => navigation.navigate('Home')}
+      />
+      </View> 
+    )
+  }
+  /*
+  * Serves as the Home Screen for the app
+  */
+  function HomeScreen({navigation}) {
   return (
 
     /* (Grace) Playground for testing screen with lists of rides user is signed up for
