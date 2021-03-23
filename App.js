@@ -5,7 +5,7 @@
  * 
  * Author: Gordon Olson, Grace Hunter, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21 
- * Last Edited: 22 March Grace Hunter
+ * Last Edited: 23 March Gordon Olson
  */
 
 //The different styles and features that are being used.
