@@ -4,11 +4,11 @@
  * 
  * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
  * Date Created: 06 March 21
- * Last Edited: 21 March 21 by Brendan Keefer
+ * Last Edited: 24 March 21 by Grace
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, Header, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
@@ -41,11 +41,12 @@ export default function PassengerForm( {navigation} ) {
   };
   
   return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
 
         <Text style = {stylesCommon.appHeader}>
           Wuber
         </Text>
+        <ScrollView>
         <Input
             placeholder='Search' 
             label="Departing from"
@@ -81,7 +82,8 @@ export default function PassengerForm( {navigation} ) {
         title={"Submit" }
         iconRight
         />
-        </View>
+        </ScrollView>
+        </SafeAreaView>
     );
 }
 
