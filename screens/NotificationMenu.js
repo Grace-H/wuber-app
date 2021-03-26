@@ -37,6 +37,5 @@ export default function Notifications ({ navigation }) {
           )}
         />
 
-
     </View>
 }

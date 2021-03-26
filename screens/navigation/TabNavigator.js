@@ -4,7 +4,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import Icon from "react-native-vector-icons/FontAwesome5";
 
 import ProfileScreen from "../ProfileScreen.js";
-import NotificationsScreen from "../Notifications.js";
+import NotificationsScreen from "../NotificationsScreen.js";
 import MyTripsScreen from "../MyTripsScreen.jsx";
 import TakeATripScreen from "../HomeScreen.js";
 
