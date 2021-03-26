@@ -53,6 +53,14 @@ export default StyleSheet.create( {
         marginTop: 50,
         width: 350,
     },
+    textTitleBlue: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: '#147EFB',
+        fontWeight: '500',
+        marginTop: 30,
+        width: 350,
+    },
     textSub: {
         fontSize: 20,
         fontWeight: '200',
@@ -66,13 +74,14 @@ export default StyleSheet.create( {
     },
     //use absolute positioning to keep it right below the app header?
     appHeader : {
-        height : 100, 
+        height : 60, 
         width : 1000,
         textAlign: 'center',
-        fontSize: 75,
+        fontSize: 45,
         color: '#EE8A22',
         fontWeight: '300',
-        //marginTop: 50,
-        backgroundColor : '#47ab',
+        marginBottom: 50,
+        marginTop: 5,
+        backgroundColor : '#0041AD',
     },
 });

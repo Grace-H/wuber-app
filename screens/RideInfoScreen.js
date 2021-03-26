@@ -14,8 +14,8 @@ export default function RideInfoScreen({ navigation }) {
     return (
         <View style = {stylesCommon.container}>
 
-          <Text style = {stylesCommon.appHeader}>
-            Wuber
+          <Text style = {stylesCommon.textTitleBlue}>
+            More Information:
           </Text>
 
           <ScrollView style = {stylesCommon.scrollView}>

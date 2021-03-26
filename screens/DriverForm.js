@@ -6,8 +6,8 @@
  * Last Edited: 24 March 21 by Grace
  */
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, View } from 'react-native';
-import { Input, Button, Header, colors } from 'react-native-elements';
+import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
@@ -75,8 +75,11 @@ export default function DriverForm( {navigation}) {
     
     <SafeAreaView style={styles.container}>
 
-      <Text style = {stylesCommon.appHeader}>
-       Wuber
+      <Text style = {stylesCommon.textTitleBlue}>
+        Driver Information:
+      </Text>
+      <Text>
+        {"\n"}{"\n"}
       </Text>
       <ScrollView>
       <Input
@@ -159,10 +162,17 @@ export default function DriverForm( {navigation}) {
         placeholder= "How much $?"
       />}
 
-      <Button
-        title={"Submit" }
-        iconRight
-      />
+      <Text>
+        {"\n"}
+      </Text>
+
+      <TouchableOpacity 
+        style = {stylesCommon.customBtnBG}
+        onPress = {() => Alert.alert("To be implemented")}>
+        <Text style={stylesCommon.customBtnTextWhite}>
+          Submit
+        </Text>
+      </TouchableOpacity>
       </ScrollView>
     </SafeAreaView>
   );

@@ -13,7 +13,7 @@ const TopTab = createMaterialTopTabNavigator();
 
 const ProfileScreenTopTabNavigator = () => (
     <TopTab.Navigator
-      initialRouteName="settings"
+      initialRouteName="Profile"
       tabBarOptions={{
         style: { backgroundColor: "#0041AD" },
         labelStyle: { fontSize: 14, fontWeight: "bold" },
@@ -23,7 +23,7 @@ const ProfileScreenTopTabNavigator = () => (
         tabStyle: { height: 100, right: 5 }
       }}
     >
-      <TopTab.Screen component={ProfileScreen} name="Settings" />
+      <TopTab.Screen component={ProfileScreen} name="Profile" />
     </TopTab.Navigator>
   );
   
@@ -38,28 +38,28 @@ const AllScreenTabNavigator = () => (
         name="Home"
         component={TakeATripScreen}
         options={{
-          tabBarIcon: () => <Icon name="book-open" size={25} color="#fff" />
+          tabBarIcon: () => <Icon name="car" size={22} color="#fff" />
         }}
       />
       <BottomTab.Screen
         name="My Trips"
         component={MyTripsScreen}
         options={{
-          tabBarIcon: () => <Icon name="file-alt" size={25} color="#fff" />
+          tabBarIcon: () => <Icon name="map" size={22} color="#fff" />
         }}
       />
       <BottomTab.Screen
         name="Notifications"
         component={NotificationsScreen}
         options={{
-          tabBarIcon: () => <Icon name="comment-alt" size={25} color="#fff" />
+          tabBarIcon: () => <Icon name="map-pin" size={22} color="#fff" />
         }}
       />
       <BottomTab.Screen
         name="Profile"
-        children={ProfileScreenTopTabNavigator}
+        component={ProfileScreen}
         options={{
-          tabBarIcon: () => <Icon name="user" size={25} color="#fff" />
+          tabBarIcon: () => <Icon name="user" size={22} color="#fff" />
         }}
       />
     </BottomTab.Navigator>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Text, Button, Image } from 'react-native';
-import Layout from '../components/Layout.js';
+import { View, Text, Button, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import stylesCommon from './styles/stylesCommon';
 
 
 export default function HomeScreen({navigation}) {
@@ -30,36 +31,44 @@ export default function HomeScreen({navigation}) {
         />
       </SafeAreaView>
       */
-      
-<>
-      <Layout />
 
       <View style={{ flex: 1, alignItems: 'center'}}>
 
-
-      <Image
-        source = {require('../assets/WuberLogo.png')}
-        style = {{width: 350, height: 350}}
-
-      />
-        
-      <Text style={{}}> What do you want to do today?</Text>
       <Text>
-              {"\n"}
-            </Text>
-      <Button
-      title = "Find a Ride" 
-      onPress = {() => navigation.navigate('Find a Ride')}
-      />
-                  <Text>
-              {"\n"}
-            </Text>
-      <Button
-      title = "Offer a Ride"
-      onPress = {() => navigation.navigate('Offer a Ride')}
-      />
-      </View>
+        {"\n"}
+      </Text>
 
-      </>
+      <Avatar
+        source = {require('../assets/WuberLogo.png')}
+        size = {200}
+      />
+      <Text>
+        {"\n"}{"\n"}{"\n"}{"\n"}
+      </Text>
+      <Text style={stylesCommon.textSub}> 
+        What do you want to do today?
+      </Text>
+      <Text>
+        {"\n"}
+      </Text>
+
+      <TouchableOpacity 
+        style = {stylesCommon.customBtnBG}
+        onPress = {() => {navigation.navigate('Find a Ride')}}>
+        <Text style={stylesCommon.customBtnTextWhite}>
+          Find a Ride
+        </Text>
+      </TouchableOpacity>
+      <Text>
+        {"\n"}
+      </Text>
+      <TouchableOpacity 
+        style = {stylesCommon.customBtnBG}
+        onPress = {() => {navigation.navigate('Offer a Ride')}}>
+        <Text style={stylesCommon.customBtnTextWhite}>
+          Offer a Ride
+        </Text>
+      </TouchableOpacity>
+      </View>
     );
   }

@@ -8,6 +8,7 @@
  * Last Edited: 24 March by Brendan Keefer
  */
 import React, { Component } from 'react';
+import { Avatar } from 'react-native-elements';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import stylesCommon from './styles/stylesCommon';
 
@@ -16,8 +17,14 @@ export default function ProfileScreen({ navigation }) {
         <View style = {stylesCommon.container}>
 
           <Text style = {stylesCommon.appHeader}>
-            Wuber
+            Profile
           </Text>
+
+          <Avatar
+            rounded
+            source = {require('../assets/avatar.jpg')}
+            size = {150}
+          />
 
           <ScrollView style = {stylesCommon.scrollView}>
             <Text style = {stylesCommon.textTitle}>
@@ -40,12 +47,8 @@ export default function ProfileScreen({ navigation }) {
               Gender
             </Text>
 
-            <Text style = {stylesCommon.textTitle}>
+            <Text style = {stylesCommon.textBod}>
               N/A
-            </Text>
-
-            <Text style = {stylesCommon.textTitle}>
-              Photo
             </Text>
 
           </ScrollView>
