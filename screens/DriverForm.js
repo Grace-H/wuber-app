@@ -3,11 +3,11 @@
  * Form for driver to input details for a ride they would like to offer.
  * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
- * Last Edited: 21 March 21 by Brendan Keefer
+ * Last Edited: 24 March 21 by Grace
  */
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, View } from 'react-native';
-import { Input, Button, Header, colors } from 'react-native-elements';
+import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
@@ -73,11 +73,15 @@ export default function DriverForm( {navigation}) {
 
   return (
     
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
 
-      <Text style = {stylesCommon.appHeader}>
-       Wuber
+      <Text style = {stylesCommon.textTitleBlue}>
+        Driver Information:
       </Text>
+      <Text>
+        {"\n"}{"\n"}
+      </Text>
+      <ScrollView>
       <Input
         placeholder='Search' 
         label="Departing from"
@@ -133,7 +137,7 @@ export default function DriverForm( {navigation}) {
       {showReturnTime && <RNDateTimePicker value={returnTime} mode="time" style={{ width: "100%" }} onChange={onReturnTimeChange} />}
       
       <Button
-      title={"Payment Option?"}
+      title={"Add Payment?"}
       type = "clear"
       iconRight
       titleStyle = {styles.label}
@@ -158,11 +162,19 @@ export default function DriverForm( {navigation}) {
         placeholder= "How much $?"
       />}
 
-      <Button
-        title={"Submit" }
-        iconRight
-      />
-    </View>
+      <Text>
+        {"\n"}
+      </Text>
+
+      <TouchableOpacity 
+        style = {stylesCommon.customBtnBG}
+        onPress = {() => Alert.alert("To be implemented")}>
+        <Text style={stylesCommon.customBtnTextWhite}>
+          Submit
+        </Text>
+      </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 

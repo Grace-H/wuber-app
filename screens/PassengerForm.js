@@ -4,12 +4,12 @@
  * 
  * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
  * Date Created: 06 March 21
- * Last Edited: 21 March 21 by Brendan Keefer
+ * Last Edited: 24 March 21 by Grace
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, View, TouchableOpacity } from 'react-native';
-import { Input, Button, Header, colors } from 'react-native-elements';
+import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
 
@@ -41,11 +41,14 @@ export default function PassengerForm( {navigation} ) {
   };
   
   return (
-        <View style={styles.container}>
-
-        <Text style = {stylesCommon.appHeader}>
-          Wuber
+        <SafeAreaView style={styles.container}>
+        <Text style = {stylesCommon.textTitleBlue}>
+          Passenger Information:
         </Text>
+        <Text>
+        {"\n"}{"\n"}
+        </Text>
+        <ScrollView>
         <Input
             placeholder='Search' 
             label="Departing from"
@@ -76,12 +79,21 @@ export default function PassengerForm( {navigation} ) {
             onPress={showTimePicker}
         />
         {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
-        <Button
-        onPress = {() => {navigation.navigate('List of Rides')}}
-        title={"Submit" }
-        iconRight
-        />
-        </View>
+
+        <Text>
+          {"\n"}
+        </Text>
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtnBG}
+          onPress = {() => {navigation.navigate('Ride List')}}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Submit
+          </Text>
+        </TouchableOpacity>
+
+        </ScrollView>
+        </SafeAreaView>
     );
 }
 

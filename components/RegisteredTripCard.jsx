@@ -4,12 +4,12 @@
  * 
  * Author: Grace Hunter
  * Date: 22 March 2021
- * Last Editted: 22 March Grace Hunter
+ * Last Editted: 24 March Grace Hunter
  */
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { Icon } from 'react-native-elements';
-import stylesCommon from "../screens/styles/stylesCommon.js"
+
 
 /*
  * RegisteredTripCard for a Trip a User is already registered for
@@ -21,9 +21,9 @@ import stylesCommon from "../screens/styles/stylesCommon.js"
  * 
  * <RegisteredTripCard
  *   isDriver={true}
- *   date="Tuesday, March 2, 3:00pm"
- *   departure="Portland"
- *   destination="New York"
+ *   date={"Tuesday, March 2, 3:00pm"}
+ *   departure={"Portland"}
+ *   destination={"New York"}
  */
 class RegisteredTripCard extends Component {
     render() {
@@ -103,8 +103,10 @@ const styles = StyleSheet.create( {
         flexDirection:  "row",
         fontSize: 16,
         alignItems: "center",
+        marginHorizontal: 4
     },
     rightArrow: {
+        marginRight: 8
     },
 });
 

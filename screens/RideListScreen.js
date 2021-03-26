@@ -7,8 +7,9 @@
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
-import React, { Component, useState } from 'react';
-import { View, Text, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
+import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 import Card from './styles/Card';
 
@@ -29,9 +30,10 @@ export default function RideListScreen({ navigation }) {
     return (
     <View style = {stylesCommon.container}>
 
-      <Text style = {stylesCommon.appHeader}>
-      Wuber
-      </Text>
+      <Avatar
+        source = {require('../assets/WuberLogo.png')}
+        size = {120}
+      />
       
       <Text style = {stylesCommon.textTitle}
         >Rides you may be interested in:{"\n"}

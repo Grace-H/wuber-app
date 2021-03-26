@@ -24,7 +24,13 @@ export default StyleSheet.create( {
     customBtnTextWhite: {
         textAlign: 'center',
         fontSize: 24,
-        fontWeight: '200',
+        fontWeight: '300',
+        color: "#fff",
+    },
+    customBtnTextWhiteSM: {
+        textAlign: 'center',
+        fontSize: 19,
+        fontWeight: '300',
         color: "#fff",
     },
     customBtnBG: {
@@ -38,6 +44,18 @@ export default StyleSheet.create( {
         paddingHorizontal: 30,
         paddingVertical: 5,
         borderRadius: 30
+    },  
+        customBtn: {
+        backgroundColor: "#fff",
+        elevation: 3,
+        backgroundColor: '#147EFB',
+        shadowOffset: {width: 1, height: 1 },
+        shadowColor: '#333',
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        borderRadius: 20
     },  
     customBtnTextBlue: {
         textAlign: 'center',
@@ -53,8 +71,17 @@ export default StyleSheet.create( {
         marginTop: 50,
         width: 350,
     },
+    textTitleBlue: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: '#147EFB',
+        fontWeight: '500',
+        marginTop: 30,
+        width: 350,
+    },
     textSub: {
-        fontSize: 20,
+        textAlign : 'center',
+        fontSize: 35,
         fontWeight: '200',
         color: '#979A9A'
     },
@@ -66,13 +93,15 @@ export default StyleSheet.create( {
     },
     //use absolute positioning to keep it right below the app header?
     appHeader : {
-        height : 100, 
+        height : 60, 
         width : 1000,
         textAlign: 'center',
-        fontSize: 75,
+        fontSize: 45,
         color: '#EE8A22',
         fontWeight: '300',
-        //marginTop: 50,
-        backgroundColor : '#47ab',
+        marginBottom: 50,
+        marginTop: 5,
+        paddingTop: 2,
+        backgroundColor : '#0041AD',
     },
 });

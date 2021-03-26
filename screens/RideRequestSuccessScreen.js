@@ -7,16 +7,17 @@
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
-import React, { Component } from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
-export default class Homescreen extends Component {
-  render() {
+export default function RideRequestSuccessScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style = {stylesCommon.appHeader}>
-        Wuber
-        </Text>
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
+        />
         <Text style = {stylesCommon.textTitle}
             >You have successfully requested
             to join this trip!
@@ -32,7 +33,7 @@ export default class Homescreen extends Component {
         </Text>
         <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress = {() => {this.props.navigation.navigate('Find a Ride')}}>
+        onPress = {() => {navigation.navigate('Find a Ride')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Yes
           </Text>
@@ -42,7 +43,7 @@ export default class Homescreen extends Component {
         </Text>
         <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress={() => alert('This will take you Home')}>
+        onPress = {() => {navigation.navigate('Home')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
           No
           </Text>
@@ -50,4 +51,3 @@ export default class Homescreen extends Component {
       </View>
     )
   }
-}
