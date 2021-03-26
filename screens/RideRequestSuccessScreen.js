@@ -10,8 +10,7 @@
 import React, { Component } from 'react';
 import { Button, View, Text, TouchableOpacity } from 'react-native';
 import stylesCommon from './styles/stylesCommon';
-export default class Homescreen extends Component {
-  render() {
+export default function RideRequestSuccessScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Text style = {stylesCommon.appHeader}>
@@ -32,7 +31,7 @@ export default class Homescreen extends Component {
         </Text>
         <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress = {() => {this.props.navigation.navigate('Find a Ride')}}>
+        onPress = {() => {navigation.navigate('Find a Ride')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Yes
           </Text>
@@ -42,7 +41,7 @@ export default class Homescreen extends Component {
         </Text>
         <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress={() => alert('This will take you Home')}>
+        onPress = {() => {navigation.navigate('Home')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
           No
           </Text>
@@ -50,4 +49,3 @@ export default class Homescreen extends Component {
       </View>
     )
   }
-}

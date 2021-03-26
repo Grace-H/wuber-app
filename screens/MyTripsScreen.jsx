@@ -44,7 +44,7 @@ class MyTripsScreen extends Component {
                         </TouchableOpacity>
                     )}
                     keyExtractor={(item) => item.id}
-                    ListEmptyComponent={<Text>Trips you have joined will appear here.</Text>}
+                    ListEmptyComponent={<Text>"Trips you have joined will appear here.</Text>}
                 />
             </SafeAreaView>
         );

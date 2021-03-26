@@ -8,8 +8,8 @@
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
-import { Input, Button, Header, colors } from 'react-native-elements';
+import { StyleSheet, Text, ScrollView, SafeAreaView, } from 'react-native';
+import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
 
@@ -78,7 +78,7 @@ export default function PassengerForm( {navigation} ) {
         />
         {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
         <Button
-        onPress = {() => {navigation.navigate('List of Rides')}}
+        onPress = {() => {navigation.navigate('Ride List')}}
         title={"Submit" }
         iconRight
         />

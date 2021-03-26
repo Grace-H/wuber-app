@@ -1,10 +1,10 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-const NotificationsScreen = ({navigation}) => {
+const ProfileScreen = ({navigation}) => {
   return (
     <View style={styles.center}>
-      <Text>This is the Notifications screen</Text>
+      <Text>This is the Profile screen</Text>
     </View>
   );
 };
@@ -18,4 +18,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsScreen;
+export default ProfileScreen;
