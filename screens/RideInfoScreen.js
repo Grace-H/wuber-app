@@ -32,7 +32,7 @@ export default function RideInfoScreen({ navigation }) {
             </Text>
 
             <Text style = {stylesCommon.textBod}>
-              March 6, 2021
+              March 26, 2021
             </Text>
 
             <Text style = {stylesCommon.textTitle}>
@@ -40,7 +40,7 @@ export default function RideInfoScreen({ navigation }) {
             </Text>
 
             <Text style = {stylesCommon.textBod}>
-              2:15 PM
+              9:00 AM
             </Text>
 
             <Text style = {stylesCommon.textTitle}>

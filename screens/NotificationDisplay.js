@@ -13,6 +13,7 @@ import stylesCommon from './styles/stylesCommon';
 
 export default function Notifications ({ navigation }) {
 
+    return(
     <View style = {stylesCommon.container}>
         <Text style = {stylesCommon.textBod}>
             Dear User, 
@@ -24,15 +25,24 @@ export default function Notifications ({ navigation }) {
 
         <Text style = {stylesCommon.textBod}>
             We regret to inform you that this application is not yet operational.
-            {"/n"}
+            {"\n"}
             We hope to have it up and running in now more than 5 weeks.
-            {"/n"}
+            {"\n"}
             Sincerely,
-            {"/n"}
+            {"\n"}
             The Wuber Team
         </Text>
-
+        <Text>
+            {"\n"}
+        </Text>
+        <TouchableOpacity 
+            style = {stylesCommon.customBtnSM}
+            onPress = {() => {navigation.navigate('stack')}}>
+            <Text style={stylesCommon.customBtnTextWhiteSM}>
+                Go Home
+            </Text>
+      </TouchableOpacity>
 
     </View>
-
+    );
 }

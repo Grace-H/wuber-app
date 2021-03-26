@@ -32,7 +32,7 @@ export default function RideListScreen({ navigation }) {
 
       <Avatar
         source = {require('../assets/WuberLogo.png')}
-        size = {200}
+        size = {120}
       />
       
       <Text style = {stylesCommon.textTitle}

@@ -9,6 +9,8 @@ import RideInfoScreen from '../RideInfoScreen.js';
 import RideRequestSuccessScreen from '../RideRequestSuccessScreen.js';
 import PassengerForm from '../PassengerForm.js';
 import DriverForm from '../DriverForm.js';
+import NotificationsScreen from '../NotificationsScreen.js';
+import NotificationDisplay from '../NotificationDisplay.js';
 
 const AllAppNavigation = createStackNavigator();
 
@@ -32,6 +34,8 @@ const RootNavigator = () => (
       <AllAppNavigation.Screen name="Ride List" component={RideListScreen} />
       <AllAppNavigation.Screen name="Ride Details" component={RideInfoScreen} />
       <AllAppNavigation.Screen name="Ride Requested" component={RideRequestSuccessScreen} />
+      <AllAppNavigation.Screen name="Notifications" component={NotificationsScreen} />
+      <AllAppNavigation.Screen name="NotificationDisplay" component={NotificationDisplay} />
       </AllAppNavigation.Navigator>
     </NavigationContainer>
   );

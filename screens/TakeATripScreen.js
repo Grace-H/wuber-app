@@ -40,7 +40,7 @@ export default function HomeScreen({navigation}) {
 
       <Avatar
         source = {require('../assets/WuberLogo.png')}
-        size = {200}
+        size = {120}
       />
       <Text>
         {"\n"}{"\n"}{"\n"}{"\n"}
@@ -53,9 +53,9 @@ export default function HomeScreen({navigation}) {
       </Text>
 
       <TouchableOpacity 
-        style = {stylesCommon.customBtnBG}
+        style = {stylesCommon.customBtnSM}
         onPress = {() => {navigation.navigate('Find a Ride')}}>
-        <Text style={stylesCommon.customBtnTextWhite}>
+        <Text style={stylesCommon.customBtnTextWhiteSM}>
           Find a Ride
         </Text>
       </TouchableOpacity>
@@ -63,9 +63,9 @@ export default function HomeScreen({navigation}) {
         {"\n"}
       </Text>
       <TouchableOpacity 
-        style = {stylesCommon.customBtnBG}
+        style = {stylesCommon.customBtnSM}
         onPress = {() => {navigation.navigate('Offer a Ride')}}>
-        <Text style={stylesCommon.customBtnTextWhite}>
+        <Text style={stylesCommon.customBtnTextWhiteSM}>
           Offer a Ride
         </Text>
       </TouchableOpacity>

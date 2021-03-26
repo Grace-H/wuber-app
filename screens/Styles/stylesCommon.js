@@ -24,7 +24,13 @@ export default StyleSheet.create( {
     customBtnTextWhite: {
         textAlign: 'center',
         fontSize: 24,
-        fontWeight: '200',
+        fontWeight: '300',
+        color: "#fff",
+    },
+    customBtnTextWhiteSM: {
+        textAlign: 'center',
+        fontSize: 19,
+        fontWeight: '300',
         color: "#fff",
     },
     customBtnBG: {
@@ -38,6 +44,18 @@ export default StyleSheet.create( {
         paddingHorizontal: 30,
         paddingVertical: 5,
         borderRadius: 30
+    },  
+        customBtn: {
+        backgroundColor: "#fff",
+        elevation: 3,
+        backgroundColor: '#147EFB',
+        shadowOffset: {width: 1, height: 1 },
+        shadowColor: '#333',
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        borderRadius: 20
     },  
     customBtnTextBlue: {
         textAlign: 'center',
@@ -62,7 +80,8 @@ export default StyleSheet.create( {
         width: 350,
     },
     textSub: {
-        fontSize: 20,
+        textAlign : 'center',
+        fontSize: 35,
         fontWeight: '200',
         color: '#979A9A'
     },
@@ -82,6 +101,7 @@ export default StyleSheet.create( {
         fontWeight: '300',
         marginBottom: 50,
         marginTop: 5,
+        paddingTop: 2,
         backgroundColor : '#0041AD',
     },
 });

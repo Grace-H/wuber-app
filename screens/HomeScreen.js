@@ -9,7 +9,7 @@ export default function HomeScreen({navigation}) {
       <View style={{ flex: 1, alignItems: 'center'}}>
 
         <Text>
-          {"\n"}{"\n"}{"\n"}
+          {"\n"}{"\n"}{"\n"}{"\n"}
         </Text>
 
         <Avatar
@@ -22,7 +22,7 @@ export default function HomeScreen({navigation}) {
         </Text>
 
         <TouchableOpacity 
-          style = {stylesCommon.customBtnBG}
+          style = {stylesCommon.customBtn}
           onPress = {() => {navigation.navigate('stack')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Take a Trip!
