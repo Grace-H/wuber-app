@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Component} from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import Icon from "react-native-vector-icons/FontAwesome5";
@@ -26,7 +26,7 @@ const ProfileScreenTopTabNavigator = () => (
       <TopTab.Screen component={ProfileScreen} name="Settings" />
     </TopTab.Navigator>
   );
-  
+
 const AllScreenTabNavigator = () => (
     <BottomTab.Navigator
       initialRouteName="tab"
@@ -43,7 +43,7 @@ const AllScreenTabNavigator = () => (
       />
       <BottomTab.Screen
         name="My Trips"
-        component={MyTripsScreen}
+        component={MyTrip}
         options={{
           tabBarIcon: () => <Icon name="file-alt" size={25} color="#fff" />
         }}
@@ -64,5 +64,99 @@ const AllScreenTabNavigator = () => (
       />
     </BottomTab.Navigator>
   );
+
+  class MyTrip extends Component {
+    render(){
+      return (
+        <MyTripsScreen 
+        trips={[
+        {
+          id: "trip7",
+          isDriver: true,
+          date: "Tuesday, March 29, 8:00am",
+          departure: "Saga-O",
+          destination: "Starbucks, Main St.",
+        },
+        {
+          id: "trip8",
+          isDriver: false,
+          date: "Thursday, March 31, 12:00pm",
+          departure: "Smith-Traber Hall",
+          destination: "Target",
+        },
+        {
+          id: "trip9",
+          isDriver: false,
+          date: "Wednesday, April 8, 11:00am",
+          departure: "Wheaton College Bookstore",
+          destination: "Jewel Osco",
+        },
+        {
+          id: "trip10",
+          isDriver: true,
+          date: "Tuesday, March 29, 8:00am",
+          departure: "Saga-O",
+          destination: "Starbucks, Main St.",
+        },
+        {
+          id: "trip11",
+          isDriver: false,
+          date: "Thursday, March 31, 12:00pm",
+          departure: "Smith-Traber Hall",
+          destination: "Target",
+        },
+        {
+          id: "trip12",
+          isDriver: false,
+          date: "Wednesday, April 8, 11:00am",
+          departure: "Wheaton College Bookstore",
+          destination: "Jewel Osco",
+        },
+        {
+          id: "trip1",
+          isDriver: true,
+          date: "Tuesday, March 29, 8:00am",
+          departure: "Saga-O",
+          destination: "Starbucks, Main St.",
+        },
+        {
+          id: "trip2",
+          isDriver: false,
+          date: "Thursday, March 31, 12:00pm",
+          departure: "Smith-Traber Hall",
+          destination: "Target",
+        },
+        {
+          id: "trip3",
+          isDriver: false,
+          date: "Wednesday, April 8, 11:00am",
+          departure: "Wheaton College Bookstore",
+          destination: "Jewel Osco",
+        },
+        {
+          id: "trip4",
+          isDriver: true,
+          date: "Tuesday, March 29, 8:00am",
+          departure: "Saga-O",
+          destination: "Starbucks, Main St.",
+        },
+        {
+          id: "trip5",
+          isDriver: false,
+          date: "Thursday, March 31, 12:00pm",
+          departure: "Smith-Traber Hall",
+          destination: "Target",
+        },
+        {
+          id: "trip6",
+          isDriver: false,
+          date: "Wednesday, April 8, 11:00am",
+          departure: "Wheaton College Bookstore",
+          destination: "Jewel Osco",
+        },
+      ]}/>
+      );
+  }
+  } 
   
   export { AllScreenTabNavigator };
