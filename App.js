@@ -5,7 +5,7 @@
  * 
  * Author: Gordon Olson, Grace Hunter, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21 
- * Last Edited: 24 March Grace
+ * Last Edited: 24 March Brendan
  */
 
 //The different styles and features that are being used.
@@ -21,12 +21,16 @@ import PassengerForm from './screens/PassengerForm.js';
 import RideListScreen from './screens/RideListScreen.js';
 import RideInfoScreen from './screens/RideInfoScreen.js';
 import RideRequestSuccessScreen from "./screens/RideRequestSuccessScreen.js";
+import MyTripsScreen from './screens/MyTripsScreen';
+import MyTripInfoScreen from './screens/MyTripInfoScreen';
+import NotificationMenu from './screens/NotificationMenu';
+import ProfileScreen from './screens/ProfileScreen';
 
 
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer, StackActions } from '@react-navigation/native';
 import { SafeAreaView } from 'react-native';
-import MyTripInfoScreen from './screens/MyTripInfoScreen';
+
 
 const Stack = createStackNavigator(); 
 
@@ -62,6 +66,18 @@ export default function App() {
           name = "Ride Requested"
           component = {RideRequestSuccessScreen}
         />
+        <Stack.Screen
+          name = "My Trips Screen"
+          component = {MyTripsScreen}
+        />
+        <Stack.Screen
+          name = "Trip Info Screen"
+          component = {MyTripInfoScreen}
+        />
+        <Stack.Screen
+          name = "Profile"
+          component = {ProfileScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );}
@@ -69,7 +85,6 @@ export default function App() {
   /*
   * Serves as the Login Screen format for the app
   */
- 
   function LoginScreen({navigation}) {
   
     return(
@@ -77,6 +92,11 @@ export default function App() {
       <Text style = {stylesCommon.appHeader}>
         Wuber
       </Text>
+
+      <Image
+        source = {require('./assets/WuberLogo.png')}
+        style = {{width: 350, height: 350}}
+      />
       
       <Text> Username: </Text>
       <TextInput 
