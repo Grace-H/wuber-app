@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from '../styles/stylesCommon';
 
 export default function SettingsScreen({ navigation }) {
     return (

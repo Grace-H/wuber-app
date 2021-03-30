@@ -14,7 +14,7 @@ import RideListScreen from './screens/RideListScreen.js';
 import RideInfoScreen from './screens/RideInfoScreen.js';
 import RideRequestSuccessScreen from './screens/RideRequestSuccessScreen.js';
 import MyTripsScreen from './screens/MyTripsScreen.jsx';
-import SettingsScreen from "./screens/SettingsScreen.js";
+import SettingsScreen from "./screens/dummies/SettingsScreen.js";
 import { ProfileStack } from "./screens/stacks/ProfileStack.js";
 import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';

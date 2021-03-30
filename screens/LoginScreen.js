@@ -16,18 +16,18 @@ const LoginScreen = ({navigation}) => {
       />
 
       <Text>
-        {"\n"}{"\n"}{"\n"}{"\n"}
+        {"\n"}{"\n"}{"\n"}
       </Text>
       
       <Text> Email: </Text>
       <TextInput 
           style = {{ height: 20, borderColor: 'black', borderWidth: 1}}
-          placeholder = "                "
+          placeholder = "                          "
       />
       <Text> Password: </Text>
       <TextInput 
           style = {{ height: 20, borderColor: 'black', borderWidth: 1}}
-          placeholder = "                "
+          placeholder = "                          "
       />
       <Button
       title = "Submit" 
