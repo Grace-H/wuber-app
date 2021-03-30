@@ -34,7 +34,7 @@ class MyTripsScreen extends Component {
                     renderItem={({item}) => (
                         <TouchableOpacity
                             key={item.id}
-                        >
+                            >
                             <RegisteredTripCard
                                 isDriver={item.isDriver}
                                 date={item.date}

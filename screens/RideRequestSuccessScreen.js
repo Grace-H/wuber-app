@@ -7,15 +7,17 @@
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
-import React, { Component } from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 export default function RideRequestSuccessScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <Text style = {stylesCommon.appHeader}>
-        Wuber
-        </Text>
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
+        />
         <Text style = {stylesCommon.textTitle}
             >You have successfully requested
             to join this trip!

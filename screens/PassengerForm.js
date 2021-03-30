@@ -8,7 +8,7 @@
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, } from 'react-native';
+import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
@@ -42,9 +42,11 @@ export default function PassengerForm( {navigation} ) {
   
   return (
         <SafeAreaView style={styles.container}>
-
-        <Text style = {stylesCommon.appHeader}>
-          Wuber
+        <Text style = {stylesCommon.textTitleBlue}>
+          Passenger Information:
+        </Text>
+        <Text>
+        {"\n"}{"\n"}
         </Text>
         <ScrollView>
         <Input
@@ -77,11 +79,19 @@ export default function PassengerForm( {navigation} ) {
             onPress={showTimePicker}
         />
         {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
-        <Button
-        onPress = {() => {navigation.navigate('Ride List')}}
-        title={"Submit" }
-        iconRight
-        />
+
+        <Text>
+          {"\n"}
+        </Text>
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtnBG}
+          onPress = {() => {navigation.navigate('Ride List')}}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Submit
+          </Text>
+        </TouchableOpacity>
+
         </ScrollView>
         </SafeAreaView>
     );

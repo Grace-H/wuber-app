@@ -1,20 +1,33 @@
 import React from 'react';
-import { View, Button, Image } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
+import { Avatar } from 'react-native-elements';
+import stylesCommon from './styles/stylesCommon';
+
 export default function HomeScreen({navigation}) {
     return (
 
-      <View style={{ flex: 1, alignItems: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center' }}>
 
+        <Text>
+          {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
+        </Text>
 
-      <Image
-        source = {require('../assets/WuberLogo.png')}
-        style = {{width: 350, height: 350}}
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
+        />
 
-      />
-      <Button
-      title = "Take a Trip" 
-      onPress = {() => navigation.navigate('stack')}
-      />
+        <Text>
+          {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
+        </Text>
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => {navigation.navigate('Take a Trip')}}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Take a Trip!
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

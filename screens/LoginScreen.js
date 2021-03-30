@@ -1,23 +1,33 @@
 import React from "react";
 import { View, StyleSheet, Text, TextInput, Button } from "react-native";
-import stylesCommon from './styles/stylesCommon';
+import { Avatar } from 'react-native-elements';
 
 const LoginScreen = ({navigation}) => {
   return (
     <View style={styles.center}>
-      <Text style = {stylesCommon.appHeader}>
-        Wuber
+
+      <Text>
+        {"\n"}
+      </Text>
+
+      <Avatar
+        source = {require('../assets/WuberLogo.png')}
+        size = {200}
+      />
+
+      <Text>
+        {"\n"}{"\n"}{"\n"}
       </Text>
       
       <Text> Email: </Text>
       <TextInput 
           style = {{ height: 20, borderColor: 'black', borderWidth: 1}}
-          placeholder = "                "
+          placeholder = "                          "
       />
       <Text> Password: </Text>
       <TextInput 
           style = {{ height: 20, borderColor: 'black', borderWidth: 1}}
-          placeholder = "                "
+          placeholder = "                          "
       />
       <Button
       title = "Submit" 

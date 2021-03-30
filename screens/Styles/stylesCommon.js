@@ -13,7 +13,7 @@ export default StyleSheet.create( {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 40
+        paddingTop: 40,
     },
     customBtnSM: {
         backgroundColor: "#007aff",
@@ -24,7 +24,13 @@ export default StyleSheet.create( {
     customBtnTextWhite: {
         textAlign: 'center',
         fontSize: 24,
-        fontWeight: '200',
+        fontWeight: '300',
+        color: "#fff",
+    },
+    customBtnTextWhiteSM: {
+        textAlign: 'center',
+        fontSize: 19,
+        fontWeight: '300',
         color: "#fff",
     },
     customBtnBG: {
@@ -38,6 +44,18 @@ export default StyleSheet.create( {
         paddingHorizontal: 30,
         paddingVertical: 5,
         borderRadius: 30
+    },  
+        customBtn: {
+        backgroundColor: "#fff",
+        elevation: 3,
+        backgroundColor: '#147EFB',
+        shadowOffset: {width: 1, height: 1 },
+        shadowColor: '#333',
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        borderRadius: 20
     },  
     customBtnTextBlue: {
         textAlign: 'center',
@@ -53,8 +71,17 @@ export default StyleSheet.create( {
         marginTop: 50,
         width: 350,
     },
+    textTitleBlue: {
+        textAlign: 'center',
+        fontSize: 30,
+        color: '#147EFB',
+        fontWeight: '500',
+        marginTop: 30,
+        width: 350,
+    },
     textSub: {
-        fontSize: 20,
+        textAlign : 'center',
+        fontSize: 35,
         fontWeight: '200',
         color: '#979A9A'
     },
@@ -69,10 +96,12 @@ export default StyleSheet.create( {
         height : 100, 
         width : 1000,
         textAlign: 'center',
-        fontSize: 75,
+        fontSize: 45,
         color: '#EE8A22',
-        fontWeight: '300',
-        //marginTop: 50,
-        backgroundColor : '#47ab',
+        fontWeight: '200',
+        marginBottom: 50,
+        marginTop: -40,
+        paddingTop: 25,
+        backgroundColor : '#0041AD',
     },
 });
