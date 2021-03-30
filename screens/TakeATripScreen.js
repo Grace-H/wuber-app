@@ -4,7 +4,7 @@ import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 
 
-export default function HomeScreen({navigation}) {
+export default function TakeATripScreen({navigation}) {
     return (
   
       /* (Grace) Playground for testing screen with lists of rides user is signed up for
@@ -54,7 +54,7 @@ export default function HomeScreen({navigation}) {
 
       <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress = {() => {navigation.navigate('Find a Ride')}}>
+        onPress = {() => {navigation.navigate('Passenger Stack')}}>
         <Text style={stylesCommon.customBtnTextWhiteSM}>
           Find a Ride
         </Text>
@@ -64,7 +64,7 @@ export default function HomeScreen({navigation}) {
       </Text>
       <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress = {() => {navigation.navigate('Offer a Ride')}}>
+        onPress = {() => {navigation.navigate('Driver Stack')}}>
         <Text style={stylesCommon.customBtnTextWhiteSM}>
           Offer a Ride
         </Text>

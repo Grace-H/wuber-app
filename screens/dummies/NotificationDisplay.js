@@ -9,9 +9,9 @@
  */
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from '../styles/stylesCommon';
 
-export default function Notifications ({ navigation }) {
+export default function NotificationDisplay ({ navigation }) {
 
     return(
     <View style = {stylesCommon.container}>
@@ -37,7 +37,7 @@ export default function Notifications ({ navigation }) {
         </Text>
         <TouchableOpacity 
             style = {stylesCommon.customBtnSM}
-            onPress = {() => {navigation.navigate('stack')}}>
+            onPress = {() => {navigation.navigate('Home')}}>
             <Text style={stylesCommon.customBtnTextWhiteSM}>
                 Go Home
             </Text>

@@ -12,7 +12,7 @@ import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { Card, Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 
-export default function Notifications ({ navigation }) {
+export default function NotificationsScreen ({ navigation }) {
       //Dummy message.
   const [message,  setMessage] = useState([
     { name: 'Brendan Keefer @ 9:00am on 03/26/21', key: '1' },
@@ -29,7 +29,7 @@ export default function Notifications ({ navigation }) {
             data = {message}
             renderItem = {({ item }) => (
 
-              <TouchableOpacity onPress = {() => {navigation.navigate('NotificationDisplay', item)}}>
+              <TouchableOpacity onPress = {() => {navigation.navigate('Notification Display', item)}}>
                 <Card>
                     <Text style={stylesCommon.customBtnTextBlue}>{ item.name }</Text>
                 </Card>

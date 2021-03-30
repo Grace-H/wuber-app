@@ -13,7 +13,7 @@ export default StyleSheet.create( {
         flex: 1,
         justifyContent: "center",
         alignItems: "center",
-        paddingTop: 40
+        paddingTop: 40,
     },
     customBtnSM: {
         backgroundColor: "#007aff",
@@ -93,15 +93,15 @@ export default StyleSheet.create( {
     },
     //use absolute positioning to keep it right below the app header?
     appHeader : {
-        height : 60, 
+        height : 100, 
         width : 1000,
         textAlign: 'center',
         fontSize: 45,
         color: '#EE8A22',
-        fontWeight: '300',
+        fontWeight: '200',
         marginBottom: 50,
-        marginTop: 5,
-        paddingTop: 2,
+        marginTop: -40,
+        paddingTop: 25,
         backgroundColor : '#0041AD',
     },
 });

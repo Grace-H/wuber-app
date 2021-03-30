@@ -7,7 +7,7 @@
  * Date Created: 24 March 21
  * Last Edited: 24 March by Brendan Keefer
  */
-import React, { Component } from 'react';
+import React from 'react';
 import { Avatar } from 'react-native-elements';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import stylesCommon from './styles/stylesCommon';
@@ -55,7 +55,7 @@ export default function ProfileScreen({ navigation }) {
 
             <TouchableOpacity 
             style = {stylesCommon.customBtnBG}
-            onPress = {() => {navigation.navigate('Take a Trip')}}>
+            onPress = {() => {navigation.navigate('Settings')}}>
               <Text style={stylesCommon.customBtnTextWhite}>
                 Edit
               </Text>

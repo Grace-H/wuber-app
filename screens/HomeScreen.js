@@ -6,10 +6,10 @@ import stylesCommon from './styles/stylesCommon';
 export default function HomeScreen({navigation}) {
     return (
 
-      <View style={{ flex: 1, alignItems: 'center'}}>
+      <View style={{ flex: 1, alignItems: 'center' }}>
 
         <Text>
-          {"\n"}{"\n"}{"\n"}{"\n"}
+          {"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}{"\n"}
         </Text>
 
         <Avatar
@@ -23,7 +23,7 @@ export default function HomeScreen({navigation}) {
 
         <TouchableOpacity 
           style = {stylesCommon.customBtn}
-          onPress = {() => {navigation.navigate('stack')}}>
+          onPress = {() => {navigation.navigate('Take a Trip')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Take a Trip!
           </Text>
