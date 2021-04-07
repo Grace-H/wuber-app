@@ -5,6 +5,7 @@
  * Date Created: 05 March 21
  * Last Edited: 24 March 21 by Grace
  */
+import Realm from "realm";
 import React, {useState} from 'react';
 import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
@@ -12,6 +13,7 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import { TextInput } from 'react-native-gesture-handler';
 import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 import stylesCommon from './styles/stylesCommon';
+import axios from 'axios';
 
 export default function DriverForm( {navigation}) {
   const [date, setDate] = useState(new Date());
@@ -71,6 +73,15 @@ export default function DriverForm( {navigation}) {
     setPayment(!showPayment);
   }
 
+  const onSubmit = (e) => {
+    e.preventDefault();
+
+    const trip = {
+      driver = "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn
+      seats = this.state.seats,
+      passengers = [],
+    }
+  }
   return (
     
     <SafeAreaView style={styles.container}>

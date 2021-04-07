@@ -1,3 +1,4 @@
+import Realm from "realm";
 import React from "react";
 import { View, StyleSheet, Text, TextInput, Button } from "react-native";
 import { Avatar } from 'react-native-elements';

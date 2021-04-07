@@ -8,6 +8,7 @@
  * Last Modified: 24 mar Grace
  */
 
+import Realm from "realm";
 import React, { Component } from 'react';
 import { FlatList } from 'react-native';
 import { TouchableOpacity } from 'react-native';
