@@ -28,7 +28,12 @@ const LoginScreen = ({navigation}) => {
       <Text> Password: </Text>
       <TextInput 
           style = {{ height: 20, borderColor: 'black', borderWidth: 1}}
-          placeholder = "                          "
+          setFocus = {focus}
+          onChangeText = {text => props.onChangeText(text)}
+          onFocus = {() => setFocus(true)}
+          onBlur = {() => setFocus(false)}
+          secureTextEntry={secure}
+          placeholder = {props.placeholder}                         
       />
       <Button
       title = "Submit" 
