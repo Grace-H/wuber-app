@@ -4,6 +4,7 @@ import { View, StyleSheet, Text, TextInput, Button } from "react-native";
 import { Avatar } from 'react-native-elements';
 
 const LoginScreen = ({navigation}) => {
+  const [secure, setSecure] = React.useState(props.secure);
   return (
     <View style={styles.center}>
 
@@ -35,10 +36,18 @@ const LoginScreen = ({navigation}) => {
           secureTextEntry={secure}
           placeholder = {props.placeholder}                         
       />
+      {props.secure && <Icon style = {{ padingRight: 15, }} name = {secure ? "eye" : 'eye-slash'} size = {20} color = 'gray'
+      onPress = {() => setSecure(!secure)}/>}
+      {!props.secure && <View style = {{paddingRight: 15, width: 30, height: 10}}/>}
       <Button
       title = "Submit" 
       onPress = {() => navigation.navigate('Take a Trip')}
       />
+      <Button>
+        title = "Create Account"
+        // onPress = {() => navigation.navigate('Create Account')}
+      </Button>
+      
     </View>
   );
 };
