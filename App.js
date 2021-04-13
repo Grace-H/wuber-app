@@ -19,6 +19,7 @@ import { ProfileStack } from "./screens/stacks/ProfileStack.js";
 import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
+import LoginScreen from './screens/LoginScreen.js';
 
 /*export default function App() {
   return (
@@ -41,6 +42,7 @@ function TripStackScreens(){
       <Stack.Screen name="Home" component={HomeScreen} 
         options={{headerShown:false}}
       />
+      <Stack.Screen name = "Login" component={LoginScreen}/>
       <Stack.Screen name="Take a Trip" component={TakeATripScreen} />
       <Stack.Screen name="Passenger Stack" component={PassengerStack} />
       <Stack.Screen name="Driver Stack" component={DriverStack} />
