@@ -11,6 +11,7 @@ import { DriverStack } from "./screens/stacks/DriverStack.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import TakeATripScreen from "./screens/TakeATripScreen.js";
 import RideListScreen from './screens/RideListScreen.js';
+import MyTripInfoScreen from './screens/MyTripInfoScreen';
 import RideInfoScreen from './screens/RideInfoScreen.js';
 import RideRequestSuccessScreen from './screens/RideRequestSuccessScreen.js';
 import MyTripsScreen from './screens/MyTripsScreen.jsx';
