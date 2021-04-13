@@ -5,74 +5,117 @@ import TextInput from './styles/TextInputOverride';
 import axios from 'axios'; 
 import { render } from "react-dom";
 
+/*
+state = {
+  email: '',
+  password: '',
+  users: [],
+}
+
+updateEmail = (text) =>{
+  this.setState({ email: text})
+}
+
+updatePassword = (text) =>{
+  this.setState ({ password: text})
+}
+s
+login = (email, pass) =>{
+  var userEmail = email; 
+  var userPass = pass; 
+  var users = getUsers(); 
+
+  
+  users.forEach(function(email, pass){
+    if (userEmail == email && userPass == pass){
+      navigation.navigate("Home")
+    }
+    else {
+      alert('The credentials you supplied could not be' 
+      + "\n" 
+      + 'determined to be authentic.'
+      + "\n"
+      + "Please try again. ")
+    }
+  });   
+
+  alert('email: ' + userEmail + ' password: ' + userPass)
+  navigation.navigate("Home")
+}
+
+
+
+ getUsers() ;{
+  axios.get('http://localhost:5000/users')
+          .then(response => {
+              if(response.data.length > 0) {
+                  this.setState({
+                      users: response.data
+                  });
+              }
+          })
+          .catch(err => console.log(err));
+        //return this.state.users;
+}
+
+*/
+
 const LoginScreen = ({navigation}) => {
 
-  state = {
-    email: '',
-    password: ''
-  }
+  return (
+    <View style = {styles.center}>
+      <Text>
+        {"\n"}
+      </Text>
 
-  updateEmail = (text) =>{
-    this.setState({ email: text})
-  }
+      <Avatar
+        source = {require('../assets/WuberLogo.png')}
+        size = {200}
+      />
 
-  updatePassword = (text) =>{
-    this.setState ({ password: text})
-  }
+      <Text>
+        {"\n"}{"\n"}{"\n"}
+      </Text>
 
-  /*
-  * This is where the authentication should happen. 
-  */
-  login = (email, pass) =>{
-    alert('email: ' + email + ' password: ' + pass)
-  }
+      <TextInput
+        style ={{marginTop: 20, borderWidth: 1}}
+        placeholder="Email Address" 
+        onChangeText ={this.updateEmail}
+          />
 
-    return (
-      <View style = {styles.center}>
+      <TextInput
+        style={{ marginTop: 20 , borderWidth: 1}}
+        placeholder="Password" 
+        onChangeText ={this.updatePassword}
+        />
+        
+        <Text> {"\n"} </Text>
+        <Button
+        title = "Submit" 
+        //onPress = {
+          //() => this.login(this.state.email, this.state.password)
+        //}
+        />
         <Text>
           {"\n"}
         </Text>
 
-        <Avatar
-          source = {require('../assets/WuberLogo.png')}
-          size = {200}
+        <Button
+          title = "Create Account"
+          onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}
         />
+      </View>
+    )
 
-        <Text>
-          {"\n"}{"\n"}{"\n"}
-        </Text>
-
-        <TextInput
-          style ={{marginTop: 20, borderWidth: 1}}
-          placeholder="Email Address" 
-          onChangeText ={this.updateEmail}
-            />
-
-        <TextInput
-          style={{ marginTop: 20 , borderWidth: 1}}
-          placeholder="Password" 
-          onChangeText ={this.updatePassword}
-          />
-          
-          <Text> {"\n"} </Text>
-          <Button
-          title = "Submit" 
-          onPress = {
-            () => this.login(this.state.email, this.state.password)
-          }
-          />
-          <Text>
-            {"\n"}
-          </Text>
-
-          <Button
-            title = "Create Account"
-            onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}
-          />
-        </View>
-      )
+  
+  
+    
    
  }
+ 
+
+
+
 
 const styles = StyleSheet.create({
   center: {
