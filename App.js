@@ -1,6 +1,7 @@
 import "react-native-gesture-handler";
-import React, {Component} from "react";
-import { StyleSheet } from 'react-native';
+import React, {Component, Text, TextInput, Button, render} from "react";
+import { Avatar } from 'react-native-elements';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -101,6 +102,7 @@ const MyTripsTopTabNavigator = () => (
 
 
 export default function App() {
+  
   return (
     <NavigationContainer>
       <BottomTab.Navigator
@@ -133,6 +135,7 @@ export default function App() {
       </BottomTab.Navigator>
     </NavigationContainer>
   );
+  
 }
 
 const styles = StyleSheet.create({

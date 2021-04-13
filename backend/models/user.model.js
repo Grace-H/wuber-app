@@ -23,6 +23,31 @@ const userSchema = new Schema({
         minLength: 3,
         trim: true,
     },
+    password: {
+        type: String, 
+        required: true, 
+        unique: true, 
+        minLength: 8, 
+        trim: true, 
+    },
+    year: {
+        type: String, 
+        required: false, 
+        unique: false, 
+        trim: true, 
+    }, 
+    gender: {
+        type: String, 
+        required: false, 
+        unique: false, 
+        trim: true, 
+    }, 
+    phone: {
+        type: String, 
+        required: false, 
+        unique: true, 
+        trim: true, 
+    }
 }, {
     timestamps: true,
 });
