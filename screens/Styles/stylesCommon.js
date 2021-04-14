@@ -85,6 +85,12 @@ export default StyleSheet.create( {
         marginTop: 30,
         width: 350,
     },
+    loginInput: {
+        marginTop: 20,
+        borderWidth: 3,
+        width: 250,
+        textAlign: 'center',
+    },
     textSub: {
         textAlign : 'center',
         fontSize: 35,

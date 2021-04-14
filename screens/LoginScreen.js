@@ -1,14 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 
-export default function HomeScreen({navigation}) {
+class LoginScreen extends Component {
 
   state = {
     email: '',
     password: '',
-    users: [],
   }
 
   updateEmail = (text) =>{
@@ -18,7 +17,13 @@ export default function HomeScreen({navigation}) {
   updatePassword = (text) =>{
     this.setState ({ password: text})
   }
+  
+  login = (email, pass) => {
+    alert('email: ' + email + '\n' + 'password: ' + pass)
+  }
 
+
+  render (){
     return (
 
       <View style={{ flex: 1, alignItems: 'center' }}>
@@ -37,13 +42,13 @@ export default function HomeScreen({navigation}) {
         </Text>
 
         <TextInput
-        style ={{marginTop: 20, borderWidth: 1}}
+        style ={stylesCommon.loginInput}
         placeholder="Email Address" 
         onChangeText ={this.updateEmail}
           />
 
         <TextInput
-        style={{ marginTop: 20 , borderWidth: 1}}
+        style={stylesCommon.loginInput}
         placeholder="Password" 
         onChangeText ={this.updatePassword}
         />
@@ -53,11 +58,15 @@ export default function HomeScreen({navigation}) {
 
         <TouchableOpacity 
           style = {stylesCommon.customBtn}
-          onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}>
+          onPress = {() => this.login(this.state.email, this.state.password)}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Submit
           </Text>
         </TouchableOpacity>
       </View>
     );
+
   }
+  }
+
+  export default LoginScreen
