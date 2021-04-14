@@ -1,129 +1,63 @@
-import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import React from 'react';
+import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import TextInput from './styles/TextInputOverride';
-import axios from 'axios'; 
-import { render } from "react-dom";
+import stylesCommon from './styles/stylesCommon';
 
-/*
-state = {
-  email: '',
-  password: '',
-  users: [],
-}
+export default function HomeScreen({navigation}) {
 
-updateEmail = (text) =>{
-  this.setState({ email: text})
-}
+  state = {
+    email: '',
+    password: '',
+    users: [],
+  }
 
-updatePassword = (text) =>{
-  this.setState ({ password: text})
-}
-s
-login = (email, pass) =>{
-  var userEmail = email; 
-  var userPass = pass; 
-  var users = getUsers(); 
-
+  updateEmail = (text) =>{
+    this.setState({ email: text})
+  }
   
-  users.forEach(function(email, pass){
-    if (userEmail == email && userPass == pass){
-      navigation.navigate("Home")
-    }
-    else {
-      alert('The credentials you supplied could not be' 
-      + "\n" 
-      + 'determined to be authentic.'
-      + "\n"
-      + "Please try again. ")
-    }
-  });   
+  updatePassword = (text) =>{
+    this.setState ({ password: text})
+  }
 
-  alert('email: ' + userEmail + ' password: ' + userPass)
-  navigation.navigate("Home")
-}
+    return (
 
+      <View style={{ flex: 1, alignItems: 'center' }}>
 
+        <Text>
+          {"\n"}
+        </Text>
 
- getUsers() ;{
-  axios.get('http://localhost:5000/users')
-          .then(response => {
-              if(response.data.length > 0) {
-                  this.setState({
-                      users: response.data
-                  });
-              }
-          })
-          .catch(err => console.log(err));
-        //return this.state.users;
-}
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
+        />
 
-*/
+        <Text>
+          {"\n"}{"\n"}{"\n"}
+        </Text>
 
-const LoginScreen = ({navigation}) => {
-
-  return (
-    <View style = {styles.center}>
-      <Text>
-        {"\n"}
-      </Text>
-
-      <Avatar
-        source = {require('../assets/WuberLogo.png')}
-        size = {200}
-      />
-
-      <Text>
-        {"\n"}{"\n"}{"\n"}
-      </Text>
-
-      <TextInput
+        <TextInput
         style ={{marginTop: 20, borderWidth: 1}}
         placeholder="Email Address" 
         onChangeText ={this.updateEmail}
           />
 
-      <TextInput
+        <TextInput
         style={{ marginTop: 20 , borderWidth: 1}}
         placeholder="Password" 
         onChangeText ={this.updatePassword}
         />
-        
+
         <Text> {"\n"} </Text>
-        <Button
-        title = "Submit" 
-        //onPress = {
-          //() => this.login(this.state.email, this.state.password)
-        //}
-        />
-        <Text>
-          {"\n"}
-        </Text>
+        
 
-        <Button
-          title = "Create Account"
-          onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}
-        />
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Submit
+          </Text>
+        </TouchableOpacity>
       </View>
-    )
-
-  
-  
-    
-   
- }
- 
-
-
-
-
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-  },
-});
-
-export default LoginScreen;
+    );
+  }

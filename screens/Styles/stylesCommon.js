@@ -33,6 +33,12 @@ export default StyleSheet.create( {
         fontWeight: '300',
         color: "#fff",
     },
+    center: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+      },
     customBtnBG: {
         backgroundColor: "#fff",
         elevation: 3,

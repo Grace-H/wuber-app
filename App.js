@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, {Component, Text, TextInput, Button, render} from "react";
+import React, {Component, Text, TextInput, Button, render, Alert} from "react";
 import { Avatar } from 'react-native-elements';
 import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -20,7 +20,7 @@ import { ProfileStack } from "./screens/stacks/ProfileStack.js";
 import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
-import LoginScreen from './screens/LoginScreen.js';
+import LoginScreen from "./screens/LoginScreen";
 
 /*export default function App() {
   return (
@@ -104,7 +104,9 @@ const MyTripsTopTabNavigator = () => (
 export default function App() {
   
   return (
-    <NavigationContainer>
+    <LoginScreen/>
+      /*
+      <NavigationContainer>
       <BottomTab.Navigator
           screenOptions= {({ route }) => ({
             tabBarIcon: ({ focused, horizontal, tintColor }) => {
@@ -134,7 +136,11 @@ export default function App() {
         <BottomTab.Screen  name="Profile" component={ProfileStackScreens} />
       </BottomTab.Navigator>
     </NavigationContainer>
-  );
+    */
+  
+  )
+
+    
   
 }
 
@@ -145,7 +151,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+
+  center: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    textAlign: "center",
+  },
 });
+
 
 class MyTrip extends Component {
   render(){
