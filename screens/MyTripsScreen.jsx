@@ -14,6 +14,7 @@ import { TouchableOpacity } from 'react-native';
 import { Text, SafeAreaView } from 'react-native';
 import RegisteredTripCard from '../components/RegisteredTripCard.jsx';
 import axios from 'axios';
+
 /*
  * Takes trip data of format
  * [{
@@ -58,6 +59,11 @@ class MyTripsScreen extends Component {
                 if(response.data.length > 0) {
                     this.setState({
                         trips: response.data
+                    });
+                }
+                else{
+                    this.setState({
+                        trips: null,
                     });
                 }
             })

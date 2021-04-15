@@ -1,51 +1,72 @@
-import React from "react";
-import { View, StyleSheet, Text, Button } from "react-native";
+import React, {Component} from 'react';
+import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import TextInput from './styles/TextInputOverride';
+import stylesCommon from './styles/stylesCommon';
 
-const LoginScreen = ({navigation}) => {
-  return (
-    <View style = {styles.center}>
-      <Text>
-        {"\n"}
-      </Text>
-      <Avatar
-        source = {require('../assets/WuberLogo.png')}
-        size = {200}
-      />
-      <Text>
-        {"\n"}{"\n"}{"\n"}
-      </Text>
-      <TextInput
-        style ={{marginTop: 20, borderWidth: 1}}
-        placeholder="Email" />
-      <TextInput
-        style={{ marginTop: 20 , borderWidth: 1}}
-        placeholder="Password" />
-        
-        <Text> {"\n"} </Text>
-        <Button
-        title = "Submit" 
-        onPress = {() => navigation.navigate('Take a Trip')}
-        />
+class LoginScreen extends Component {
+
+  state = {
+    email: '',
+    password: '',
+  }
+
+  updateEmail = (text) =>{
+    this.setState({ email: text})
+  }
+  
+  updatePassword = (text) =>{
+    this.setState ({ password: text})
+  }
+  
+  login = (email, pass) => {
+    alert('email: ' + email + '\n' + 'password: ' + pass)
+  }
+
+
+  render (){
+    return (
+
+      <View style={{ flex: 1, alignItems: 'center' }}>
+
         <Text>
           {"\n"}
         </Text>
-        <Button
-          title = "Create Account"
-          onPress = {() => Alert.alert('You will be soon be redirected to create an Account')}
+
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
         />
+
+        <Text>
+          {"\n"}{"\n"}{"\n"}
+        </Text>
+
+        <TextInput
+        style ={stylesCommon.loginInput}
+        placeholder="Email Address" 
+        onChangeText ={this.updateEmail}
+          />
+
+        <TextInput
+        style={stylesCommon.loginInput}
+        placeholder="Password" 
+        onChangeText ={this.updatePassword}
+        />
+
+        <Text> {"\n"} </Text>
+        
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => this.login(this.state.email, this.state.password)}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Submit
+          </Text>
+        </TouchableOpacity>
       </View>
     );
-}
 
-const styles = StyleSheet.create({
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    textAlign: "center",
-  },
-});
+  }
+  }
 
-export default LoginScreen;
+  export default LoginScreen
