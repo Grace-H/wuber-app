@@ -15,33 +15,114 @@ import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
 import { useNavigation } from '@react-navigation/native';
 
-export default function PassengerForm() {
+export default function PassengerForm( { setQuery }) {
   const navigation = useNavigation();
 
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
   const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
+  const [time1, setTime1] = useState(new Date());
+  const [time2, setTime2] = useState(new Date());
   const [showDate, setShowDate] = useState(false);
-  const [showTime, setShowTime] = useState(false);
+  const [showTime1, setShowTime1] = useState(false);
+  const [showTime2, setShowTime2] = useState(false);
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setDate(currentDate);
   };
 
-  const onTimeChange = (event, selectedTime) => {
-    const currentTime = selectedTime || time;
-    setTime(currentTime);
+  const onTime1Change = (event, selectedTime) => {
+    const currentTime = selectedTime || time1;
+    setTime1(currentTime);
+  };
+
+  const onTime2Change = (event, selectedTime) => {
+    const currentTime = selectedTime || time2;
+    setTime2(currentTime);
   };
 
   const showDatePicker = () => {
     setShowDate(!showDate);
-    setShowTime(false);
+    setShowTime1(false);
+    setShowTime2(false);
   };
 
-  const showTimePicker = () => {
-    setShowTime(!showTime);
+  const showTimePicker1 = () => {
+    setShowTime1(!showTime1);
     setShowDate(false);
+    setShowTime2(false);
   };
+
+  const showTimePicker2 = () => {
+    setShowTime2(!showTime2);
+    setShowDate(false);
+    setShowTime1(false);
+  };
+
+  const onSubmit = () => {
+    let day = date.getUTCDate();
+    if(day.toString().length == 1){
+      day = '0' + day;
+    }
+
+    let month = date.getUTCMonth();
+    if(month.toString().length == 1){
+      month = '0' + month;
+    }
+
+    let year = date.getUTCFullYear();
+
+    let minutes1 = time1.getUTCMinutes();
+    if(minutes1.toString().length == 1){
+      minutes1 = '0' + minutes1;
+    }
+
+    let hours1 = time1.getUTCHours();
+    if(hours1.toString().length == 1){
+      hours1 = '0' + hours1;
+    }
+
+    let minutes2 = time2.getUTCMinutes();
+    if(minutes2.toString().length == 1){
+      minutes2 = '0' + minutes2;
+    }
+
+    let hours2 = time2.getUTCHours();
+    if(hours2.toString().length == 1){
+      hours2 = '0' + hours2;
+    }
+
+    const startDate = new Date(year + '-' + month + '-' + day + 'T' + hours1 + ':' + minutes1 + ':00');
+    const endDate = new Date(year + '-' + month + '-' + day + 'T' + hours2 + ':' + minutes2 + ':00');
+
+
+  /*
+  const trip = {
+      driver: "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn
+      seats: seats,
+      passengers: [],
+      origin: origin,
+      destination: destination,
+      time: fullDate,
+      isRoundTrip: rtChecked,
+      returnTime: fullrtDate
+    }
+    */
+
+    const query = {
+      origin: origin,
+      destination: destination,
+      startDate: startDate,
+      endDate: endDate,
+    };
+
+    setQuery(query);
+    navigation.navigate('Ride List');
+
+//    const query = null;
+//    this.props.setQuery(query);
+  }
   
   return (
         <SafeAreaView style={styles.container}>
@@ -56,11 +137,13 @@ export default function PassengerForm() {
             placeholder='Search' 
             label="Departing from"
             rightIcon={{ type: 'font-awesome', name: 'search' }}
+            onChangeText={value => setOrigin(value)}
         />
         <Input
             placeholder='Search' 
             label="Going to"
             rightIcon={{ type: 'font-awesome', name: 'search' }}
+            onChangeText={value => setDestination(value)}
         />
         <Button
             title={"On\t\t" + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() }
@@ -73,15 +156,26 @@ export default function PassengerForm() {
         />
         {showDate && <RNDateTimePicker value={date} mode="date" style={{ width: "100%" }} onChange={onDateChange} />}
         <Button
-            title={"At\t\t" + (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) + ':' + time.getMinutes() + " " + (time.getHours() - 12 <= 0 ? "AM" : "PM")}
+            title={"Between\t\t" + (time1.getHours() - 12 <= 0 ? time1.getHours() : time1.getHours() - 12) + ':' + time1.getMinutes() + " " + (time1.getHours() - 12 <= 0 ? "AM" : "PM")}
             type="clear"
             iconRight
             titleStyle={styles.label}
             icon={{ type: 'font-awesome', name: 'chevron-down' }}
             buttonStyle={{justifyContent: "space-between"}}
-            onPress={showTimePicker}
+            onPress={showTimePicker1}
         />
-        {showTime && <RNDateTimePicker value={time} mode="time" style={{ width: "100%" }} onChange={onTimeChange} />}
+        {showTime1 && <RNDateTimePicker value={time1} mode="time" style={{ width: "100%" }} onChange={onTime1Change} />}
+
+        <Button
+            title={"And\t\t" + (time2.getHours() - 12 <= 0 ? time2.getHours() : time2.getHours() - 12) + ':' + time2.getMinutes() + " " + (time2.getHours() - 12 <= 0 ? "AM" : "PM")}
+            type="clear"
+            iconRight
+            titleStyle={styles.label}
+            icon={{ type: 'font-awesome', name: 'chevron-down' }}
+            buttonStyle={{justifyContent: "space-between"}}
+            onPress={showTimePicker2}
+        />
+        {showTime2 && <RNDateTimePicker value={time2} mode="time" style={{ width: "100%" }} onChange={onTime2Change} />}
 
         <Text>
           {"\n"}
@@ -89,7 +183,7 @@ export default function PassengerForm() {
 
         <TouchableOpacity 
           style = {stylesCommon.customBtnBG}
-          onPress = {() => {navigation.navigate('Ride List')}}>
+          onPress = {onSubmit}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Submit
           </Text>

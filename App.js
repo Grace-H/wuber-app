@@ -1,5 +1,5 @@
 import "react-native-gesture-handler";
-import React, {Component, Text, TextInput, Button, render, Alert} from "react";
+import React, {Component, TextInput, Button, render, Alert} from "react";
 import { Avatar } from 'react-native-elements';
 import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -36,26 +36,27 @@ const TopTab = createMaterialTopTabNavigator();
 const BottomTab = createBottomTabNavigator();
 
 class TripStackScreens extends Component {
+
   constructor(props){
     super(props);
     this.state = {
-      passSearchQuery: null,
       selectedTrip: null,
+      passSearchQuery: null,
     }
   }
 
-  getPassSearchQuery(){
+  getPassSearchQuery = () => {
     return this.state.passSearchQuery;
   }
-  setPassSearchQuery(newQuery){
+
+  setPassSearchQuery = (newQuery) => {
     this.setState({passSearchQuery: newQuery});
-    console.log(this.state.passSearchQuery);
   }
 
   getSelectedTrip(){
     return this.state.selectedTrip;
   }
-  setSelectedTrip(trip){
+  setSelectedTrip = (trip) => {
     this.setState({selectedTrip: trip});
   }
 
@@ -73,7 +74,7 @@ class TripStackScreens extends Component {
         <Stack.Screen name="Take a Trip" component={TakeATripScreen} />
         <Stack.Screen name="Passenger Stack" children={() => <PassengerStack setPassSearchQuery={this.setPassSearchQuery} />} />
         <Stack.Screen name="Driver Stack" children={() => <DriverStack />} />
-        <Stack.Screen name="Ride List" component={RideListScreen} />
+        <Stack.Screen name="Ride List" children={() => <RideListScreen getQuery={this.getPassSearchQuery} navigation={this.props.navigation} />} />
         <Stack.Screen name="Ride Details" component={RideInfoScreen} />
         <Stack.Screen name="Ride Requested" component={RideRequestSuccessScreen} 
           options={{headerShown:false}}
@@ -146,8 +147,10 @@ export default class App extends Component {
 
   render () {
     return (
+      /*
     <LoginScreen/>
-    /*
+    */
+    
       <NavigationContainer>
       <BottomTab.Navigator
           screenOptions= {({ route }) => ({
@@ -178,7 +181,6 @@ export default class App extends Component {
         <BottomTab.Screen  name="Profile" component={ProfileStackScreens} />
       </BottomTab.Navigator>
     </NavigationContainer>
-    */
     );
   }  
 }
