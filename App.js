@@ -20,14 +20,6 @@ import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
 
-/*export default function App() {
-  return (
-    <>
-      <RootNavigator />
-    </>
-  );
-}*/
-
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 const BottomTab = createBottomTabNavigator();
