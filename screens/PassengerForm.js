@@ -9,11 +9,16 @@
  */
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
+import {LogBox} from 'react-native'
+
+LogBox.ignoreAllLogs(true)
 
 export default function PassengerForm( { setQuery }) {
   const navigation = useNavigation();
@@ -132,19 +137,55 @@ export default function PassengerForm( { setQuery }) {
         <Text>
         {"\n"}{"\n"}
         </Text>
-        <ScrollView>
-        <Input
-            placeholder='Search' 
-            label="Departing from"
-            rightIcon={{ type: 'font-awesome', name: 'search' }}
-            onChangeText={value => setOrigin(value)}
-        />
-        <Input
-            placeholder='Search' 
-            label="Going to"
-            rightIcon={{ type: 'font-awesome', name: 'search' }}
-            onChangeText={value => setDestination(value)}
-        />
+        <KeyboardAwareScrollView keyboardShouldPersistTaps='always'>
+        <GooglePlacesAutocomplete
+      placeholder='Search'
+      enablePoweredByContainer={false}
+      minLength={3}
+      autoFocus={false}
+      fetchDetails={true}
+      onPress={(data, details = null) => { 
+        setOrigin(JSON.stringify(data));
+      }}
+      query={{
+        key: 'AIzaSyA8s_0uQeVxDRRgnmI5gWoRvdT8h1aXlUo',
+        language: 'en',
+        rankby: 'distance',
+        components: 'country:us',
+      }}
+
+      nearbyPlacesAPI={'GooglePlacesSearch'}
+      textInputProps={{
+        InputComp: Input,
+        label: 'Departing from',
+        rightIcon: { type: 'font-awesome', name: 'search' },
+        errorStyle: { color: 'red' },
+      }}
+    />
+    <GooglePlacesAutocomplete
+      placeholder='Search'
+      enablePoweredByContainer={false}
+      minLength={3}
+      autoFocus={false}
+      fetchDetails={true}
+      onPress={(data, details = null) => { 
+        setDestination(JSON.stringify(data));
+      }}
+      query={{
+        key: 'AIzaSyA8s_0uQeVxDRRgnmI5gWoRvdT8h1aXlUo',
+        language: 'en',
+        rankby: 'distance',
+        components: 'country:us',
+      }}
+      debounce={200}
+      nearbyPlacesAPI={'GooglePlacesSearch'}
+      textInputProps={{
+        InputComp: Input,
+        label: 'Going to',
+        rightIcon: { type: 'font-awesome', name: 'search' },
+        errorStyle: { color: 'red' },
+      }}
+    />
         <Button
             title={"On\t\t" + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() }
             type="clear"
@@ -188,8 +229,7 @@ export default function PassengerForm( { setQuery }) {
             Submit
           </Text>
         </TouchableOpacity>
-
-        </ScrollView>
+        </KeyboardAwareScrollView>
         </SafeAreaView>
     );
 }
