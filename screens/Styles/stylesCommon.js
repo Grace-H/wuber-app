@@ -33,6 +33,12 @@ export default StyleSheet.create( {
         fontWeight: '300',
         color: "#fff",
     },
+    center: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        textAlign: "center",
+      },
     customBtnBG: {
         backgroundColor: "#fff",
         elevation: 3,
@@ -78,6 +84,12 @@ export default StyleSheet.create( {
         fontWeight: '500',
         marginTop: 30,
         width: 350,
+    },
+    loginInput: {
+        marginTop: 20,
+        borderWidth: 3,
+        width: 250,
+        textAlign: 'center',
     },
     textSub: {
         textAlign : 'center',
