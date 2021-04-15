@@ -1,3 +1,4 @@
+
 /*
  * PassengerForm.js
  * Form for passenger to search for a trip.
@@ -12,8 +13,10 @@ import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity } from 're
 import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
 import stylesCommon from './styles/stylesCommon';
+import { useNavigation } from '@react-navigation/native';
 
-export default function PassengerForm( {navigation} ) {
+export default function PassengerForm() {
+  const navigation = useNavigation();
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -109,4 +112,3 @@ const styles = StyleSheet.create({
     fontSize: 16,
   }
 });
-

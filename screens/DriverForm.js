@@ -15,7 +15,7 @@ import stylesCommon from './styles/stylesCommon';
 import axios from 'axios';
 import { InteractionManager } from "react-native";
 
-export default function DriverForm( {navigation}) {
+export default function DriverForm( {navigation} ) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [returnTime, setReturnTime] = useState(new Date());
