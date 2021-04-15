@@ -53,7 +53,7 @@ class TripStackScreens extends Component {
     this.setState({passSearchQuery: newQuery});
   }
 
-  getSelectedTrip(){
+  getSelectedTrip = () => {
     return this.state.selectedTrip;
   }
   setSelectedTrip = (trip) => {
