@@ -17,6 +17,10 @@ import {LogBox} from 'react-native'
 
 //LogBox.ignoreAllLogs(true) 
 //TODO if time permits, solve maps/scrollview warning
+<<<<<<< HEAD
+=======
+//LogBox.ignoreAllLogs(true) //TODO if time permits, solve maps/scrollview warning
+>>>>>>> c3a8606f95411d166ebb2b70c041602baa291a92
 
 export default function DriverForm( {navigation} ) {
   const [date, setDate] = useState(new Date());
