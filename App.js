@@ -23,10 +23,6 @@ import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
 import LoginScreen from "./screens/LoginScreen";
-<<<<<<< HEAD
-
-=======
->>>>>>> c3a8606f95411d166ebb2b70c041602baa291a92
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -116,15 +112,9 @@ function NotificationStackScreens(){
 * This will help with authentication. 
 * https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
 */ 
-<<<<<<< HEAD
 //const SignedOut = StackNavigator({
 //
 //})
-=======
-/*const SignedOut = StackNavigator({
-
-})*/
->>>>>>> c3a8606f95411d166ebb2b70c041602baa291a92
 
 const MyTripsTopTabNavigator = () => (
   <TopTab.Navigator
@@ -161,11 +151,7 @@ export default class App extends Component {
 
   render () {
     return (
-<<<<<<< HEAD
     /* 
-=======
-      /*
->>>>>>> c3a8606f95411d166ebb2b70c041602baa291a92
     <LoginScreen/>
     */
       <NavigationContainer>
@@ -198,13 +184,9 @@ export default class App extends Component {
         <BottomTab.Screen  name="Profile" component={ProfileStackScreens} />
       </BottomTab.Navigator>
     </NavigationContainer>
-<<<<<<< HEAD
     
     );
 
-=======
-    );
->>>>>>> c3a8606f95411d166ebb2b70c041602baa291a92
   }  
 }
 
