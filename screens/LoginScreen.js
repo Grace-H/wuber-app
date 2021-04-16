@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from './Styles/stylesCommon';
 import axios from 'axios'; 
 
 class LoginScreen extends Component {
@@ -9,6 +9,7 @@ class LoginScreen extends Component {
   state = {
     email: '',
     password: '',
+    
   }
 
   updateEmail = (text) =>{
@@ -24,29 +25,20 @@ class LoginScreen extends Component {
   * the user clicks 'submit'.
   */ 
   login = (email, pass) => {
+
+    //The model I will be using to search for users. 
+    var userModel = require('../backend/models/user.model.js'); 
     var userEmail = email; 
     var userPass = pass; 
-    var users = []; 
-    this.getUsers(); 
 
-  }
-   
-  /*
-  * At the moment this method fills the user array above
-  * with users from the database. This will probably end up getting 
-  * removed. 
-  */
-  getUsers() {
-    axios.get('http://localhost:5000/users')
-            .then(response => {
-                if(response.data.length > 0) {
-                    this.setState({
-                        users: response.data
-                    });
-                }
-            })
-            .catch(err => console.log(err));
-        
+    userModel.find({'email' : userEmail}, {'password' : userPass}, function (err, user){
+      if (user != null){
+
+      }else{
+        alert('Your email or password is incorrect. Please try again.')
+      }
+    });
+
   }
 
 

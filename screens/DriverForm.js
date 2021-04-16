@@ -9,18 +9,14 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from './Styles/stylesCommon';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {LogBox} from 'react-native'
 
-<<<<<<< HEAD
 //LogBox.ignoreAllLogs(true) 
 //TODO if time permits, solve maps/scrollview warning
-=======
-LogBox.ignoreAllLogs(true) //TODO if time permits, solve maps/scrollview warning
->>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
 
 export default function DriverForm( {navigation} ) {
   const [date, setDate] = useState(new Date());

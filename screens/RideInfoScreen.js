@@ -8,7 +8,7 @@
  */
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from './Styles/stylesCommon';
 
 export default function RideInfoScreen({ navigation }) {
     return (

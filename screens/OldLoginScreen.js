@@ -2,7 +2,7 @@ import React from "react";
 import { View, StyleSheet, Text, Button } from "react-native";
 import { Avatar } from 'react-native-elements';
 import TextInput from './styles/TextInputOverride';
-import stylesCommon from './styles/stylescommon';
+import stylesCommon from './Styles/stylescommon';
 
 /*
 state = {

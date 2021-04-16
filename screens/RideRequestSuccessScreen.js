@@ -10,7 +10,7 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import stylesCommon from './styles/stylesCommon';
+import stylesCommon from './Styles/stylesCommon';
 export default function RideRequestSuccessScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
