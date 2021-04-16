@@ -61,6 +61,11 @@ class MyTripsScreen extends Component {
                         trips: response.data
                     });
                 }
+                else{
+                    this.setState({
+                        trips: null,
+                    });
+                }
             })
             .catch(err => console.log(err));
         return this.state.trips;

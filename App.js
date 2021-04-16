@@ -1,8 +1,9 @@
 import "react-native-gesture-handler";
-import React, {Component, Text, TextInput, Button, render, Alert} from "react";
+import React, {Component, TextInput, Button, render, Alert} from "react";
 import { Avatar } from 'react-native-elements';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import {StackNavigator} from 'react-navigation'; 
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -12,6 +13,7 @@ import { DriverStack } from "./screens/stacks/DriverStack.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import TakeATripScreen from "./screens/TakeATripScreen.js";
 import RideListScreen from './screens/RideListScreen.js';
+import MyTripInfoScreen from './screens/MyTripInfoScreen';
 import RideInfoScreen from './screens/RideInfoScreen.js';
 import RideRequestSuccessScreen from './screens/RideRequestSuccessScreen.js';
 import MyTripsScreen from './screens/MyTripsScreen.jsx';
@@ -21,39 +23,59 @@ import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
 import LoginScreen from "./screens/LoginScreen";
-
-/*export default function App() {
-  return (
-    <>
-      <RootNavigator />
-    </>
-  );
-}*/
+import CreateAccount from "./screens/CreateAccount"; 
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 const BottomTab = createBottomTabNavigator();
 
-function TripStackScreens(){
-  return(
-    <Stack.Navigator screenOptions={{
-      headerTitle: null
-    }}>
+class TripStackScreens extends Component {
 
-      <Stack.Screen name="Home" component={HomeScreen} 
-        options={{headerShown:false}}
-      />
-      <Stack.Screen name = "Login" component={LoginScreen}/>
-      <Stack.Screen name="Take a Trip" component={TakeATripScreen} />
-      <Stack.Screen name="Passenger Stack" component={PassengerStack} />
-      <Stack.Screen name="Driver Stack" component={DriverStack} />
-      <Stack.Screen name="Ride List" component={RideListScreen} />
-      <Stack.Screen name="Ride Details" component={RideInfoScreen} />
-      <Stack.Screen name="Ride Requested" component={RideRequestSuccessScreen} 
-        options={{headerShown:false}}
-      />
-    </Stack.Navigator>
-  )
+  constructor(props){
+    super(props);
+    this.state = {
+      selectedTrip: null,
+      passSearchQuery: null,
+    }
+  }
+
+  getPassSearchQuery = () => {
+    return this.state.passSearchQuery;
+  }
+
+  setPassSearchQuery = (newQuery) => {
+    this.setState({passSearchQuery: newQuery});
+  }
+
+  getSelectedTrip = () => {
+    return this.state.selectedTrip;
+  }
+  setSelectedTrip = (trip) => {
+    this.setState({selectedTrip: trip});
+  }
+
+  render(){
+
+    return(
+      <Stack.Navigator screenOptions={{
+        headerTitle: null
+      }}>
+
+        <Stack.Screen name="Home" component={HomeScreen} 
+          options={{headerShown:false}}
+        />
+        <Stack.Screen name = "Login" component={LoginScreen}/>
+        <Stack.Screen name="Take a Trip" component={TakeATripScreen} />
+        <Stack.Screen name="Passenger Stack" children={() => <PassengerStack setPassSearchQuery={this.setPassSearchQuery} />} />
+        <Stack.Screen name="Driver Stack" children={() => <DriverStack />} />
+        <Stack.Screen name="Ride List" children={() => <RideListScreen getQuery={this.getPassSearchQuery} navigation={this.props.navigation} />} />
+        <Stack.Screen name="Ride Details" component={RideInfoScreen} />
+        <Stack.Screen name="Ride Requested" component={RideRequestSuccessScreen} 
+          options={{headerShown:false}}
+        />
+      </Stack.Navigator>
+    );
+  }
 }
 
 function ProfileStackScreens(){
@@ -84,6 +106,17 @@ function NotificationStackScreens(){
   )
 }
 
+/*
+* My hope is to use this as the navigator between 
+* the login and create account pages.
+* I am following instructions on this from the link below. 
+* This will help with authentication. 
+* https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
+*/ 
+const SignedOut = StackNavigator({
+
+})
+
 const MyTripsTopTabNavigator = () => (
   <TopTab.Navigator
     tabBarOptions={{
@@ -100,11 +133,28 @@ const MyTripsTopTabNavigator = () => (
   </TopTab.Navigator>
 );
 
+export default class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      user: null,
+    };
+  }
 
-export default function App() {
-  
-  return (
+  getUser(){
+    return this.state.user;
+  }
+
+  setUser(newUser){
+    this.setState({user: newUser});
+  }
+
+
+  render () {
+    return (
+    
     <LoginScreen/>
+    
       /*
       <NavigationContainer>
       <BottomTab.Navigator
@@ -137,11 +187,9 @@ export default function App() {
       </BottomTab.Navigator>
     </NavigationContainer>
     */
-  
-  )
-
+    );
     
-  
+  }  
 }
 
 const styles = StyleSheet.create({
@@ -164,93 +212,7 @@ const styles = StyleSheet.create({
 class MyTrip extends Component {
   render(){
     return (
-      <MyTripsScreen 
-      trips={[
-      {
-        id: "trip7",
-        isDriver: true,
-        date: "Tuesday, March 29, 8:00am",
-        departure: "Saga-O",
-        destination: "Starbucks, Main St.",
-      },
-      {
-        id: "trip8",
-        isDriver: false,
-        date: "Thursday, March 31, 12:00pm",
-        departure: "Smith-Traber Hall",
-        destination: "Target",
-      },
-      {
-        id: "trip9",
-        isDriver: false,
-        date: "Wednesday, April 8, 11:00am",
-        departure: "Wheaton College Bookstore",
-        destination: "Jewel Osco",
-      },
-      {
-        id: "trip10",
-        isDriver: true,
-        date: "Tuesday, March 29, 8:00am",
-        departure: "Saga-O",
-        destination: "Starbucks, Main St.",
-      },
-      {
-        id: "trip11",
-        isDriver: false,
-        date: "Thursday, March 31, 12:00pm",
-        departure: "Smith-Traber Hall",
-        destination: "Target",
-      },
-      {
-        id: "trip12",
-        isDriver: false,
-        date: "Wednesday, April 8, 11:00am",
-        departure: "Wheaton College Bookstore",
-        destination: "Jewel Osco",
-      },
-      {
-        id: "trip1",
-        isDriver: true,
-        date: "Tuesday, March 29, 8:00am",
-        departure: "Saga-O",
-        destination: "Starbucks, Main St.",
-      },
-      {
-        id: "trip2",
-        isDriver: false,
-        date: "Thursday, March 31, 12:00pm",
-        departure: "Smith-Traber Hall",
-        destination: "Target",
-      },
-      {
-        id: "trip3",
-        isDriver: false,
-        date: "Wednesday, April 8, 11:00am",
-        departure: "Wheaton College Bookstore",
-        destination: "Jewel Osco",
-      },
-      {
-        id: "trip4",
-        isDriver: true,
-        date: "Tuesday, March 29, 8:00am",
-        departure: "Saga-O",
-        destination: "Starbucks, Main St.",
-      },
-      {
-        id: "trip5",
-        isDriver: false,
-        date: "Thursday, March 31, 12:00pm",
-        departure: "Smith-Traber Hall",
-        destination: "Target",
-      },
-      {
-        id: "trip6",
-        isDriver: false,
-        date: "Wednesday, April 8, 11:00am",
-        departure: "Wheaton College Bookstore",
-        destination: "Jewel Osco",
-      },
-    ]}/>
+      <MyTripsScreen />
     );
   }
 }

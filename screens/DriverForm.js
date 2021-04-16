@@ -6,16 +6,19 @@
  * Last Edited: 8 apr by Grace
  */
 import React, {useState} from 'react';
-import { StyleSheet, Text, ScrollView, SafeAreaView, TouchableOpacity, Alert } from 'react-native';
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import { TextInput } from 'react-native-gesture-handler';
-import { SafeAreaInsetsContext } from 'react-native-safe-area-context';
 import stylesCommon from './styles/stylesCommon';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios';
-import { InteractionManager } from "react-native";
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import {LogBox} from 'react-native'
 
-export default function DriverForm( {navigation}) {
+//LogBox.ignoreAllLogs(true) 
+//TODO if time permits, solve maps/scrollview warning
+
+export default function DriverForm( {navigation} ) {
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
   const [returnTime, setReturnTime] = useState(new Date());
@@ -116,7 +119,6 @@ export default function DriverForm( {navigation}) {
     const fullDate = new Date(year + '-' + month + '-' + day + 'T' + hours + ':' + minutes + ':00');
     const fullrtDate = new Date(year + '-' + month + '-' + day + 'T' + rthours + ':' + rtminutes + ':00');
 
-
     const trip = {
       driver: "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn
       seats: seats,
@@ -129,31 +131,67 @@ export default function DriverForm( {navigation}) {
     }
 
     axios.post('http://localhost:5000/trips/add', trip)
-      .then(res => console.log(res.data));
+      .then(res => console.log(res.data))
+      .catch( error => {   });
   }
 
   return (
     
     <SafeAreaView style={styles.container}>
-      <ScrollView>
       <Text style = {stylesCommon.textTitleBlue}>
         Driver Information
       </Text>
       <Text>
         {"\n"}{"\n"}
       </Text>
-      <Input
-        placeholder='Search' 
-        label="Departing from"
-        rightIcon={{ type: 'font-awesome', name: 'search' }}
-        onChangeText={value => setOrigin(value)}
-      />
-       <Input
-        placeholder='Search' 
-        label="Going to"
-        rightIcon={{ type: 'font-awesome', name: 'search' }}
-        onChangeText={value => setDestination(value)}
-      />
+      <KeyboardAwareScrollView keyboardShouldPersistTaps='always'>
+      <GooglePlacesAutocomplete
+      placeholder='Search'
+      placeholder='Search'
+      enablePoweredByContainer={false}
+      minLength={2}
+      autoFocus={false}
+      returnKeyType={'search'}
+      listViewDisplayed='auto'
+      fetchDetails={true}
+      onPress={(data, details = null) => { 
+        setOrigin(JSON.stringify(data));
+      }}
+      query={{
+        key: 'AIzaSyA8s_0uQeVxDRRgnmI5gWoRvdT8h1aXlUo',
+        language: 'en',
+        components: 'country:us',
+      }}
+      textInputProps={{
+        InputComp: Input,
+        label: 'Departing from',
+        rightIcon: { type: 'font-awesome', name: 'search' },
+        errorStyle: { color: 'red' },
+      }}
+    />
+    <GooglePlacesAutocomplete
+      placeholder='Search'
+      enablePoweredByContainer={false}
+      minLength={2}
+      autoFocus={false}
+      fetchDetails={true}
+      onPress={(data, details = null) => { 
+        setDestination(JSON.stringify(data));
+      }}
+      query={{
+        key: 'AIzaSyA8s_0uQeVxDRRgnmI5gWoRvdT8h1aXlUo',
+        language: 'en',
+        componnts: 'country:us',
+      }}
+      debounce={200}
+      nearbyPlacesAPI={'GooglePlacesSearch'}
+      textInputProps={{
+        InputComp: Input,
+        label: 'Going to',
+        rightIcon: { type: 'font-awesome', name: 'search' },
+        errorStyle: { color: 'red' },
+      }}
+    />
       <Button
         title={"On\t\t" + (date.getMonth() + 1) + '/' + date.getDate() + '/' + date.getFullYear() }
         type="clear"
@@ -236,7 +274,7 @@ export default function DriverForm( {navigation}) {
           Submit
         </Text>
       </TouchableOpacity>
-      </ScrollView>
+      </KeyboardAwareScrollView>
     </SafeAreaView>
   );
 }
