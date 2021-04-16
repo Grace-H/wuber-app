@@ -23,7 +23,10 @@ import NotificationDisplay from './screens/dummies/NotificationDisplay.js';
 import { NotificationsStack } from './screens/stacks/NotificationsStack.js';
 import PastTripsScreen from './screens/dummies/PastTripsScreen.js';
 import LoginScreen from "./screens/LoginScreen";
+<<<<<<< HEAD
 import CreateAccount from "./screens/CreateAccount"; 
+=======
+>>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -140,11 +143,19 @@ export default class App extends Component {
       user: null,
     };
   }
+<<<<<<< HEAD
 
   getUser(){
     return this.state.user;
   }
 
+=======
+
+  getUser(){
+    return this.state.user;
+  }
+
+>>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
   setUser(newUser){
     this.setState({user: newUser});
   }
@@ -152,10 +163,16 @@ export default class App extends Component {
 
   render () {
     return (
+<<<<<<< HEAD
     
     <LoginScreen/>
     
+=======
+>>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
       /*
+    <LoginScreen/>
+    */
+    
       <NavigationContainer>
       <BottomTab.Navigator
           screenOptions= {({ route }) => ({
@@ -186,9 +203,13 @@ export default class App extends Component {
         <BottomTab.Screen  name="Profile" component={ProfileStackScreens} />
       </BottomTab.Navigator>
     </NavigationContainer>
+<<<<<<< HEAD
     */
     );
     
+=======
+    );
+>>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
   }  
 }
 

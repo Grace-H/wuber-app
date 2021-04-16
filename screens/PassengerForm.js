@@ -18,7 +18,11 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { useNavigation } from '@react-navigation/native';
 import {LogBox} from 'react-native'
 
+<<<<<<< HEAD
 //LogBox.ignoreAllLogs(true)
+=======
+LogBox.ignoreAllLogs(true)
+>>>>>>> ccd3aebe14d54aca7f18931be3e01be02923c401
 
 export default function PassengerForm( { setQuery }) {
   const navigation = useNavigation();
