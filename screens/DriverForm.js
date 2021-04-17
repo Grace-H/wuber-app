@@ -9,7 +9,7 @@ import React, {useState} from 'react';
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import axios from 'axios';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';

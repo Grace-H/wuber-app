@@ -1,63 +1,124 @@
 /*
  * RideListScreen.js
- * Displays a working list of active or pending rides that fit the 
- * users search qualifications. 
- * 
+ * Displays a working list of active or pending rides that fit the
+ * users search qualifications.
+ *
  * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
-import React, { useState, Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
-import { Avatar } from 'react-native-elements';
-import stylesCommon from './Styles/stylesCommon';
-import Card from './Styles/Card';
+import React, { useState, Component } from "react";
+import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import { Avatar } from "react-native-elements";
+import stylesCommon from "./styles/stylesCommon";
+import Card from "./styles/Card";
+import axios from "axios";
+import RegisteredTripCard from "../components/RegisteredTripCard.jsx";
 
 class RideListScreen extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      trips: [],
+    };
+  }
 
-    constructor(props){
-      super(props);
-      this.state = {
-        trips: [
-          { name: 'Dave is going to Starbucks at 2:15pm on 03/06/21', key: '1' },
-          { name: 'Alice is going to Starbucks at 11:00am on 03/07/21', key: '2' },
-          { name: 'Nathan is going to Starbucks at 7:00pm on 03/11/21', key: '3' },
-          { name: 'Jonathan is going to Starbucks at 9:00am on 03/11/21', key: '4' },
-          { name: 'Emily is going to Starbucks at 9:00am on 03/11/21', key: '5' },
-          { name: 'Gordon is going to Starbucks at 9:00am on 03/11/21', key: '6' },
-          { name: 'Brendan is going to Starbucks at 9:00am on 03/11/21', key: '7' },
-          { name: 'Grace is going to Starbucks at 9:00am on 03/11/21', key: '8' },
-        ],
-      }
-    }
+  getTrips() {
+    axios
+      .get("http://localhost:5000/trips/search", {
+        origin: "Saga-O",
+        destination: "Starbucks Main St.",
+        startDate: new Date("2020-2-14"),
+        endDate: new Date("2022-2-14"),
+      })
+      .then((response) => {
+        if (response.data.length > 0) {
+          this.setState({
+            trips: response.data,
+          });
+        } else {
+          this.setState({
+            trips: null,
+          });
+        }
+      })
+      .catch((err) => console.log("Didn't work: " + err));
+    return this.state.trips;
+  }
 
+  formatTime(t) {
+    const daysOftheWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const monthsOftheYear = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
 
-    render() {
+    const time = new Date(t);
+
     return (
-    <View style = {stylesCommon.container}>
+      daysOftheWeek[time.getDay()] +
+      ", " +
+      monthsOftheYear[time.getMonth() + 1] +
+      " " +
+      time.getDate() +
+      ", " +
+      (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) +
+      ":" +
+      (time.getMinutes() < 10 ? "" + time.getMinutes() : "") +
+      time.getMinutes() +
+      " " +
+      (time.getHours() - 12 <= 0 ? "AM" : "PM")
+    );
+  }
 
-      <Avatar
-        source = {require('../assets/WuberLogo.png')}
-        size = {120}
-      />
-      
-      <Text style = {stylesCommon.textTitle}
-        >Rides you may be interested in:{"\n"}
-      </Text>
+  render() {
+    return (
+      <View>
+        <Avatar source={require("../assets/WuberLogo.png")} size={120} />
 
-        <FlatList 
-          data = {this.state.trips}
-          renderItem = {({ item }) => (
+        <Text style={stylesCommon.textTitle}>
+          Rides you may be interested in{"\n"}
+        </Text>
 
-            <TouchableOpacity onPress = {() => {this.props.navigation.navigate('Ride Details', item)}}>
-              <Card>
-                  <Text style={stylesCommon.customBtnTextBlue}>{ item.name }</Text>
-              </Card>
+        <FlatList
+          data={this.getTrips()}
+          renderItem={({ item }) => (
+            <TouchableOpacity key={item._id}>
+              <RegisteredTripCard
+                isDriver={item.driver == this.state.userid}
+                date={this.formatTime(item.time)}
+                destination={item.destination}
+                departure={item.origin}
+              />
             </TouchableOpacity>
-
           )}
+          keyExtractor={(item) => item.id}
+          ListEmptyComponent={
+            <Text>
+              No trips found. Try expanding your time window or trying a
+              different location or day.
+            </Text>
+          }
         />
-    </View>
+      </View>
     );
   }
 }

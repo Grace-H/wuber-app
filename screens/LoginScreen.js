@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 import axios from 'axios'; 
 
 class LoginScreen extends Component {
