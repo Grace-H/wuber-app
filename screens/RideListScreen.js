@@ -8,7 +8,14 @@
  * Last Edited: 21 March 21 by Brendan Keefer
  */
 import React, { useState, Component } from "react";
-import { View, Text, TouchableOpacity, FlatList, Image } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  SafeAreaView,
+  FlatList,
+  Image,
+} from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import Card from "./styles/Card";
@@ -24,19 +31,31 @@ class RideListScreen extends Component {
   }
 
   getTrips() {
-    axios
-      .get("http://localhost:5000/trips/search", {
-        origin: "Saga-O",
-        destination: "Starbucks Main St.",
-        startDate: new Date("2020-2-14"),
-        endDate: new Date("2022-2-14"),
-      })
+    const query = {
+      origin: "Mac-Evans",
+      destination: "Target",
+      startTime: "2020-02-22T05:50:00.000Z",
+      endTime: "2023-02-22T06:50:00.000Z",
+    };
+
+    axios({
+      method: "get",
+      url: "http://localhost:5000/trips/search",
+      params: {
+        origin: query.origin,
+        destination: query.destination,
+        startTime: query.startTime,
+        endTime: query.endTime,
+      },
+    })
       .then((response) => {
         if (response.data.length > 0) {
+          console.log("Trips Found...");
           this.setState({
             trips: response.data,
           });
         } else {
+          console.log("No Trips found.");
           this.setState({
             trips: null,
           });
@@ -89,21 +108,24 @@ class RideListScreen extends Component {
     );
   }
 
-  render() {
-    return (
-      <View>
-        <Avatar source={require("../assets/WuberLogo.png")} size={120} />
+  /*
+
+          <Avatar source={require("../assets/WuberLogo.png")} size={120} />
 
         <Text style={stylesCommon.textTitle}>
           Rides you may be interested in{"\n"}
         </Text>
 
+        */
+  render() {
+    return (
+      <SafeAreaView>
         <FlatList
           data={this.getTrips()}
           renderItem={({ item }) => (
             <TouchableOpacity key={item._id}>
               <RegisteredTripCard
-                isDriver={item.driver == this.state.userid}
+                isDriver={false}
                 date={this.formatTime(item.time)}
                 destination={item.destination}
                 departure={item.origin}
@@ -118,7 +140,7 @@ class RideListScreen extends Component {
             </Text>
           }
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

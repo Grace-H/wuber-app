@@ -2,7 +2,7 @@ const router = require("express").Router();
 let Trip = require("../models/trip.model");
 
 router.route("/").get((req, res) => {
-  Trip.find()
+  Trip.find(req.query)
     .sort({ time: 1 })
     .then((trips) => res.json(trips))
     .catch((err) => res.status(400).json("Error: " + err));
@@ -19,11 +19,12 @@ router.route("/").get((req, res) => {
     .sort({ date: -1 })
     */
 router.route("/search").get((req, res) => {
-  Trip.find({ time: { $gte: req.body.startTime, $lte: req.body.endTime } })
+  console.log(req.query);
+  Trip.find({ time: { $gte: req.query.startTime, $lte: req.query.endTime } })
     .where("destination")
-    .equals(req.body.destination)
+    .equals(req.query.destination)
     .where("origin")
-    .equals(req.body.origin)
+    .equals(req.query.origin)
     .sort({ time: 1 })
     .then((trips) => res.json(trips))
     .catch((err) => res.status(400).json("Error: " + err));
