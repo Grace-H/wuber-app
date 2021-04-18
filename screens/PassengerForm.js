@@ -97,13 +97,10 @@ export default function PassengerForm({ setQuery }) {
       hours2 = "0" + hours2;
     }
 
-    const startDate = new Date(
-      year + "-" + month + "-" + day + "T" + hours1 + ":" + minutes1 + ":00"
-    );
-    const endDate = new Date(
-      year + "-" + month + "-" + day + "T" + hours2 + ":" + minutes2 + ":00"
-    );
-
+    const startDate =
+      year + "-" + month + "-" + day + "T" + hours1 + ":" + minutes1 + ":00";
+    const endDate =
+      year + "-" + month + "-" + day + "T" + hours2 + ":" + minutes2 + ":00";
     /*
   const trip = {
       driver: "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn

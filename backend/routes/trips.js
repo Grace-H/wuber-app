@@ -19,8 +19,12 @@ router.route("/").get((req, res) => {
     .sort({ date: -1 })
     */
 router.route("/search").get((req, res) => {
-  console.log(req.query);
-  Trip.find({ time: { $gte: req.query.startTime, $lte: req.query.endTime } })
+  Trip.find()
+    /*
+    .where("time")
+    .gt(new Date(req.body.startDate))
+    .lt(new Date(req.body.endDate))
+    */
     .where("destination")
     .equals(req.query.destination)
     .where("origin")

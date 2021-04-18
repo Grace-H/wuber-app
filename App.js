@@ -38,6 +38,8 @@ class TripStackScreens extends Component {
   }
 
   getPassSearchQuery = () => {
+    console.log("Returning: ");
+    console.log(this.state.passSearchQuery);
     return this.state.passSearchQuery;
   };
 

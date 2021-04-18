@@ -31,12 +31,17 @@ class RideListScreen extends Component {
   }
 
   getTrips() {
-    const query = {
+    const query = this.props.getQuery();
+    console.log("This is the query: ");
+    console.log(query);
+    /* test query
+    {
       origin: "Mac-Evans",
       destination: "Target",
       startTime: "2020-02-22T05:50:00.000Z",
       endTime: "2023-02-22T06:50:00.000Z",
     };
+    */
 
     axios({
       method: "get",
