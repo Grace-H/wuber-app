@@ -10,7 +10,7 @@
 import React from 'react';
 import { Avatar } from 'react-native-elements';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 
 export default function ProfileScreen({ navigation }) {
     return (

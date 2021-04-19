@@ -10,8 +10,8 @@
 import React, { useState, Component } from 'react';
 import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import stylesCommon from './Styles/stylesCommon';
-import Card from './Styles/Card';
+import stylesCommon from './styles/stylesCommon';
+import Card from './styles/Card';
 
 class RideListScreen extends Component {
 

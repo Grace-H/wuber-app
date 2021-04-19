@@ -10,7 +10,7 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, FlatList } from 'react-native';
 import { Card, Avatar } from 'react-native-elements';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 
 export default function NotificationsScreen ({ navigation }) {
       //Dummy message.

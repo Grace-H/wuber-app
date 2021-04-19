@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, Button, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 
 
 export default function TakeATripScreen({navigation}) {

@@ -1,31 +1,64 @@
-import React from "react";
-import { View } from "react-native";
-import { Card, Button, FormLabel, FormInput } from "react-native-elements";
-//import { onSignIn } from "../auth";
+import React, {Component} from 'react';
+import { View, TextInput, TouchableOpacity, Text} from 'react-native';
+import { Avatar } from 'react-native-elements';
+import stylesCommon from './styles/stylesCommon';
 
-export default () => (
-  <View style={{ paddingVertical: 20 }}>
-    <Card title="SIGN UP">
-      <FormLabel>Email</FormLabel>
-      <FormInput placeholder="Email address..." />
-      <FormLabel>Password</FormLabel>
-      <FormInput secureTextEntry placeholder="Password..." />
-      <FormLabel>Confirm Password</FormLabel>
-      <FormInput secureTextEntry placeholder="Confirm Password..." />
+class SignUp extends Component {
 
-      <Button
-        buttonStyle={{ marginTop: 20 }}
-        backgroundColor="#03A9F4"
-        title="SIGN UP"
-        //onPress={() => onSignIn()}
-      />
-      <Button
-        buttonStyle={{ marginTop: 20 }}
-        backgroundColor="transparent"
-        textStyle={{ color: "#bcbec1" }}
-        title="Sign In"
-        onPress={() => alert("go to sign in screen")}
-      />
-    </Card>
-  </View>
-);
+    render(){
+      return (
+
+        <View style={{ flex: 1, alignItems: 'center' }}>
+        
+        <Text>
+          {"\n"}
+        </Text>
+
+        <Avatar
+          source = {require('../assets/WuberLogo.png')}
+          size = {200}
+        />
+
+        <Text>
+          {"\n"}{"\n"}{"\n"}
+        </Text>
+
+        <TextInput
+        style ={stylesCommon.loginInput}
+        placeholder="Email Address" 
+          />
+
+        <TextInput
+        style={stylesCommon.loginInput}
+        placeholder="Password" 
+        />    
+
+        <Text> {"\n"} </Text>
+        
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => alert('You are now signed up!')}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Sign Up
+          </Text>
+        </TouchableOpacity>
+
+        <Text> {"\n"} </Text>
+
+        <TouchableOpacity
+        style = {stylesCommon.customBtn}
+          onPress = {() => alert('This will take you back to the login screen.')}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Sign In
+          </Text>
+        </TouchableOpacity>
+      </View>
+        
+       
+
+      );
+    }
+}
+
+export default SignUp

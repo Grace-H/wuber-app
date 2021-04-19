@@ -13,7 +13,7 @@ import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import { Input, Button, colors } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import RNDateTimePicker from '@react-native-community/datetimepicker';
-import stylesCommon from './Styles/stylesCommon';
+import stylesCommon from './styles/stylesCommon';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import { useNavigation } from '@react-navigation/native';
 import {LogBox} from 'react-native'
