@@ -7,13 +7,6 @@
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
-<<<<<<< HEAD
-import React, { useState, Component } from 'react';
-import { View, Text, TouchableOpacity, FlatList, Image } from 'react-native';
-import { Avatar } from 'react-native-elements';
-import stylesCommon from './styles/stylesCommon';
-import Card from './styles/Card';
-=======
 import React, { useState, Component } from "react";
 import {
   View,
@@ -28,7 +21,6 @@ import stylesCommon from "./styles/stylesCommon";
 import Card from "./styles/Card";
 import axios from "axios";
 import RegisteredTripCard from "../components/RegisteredTripCard.jsx";
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
 
 class RideListScreen extends Component {
   constructor(props) {

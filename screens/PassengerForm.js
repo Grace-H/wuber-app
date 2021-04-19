@@ -7,17 +7,6 @@
  * Last Edited: 24 March 21 by Grace
  */
 
-<<<<<<< HEAD
-import React, {useState} from 'react';
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from 'react-native';
-import { Input, Button, colors } from 'react-native-elements';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import RNDateTimePicker from '@react-native-community/datetimepicker';
-import stylesCommon from './styles/stylesCommon';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
-import { useNavigation } from '@react-navigation/native';
-import {LogBox} from 'react-native'
-=======
 import React, { useState } from "react";
 import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import { Input, Button, colors } from "react-native-elements";
@@ -27,7 +16,6 @@ import stylesCommon from "./styles/stylesCommon";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useNavigation } from "@react-navigation/native";
 import { LogBox } from "react-native";
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
 
 //LogBox.ignoreAllLogs(true)
 

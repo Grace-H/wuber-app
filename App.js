@@ -23,10 +23,7 @@ import NotificationDisplay from "./screens/dummies/NotificationDisplay.js";
 import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
-<<<<<<< HEAD
 import SignUp from "./screens/SignUp";
-=======
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -138,24 +135,32 @@ function NotificationStackScreens() {
 }
 
 /*
-<<<<<<< HEAD
-* My hope is to use this as the navigator between 
-* the login and create account pages.
-* I am following instructions on this from the link below. 
-* This will help with authentication. 
-* https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
-*/ 
-=======
  * My hope is to use this as the navigator between
  * the login and create account pages.
  * I am following instructions on this from the link below.
  * This will help with authentication.
  * https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
  */
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
-//const SignedOut = StackNavigator({
-//
-//})
+/*
+function LoginStackScreens(){
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle = null, 
+      }}
+    >
+      <Stack.Screen
+      name=
+      component/>
+      <Stack.Screen/>
+
+
+    </Stack.Navigator>
+
+  )
+
+}
+*/
 
 const MyTripsTopTabNavigator = () => (
   <TopTab.Navigator
@@ -191,15 +196,10 @@ export default class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-    <SignUp/>
-    /*
-=======
       /*
       <LoginScreen />
-*/
+      */
 
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -223,21 +223,6 @@ export default class App extends Component {
                 <IconComponent name={iconName} size={25} color={"#147EFB"} />
               );
             },
-<<<<<<< HEAD
-          })
-        }
-          >
-        <BottomTab.Screen  name="Home" component={TripStackScreens} />
-        <BottomTab.Screen  name="Trips" component={MyTripsTopTabNavigator} />
-        <BottomTab.Screen  name="Notifications" component={NotificationStackScreens} />
-        <BottomTab.Screen  name="Profile" component={ProfileStackScreens} />
-      </BottomTab.Navigator>
-    </NavigationContainer>
-    */
-    );
-
-  }  
-=======
           })}
         >
           <BottomTab.Screen name="Home" component={TripStackScreens} />
@@ -251,7 +236,6 @@ export default class App extends Component {
       </NavigationContainer>
     );
   }
->>>>>>> 7542324f34e16d7b0fdd583678fedc566fc4fcdd
 }
 
 const styles = StyleSheet.create({
