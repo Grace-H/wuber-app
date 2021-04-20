@@ -1,3 +1,7 @@
+/*
+ * Routes for trips collection
+ * Author: Grace-H
+ */
 const router = require("express").Router();
 let Trip = require("../models/trip.model");
 

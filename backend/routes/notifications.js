@@ -1,5 +1,5 @@
 /*
- * Express router for Notification
+ * Express routes for Notification
  * Author: Grace Hunter
  * Date: 19 April 2021
  */
@@ -24,24 +24,15 @@ router.route("/").get((req, res) => {
     .equals(req.body.endDate)
     .sort({ date: -1 })
     */
-/*
-router.route("/search").get((req, res) => {
+
+router.route("/findByUser").get((req, res) => {
   Notification.find()
-    /*
-    .where("time")
-    .gt(new Date(req.body.startDate))
-    .lt(new Date(req.body.endDate))
-    */
-/*
-    .where("destination")
-    .equals(req.query.destination)
-    .where("origin")
-    .equals(req.query.origin)
+    .where("userid")
+    .equals(req.query.userid)
     .sort({ time: 1 })
     .then((notifications) => res.json(notifications))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-*/
 
 router.route("/add").post((req, res) => {
   const userid = req.body.userid;
@@ -60,6 +51,7 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//when calling from axios, put the object's id in for ":id" in the route
 router.route("/findbyid/:id").get((req, res) => {
   Notification.findById(req.params.id)
     .then((notification) => res.json(notification))
