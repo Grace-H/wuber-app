@@ -6,6 +6,7 @@
  * last modified: 4 3 21 GH
  */
 
+//Importing the mongoose module
 const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;

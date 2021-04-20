@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { PassengerStack } from "./screens/stacks/PassengerStack.js";
 import { DriverStack } from "./screens/stacks/DriverStack.js";
+import LoginStack from "./screens/stacks/LoginStack.js"; 
 import HomeScreen from "./screens/HomeScreen.js";
 import TakeATripScreen from "./screens/TakeATripScreen.js";
 import RideListScreen from "./screens/RideListScreen.js";
@@ -141,18 +142,25 @@ function NotificationStackScreens() {
  * This will help with authentication.
  * https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
  */
-/*
+
 function LoginStackScreens(){
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitle = null, 
+        headerTitle: null,
       }}
     >
       <Stack.Screen
-      name=
-      component/>
-      <Stack.Screen/>
+      name="Login Stack"
+      component={LoginStack}
+      options={{ headerShown: false }}
+      />
+  
+      <Stack.Screen
+      name = "Sign Up"
+      component = {SignUp}
+      options={{ headerShown: false }}
+      />
 
 
     </Stack.Navigator>
@@ -160,7 +168,7 @@ function LoginStackScreens(){
   )
 
 }
-*/
+
 
 const MyTripsTopTabNavigator = () => (
   <TopTab.Navigator
@@ -196,10 +204,10 @@ export default class App extends Component {
 
   render() {
     return (
-      /*
+      
       <LoginScreen />
-      */
-
+      
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -234,6 +242,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
+      */
     );
   }
 }
