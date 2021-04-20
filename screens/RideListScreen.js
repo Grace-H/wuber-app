@@ -32,8 +32,11 @@ class RideListScreen extends Component {
 
   getTrips() {
     const query = this.props.getQuery();
+    /*
     console.log("This is the query: ");
     console.log(query);
+    console.log("I printed the query");
+    */
     /* test query
     {
       origin: "Mac-Evans",
@@ -113,27 +116,32 @@ class RideListScreen extends Component {
     );
   }
 
-  /*
+  onTripSelect() {
+    /*
+    console.log("Clicked");
+    this.props.setSelectedTrip(item);
+    */
+    this.props.navigation.navigate("Ride Details");
+  }
 
-          <Avatar source={require("../assets/WuberLogo.png")} size={120} />
+  render() {
+    return (
+      <SafeAreaView>
+        <Avatar source={require("../assets/WuberLogo.png")} size={120} />
 
         <Text style={stylesCommon.textTitle}>
           Rides you may be interested in{"\n"}
         </Text>
-
-        */
-  render() {
-    return (
-      <SafeAreaView>
         <FlatList
           data={this.getTrips()}
           renderItem={({ item }) => (
             <TouchableOpacity key={item._id}>
               <RegisteredTripCard
-                isDriver={false}
+                isDriver={true}
                 date={this.formatTime(item.time)}
                 destination={item.destination}
                 departure={item.origin}
+                driverBadge={false}
               />
             </TouchableOpacity>
           )}

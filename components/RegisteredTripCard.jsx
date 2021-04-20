@@ -18,19 +18,21 @@ import { Icon } from 'react-native-elements';
  *  date: {String dateTime}
  *  departure: {String location}
  *  destination: {String location}
+ *  driverBadge: {true} or {false} //display "RIDING"/"DRIVING" badge
  * 
  * <RegisteredTripCard
  *   isDriver={true}
  *   date={"Tuesday, March 2, 3:00pm"}
  *   departure={"Portland"}
  *   destination={"New York"}
+ * 
  */
 class RegisteredTripCard extends Component {
     render() {
         return (
             <View style={styles.card}>
                 <View>
-                    {getDriverLabel(this.props.isDriver)}
+                    {this.props.driverBadge && getDriverLabel(this.props.isDriver)}
                     <View style={{padding: 6}}>
                         <Text style={styles.dateTitle}>{this.props.date}</Text>
                         <View style={styles.destination}>

@@ -81,10 +81,19 @@ class TripStackScreens extends Component {
             <RideListScreen
               getQuery={this.getPassSearchQuery}
               navigation={this.props.navigation}
+              setSelectedTrip={this.setSelectedTrip}
             />
           )}
         />
-        <Stack.Screen name="Ride Details" component={RideInfoScreen} />
+        <Stack.Screen
+          name="Ride Details"
+          children={() => (
+            <RideInfoScreen
+              selectedTrip={this.state.selectedTrip}
+              navigation={this.props.navigation}
+            />
+          )}
+        />
         <Stack.Screen
           name="Ride Requested"
           component={RideRequestSuccessScreen}

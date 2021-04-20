@@ -85,6 +85,7 @@ class MyTripsScreen extends Component {
                                 date={this.formatTime(item.time)}
                                 destination={item.destination}
                                 departure={item.origin}
+                                driverBadge={true}
                             />
                         </TouchableOpacity>
                     )}
