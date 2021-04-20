@@ -14,17 +14,6 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-/*
-    .where("time")
-    .gt(req.body.startDate)
-    .lt(req.body.endDate)
-    .where("destination")
-    .equals(req.body.startDate)
-    .where("origin")
-    .equals(req.body.endDate)
-    .sort({ date: -1 })
-    */
-
 router.route("/findByUser").get((req, res) => {
   Notification.find()
     .where("userid")
