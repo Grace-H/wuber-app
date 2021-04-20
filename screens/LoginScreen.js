@@ -25,21 +25,34 @@ class LoginScreen extends Component {
    * the user clicks 'submit'.
    */
   login = (email, pass) => {
-    //The model I will be using to search for users.
-    var userModel = <UserModel />;
-    var userEmail = email;
-    var userPass = pass;
+    var username = email;
+    var password = pass;
+    var authenticated = false; 
+    var user = null; 
 
-    userModel.find(
-      { email: userEmail },
-      { password: userPass },
-      function (err, user) {
-        if (user != null) {
-        } else {
-          alert("Your email or password is incorrect. Please try again.");
-        }
+    axios({
+      mathod: "get",
+      url: "http://localhost:5000/searchUser",
+      params: {username, password},
+    })
+        .then(response=>{
+          if (!null){
+            authenticated = true; 
+            user = response.data; 
+          }
+          else {
+            alert("The credentials you provided could not be determined"
+            + "\n" 
+            + "to be authentic. Please try again.")
+          }
+        }) 
+        .catch(err => console.log(err)); 
+    
+       if (authenticated){
+        this.props.setUser(user); 
+        //navigation.navigate; 
       }
-    );
+    
   };
 
   render() {
