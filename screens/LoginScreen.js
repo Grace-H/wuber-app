@@ -30,7 +30,11 @@ class LoginScreen extends Component {
     var authenticated = false; 
     var user = null; 
 
-    axios.get('http://localhost:5000/searchUser')
+    axios({
+      mathod: "get",
+      url: "http://localhost:5000/searchUser",
+      params: {userEmail, userPass},
+    })
         .then(response=>{
           if (!null){
             authenticated = true; 
