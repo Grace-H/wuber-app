@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, TextInput, Alert } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 import axios from 'axios'; 
+import { useNavigation } from '@react-navigation/core';
+import UserModel from "../backend/models/user.model.js";
 
 class LoginScreen extends Component {
 
@@ -27,7 +29,7 @@ class LoginScreen extends Component {
   login = (email, pass) => {
 
     //The model I will be using to search for users. 
-    var userModel = require('../backend/models/user.model.js'); 
+    var userModel = <UserModel/>;    
     var userEmail = email; 
     var userPass = pass; 
 
@@ -43,10 +45,11 @@ class LoginScreen extends Component {
 
 
   render (){
+    
     return (
-
+   
       <View style={{ flex: 1, alignItems: 'center' }}>
-
+        
         <Text>
           {"\n"}
         </Text>
@@ -87,7 +90,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
         style = {stylesCommon.customBtn}
-          onPress = {() => alert('This function and page has not been created yet')}>
+          onPress = {() => navigation.navigate("Sign Up")}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Create Account
           </Text>

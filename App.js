@@ -10,6 +10,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons";
 import { PassengerStack } from "./screens/stacks/PassengerStack.js";
 import { DriverStack } from "./screens/stacks/DriverStack.js";
+import LoginStack from "./screens/stacks/LoginStack.js"; 
 import HomeScreen from "./screens/HomeScreen.js";
 import TakeATripScreen from "./screens/TakeATripScreen.js";
 import RideListScreen from "./screens/RideListScreen.js";
@@ -23,6 +24,7 @@ import NotificationDisplay from "./screens/dummies/NotificationDisplay.js";
 import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
+import SignUp from "./screens/SignUp";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -149,9 +151,33 @@ function NotificationStackScreens() {
  * This will help with authentication.
  * https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
  */
-//const SignedOut = StackNavigator({
-//
-//})
+
+function LoginStackScreens(){
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: null,
+      }}
+    >
+      <Stack.Screen
+      name="Login Stack"
+      component={LoginStack}
+      options={{ headerShown: false }}
+      />
+  
+      <Stack.Screen
+      name = "Sign Up"
+      component = {SignUp}
+      options={{ headerShown: false }}
+      />
+
+
+    </Stack.Navigator>
+
+  )
+
+}
+
 
 const MyTripsTopTabNavigator = () => (
   <TopTab.Navigator
@@ -187,10 +213,10 @@ export default class App extends Component {
 
   render() {
     return (
-      /*
+      
       <LoginScreen />
-*/
-
+      
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -225,6 +251,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
+      */
     );
   }
 }
