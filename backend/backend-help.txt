@@ -1,10 +1,11 @@
 How to Work with MongoDB from a React Component
+    A Short Tutorial by Grace-H
 
 --> Start the server
 Make sure you start the server before working on the app: nodemon server.js
 (You can also use node server.js, but this will not automatically restart the 
 server every time you modify a server file. Restarting is necessary for changes 
-to be applied.)
+to be applied.) The server runs on port 5000.
 
 --> What is this? What is axios?
 With the server running, axios allows you to call routes (like URLs) defined
@@ -47,9 +48,11 @@ gets all trips for a user (not yet, currently just all trips for all users).
     3.1. Create an onSubmit() (for a form) function or the like in your Component. 
         This function will format all data for entering in the database and attempt 
         to add it to the database.
-    3.2. Reference the collection's Schema to determine the type of all each field. 
-        Number and Date types can be Strings since the backend will cast them, but they
-        do need to be formatted properly. Create an Javascript object with format:
+    3.2. Reference the collection's Schema to determine the type of all each field 
+        (./models/<schema>.model.js). Number and Date types can be Strings since the 
+        backend will cast them, but they do need to be formatted properly. Pass references
+        to other documents (e.g. User) as their ObjectId in String form. 
+        Create a Javascript object with format:
                     const trip = {
                         seats: "4",
                         passengers: [],
