@@ -1,0 +1,109 @@
+How to Work with MongoDB from a React Component
+
+--> Start the server
+Make sure you start the server before working on the app: nodemon server.js
+(You can also use node server.js, but this will not automatically restart the 
+server every time you modify a server file. Restarting is necessary for changes 
+to be applied.)
+
+--> What is this? What is axios?
+With the server running, axios allows you to call routes (like URLs) defined
+by the backend server files. These routes connect with MongoDB and return the
+data you asked for. These routes are defined in the folder './routes'
+
+--> Example files?
+Trip is a good example. Look at ./routes/trips.js to see the routes for trips.
+RideListScreen.js searches trips, DriverForm.js adds a trip, and MyTripsScreen.jsx
+gets all trips for a user (not yet, currently just all trips for all users).
+
+--> Working with Axios
+1. Include axios in your document: import axios from "axios";
+
+2. Getting an array of *all* documents in a collection (GET requet)
+    2.1. There are three parts to a generic GET request: 
+        .get() get all the things
+        .then() do something with the things
+        .catch() what to do if the request fails
+    2.2. Create a function in your react component that will handle getting and
+        storing data from MongoDB. Call it whatever you want, but getTrips() or
+        the like is logical. (Only works if component is a class).
+    2.3. Inside this function, type the following: 
+        axios.get('http://localhost:5000/<collection>')
+            .then(response => {
+                if(response.data.length > 0) {
+                    //do something with what was returned. I recommend
+                    //storing it in the Component's state if the component is a class
+                }
+                else{
+                    //what to do if there is nothing in the collection
+                }
+            })
+            .catch(err => console.log(err));
+        return <arrayOfThings>; //if you stored in state, use this.state.<fieldName>
+    2.4. Call this function wherever you need to access the data in the component's
+        render method: e.g. <FlatList data={this.getTrips()} ... />
+
+3. Add a document to the collection
+    3.1. Create an onSubmit() (for a form) function or the like in your Component. 
+        This function will format all data for entering in the database and attempt 
+        to add it to the database.
+    3.2. Reference the collection's Schema to determine the type of all each field. 
+        Number and Date types can be Strings since the backend will cast them, but they
+        do need to be formatted properly. Create an Javascript object with format:
+                    const trip = {
+                        seats: "4",
+                        passengers: [],
+                        origin: origin, //previously defined
+                        time: fullDate, //previously defined, String type
+                        isRoundTrip: true,
+                    }
+    3.3. Use axios to POST the object to the collection:
+        axios.post('http://localhost:5000/<collection>/add', <JSObjectName>)
+      .then(res => console.log(res.data)) //I print it out if successful for testing purposes
+      .catch((err) => console.log("Error: " + err));
+    3.4. This function can also call a navigate() to move to a new screen on form submission.
+
+4. Search for a document using a query
+    4.1. Verify that a route exists for the search you want to do (e.g. by field(s), by _id)
+    4.2. If not, define the route in the appropriate route file. Refer to the search in trips.js:
+                router.route("/search").get((req, res) => { //"search" can be any word you want, e.g. findByUsername
+                    Trip.find()
+                        //compare "destination" field in object with that of query
+                        .where("destination")
+                        .equals(req.query.destination) 
+                        .where("origin")
+                        .equals(req.query.origin)
+                        //sort in ascending order by time field
+                        .sort({ time: 1 })
+                        .then((trips) => res.json(trips)) //return trips
+                        .catch((err) => res.status(400).json("Error: " + err)); //catch
+                });
+    4.3. Create a function in your Component, similar to previous.
+    4.4. The function body will look something like the following. Note that the format of 
+        the axios GET request is different than in (1). This is because we want to be able
+        to pass in a query with the search terms. Both do the same thing (GET), but this
+        gives more control.
+                    axios({
+                        method: "get",
+                        //<route> is likely "search", refer to the route file
+                        url: "http://localhost:5000/<collection>/<route>", 
+                        params: {
+                            //query was a JS object I had already defined before the axios call
+                            //these fields are anything that is needed by the get request in (4.2)
+                            origin: query.origin, //these can be variables or literals, e.g. "Target"
+                            destination: query.destination,
+                        },
+                    })
+                    .then((response) => {
+                            if (response.data.length > 0) {
+                                //do something if things were found, see (1)
+                            } else {
+                                //do something if nothing was found
+                            }
+                    })
+                    .catch((err) => console.log("Error: " + err));  //catch
+                    return <arrayOfThings>;
+
+
+
+
