@@ -11,8 +11,8 @@ router.route("/").get((req, res) => {
 //find one user's profile using their username and password
 router.route("/searchUser").get((req, res) => {
   User.findOne()
-    .where("username")
-    .equals(req.query.username)
+    .where("email")
+    .equals(req.query.userEmail)
     .where("password")
     .equals(req.query.password)
     .then((user) => res.json(user))
