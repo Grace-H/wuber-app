@@ -25,15 +25,15 @@ class LoginScreen extends Component {
    * the user clicks 'submit'.
    */
   login = (email, pass) => {
-    var userEmail = email;
-    var userPass = pass;
+    var username = email;
+    var password = pass;
     var authenticated = false; 
     var user = null; 
 
     axios({
       mathod: "get",
       url: "http://localhost:5000/searchUser",
-      params: {userEmail, userPass},
+      params: {username, password},
     })
         .then(response=>{
           if (!null){
