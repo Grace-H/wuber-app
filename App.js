@@ -208,9 +208,13 @@ export default class App extends Component {
 
   render() {
     return (
+
+      <SignUp/>
       
+      /*
       <LoginScreen setUser= {this.setUser} />
-      
+      */
+
       /*
       <NavigationContainer>
         <BottomTab.Navigator

@@ -5,6 +5,43 @@ import stylesCommon from './styles/stylesCommon';
 
 class SignUp extends Component {
 
+    userInput = {
+      name: "", 
+      email: "",
+      password: "",
+      year: "",
+    }
+
+    /**
+     * These four function keeps our variables
+     * updated with user input. 
+     */
+    updateName = (text) => {
+      this.setState({ name: text });
+    };
+    updateEmail = (text) => {
+      this.setState({ email: text });
+    };
+    updatePassword = (text) => {
+      this.setState({ password: text });
+    };
+    updateYear = (text) => {
+      this.setState({ year: text });
+    };
+
+    createAccount = () => {
+      var name = this.userInput.name; 
+      var email = this.userInput.email;
+      var password = this.userInput.password; 
+      var year = this.userInput.year; 
+
+      if (name.trim() == "" || email.trim() == "" || 
+      password.trim() == "" || year.trim() == ""){
+        alert("One or more fields are empty. Please input data and submit again.")
+      }
+
+    }
+
     render(){
       return (
 
@@ -24,21 +61,36 @@ class SignUp extends Component {
         </Text>
 
         <TextInput
+        style = {stylesCommon.loginInput}
+        placeholder = "Name"
+        onChangeText={this.updateName}
+        />
+
+        <TextInput
         style ={stylesCommon.loginInput}
         placeholder="Email Address" 
+        onChangeText={this.updateEmail}
           />
 
         <TextInput
         style={stylesCommon.loginInput}
         placeholder="Password" 
+        onChangeText={this.updatePassword}
+        />  
+
+        <TextInput
+        style={stylesCommon.loginInput}
+        placeholder="Year in College"
+        onChangeText={this.updateYear} 
         />    
+        
 
         <Text> {"\n"} </Text>
         
 
         <TouchableOpacity 
           style = {stylesCommon.customBtn}
-          onPress = {() => alert('You are now signed up!')}>
+          onPress = {() => this.createAccount()}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Sign Up
           </Text>
