@@ -3,8 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, Alert } from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
-import { useNavigation } from "@react-navigation/core";
-import UserModel from "../backend/models/user.model.js";
+
 
 class LoginScreen extends Component {
   state = {
@@ -34,6 +33,8 @@ class LoginScreen extends Component {
     var authenticated = false; 
     var user = null; 
 
+    alert(query.userEmail + " " + query.password);
+
     axios({
       method: "get",
       url: "http://localhost:5000/users/searchUser",
@@ -43,12 +44,12 @@ class LoginScreen extends Component {
       }
     })
         .then(response=>{
-          if (response > 1){
+          if (response.data !== null){
             alert("You were able to login!");
             authenticated = true; 
             user = response.data; 
           }
-          else {
+          else { 
             alert("The credentials you provided could not be determined to be authentic."
             + "\n" 
             + "Please try again."
