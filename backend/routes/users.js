@@ -28,8 +28,10 @@ router.route("/searchUser").get((req, res) => {
 router.route("/add").post((req, res) => {
   const name = req.body.name;
   const email = req.body.email;
+  const password = req.body.password; 
+  const year = req.body.year;
 
-  const newUser = new User({ name, email });
+  const newUser = new User({ name, email, password, year });
 
   newUser
     .save()

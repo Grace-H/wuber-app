@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { View, TextInput, TouchableOpacity, Text} from 'react-native';
 import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
+import axios from "axios";
 
 class SignUp extends Component {
 
@@ -30,15 +31,29 @@ class SignUp extends Component {
     };
 
     createAccount = () => {
-      var name = this.userInput.name; 
-      var email = this.userInput.email;
-      var password = this.userInput.password; 
-      var year = this.userInput.year; 
+      var userName = this.userInput.name; 
+      var userEmail = this.userInput.email;
+      var userPass = this.userInput.password; 
+      var userYear = this.userInput.year; 
 
-      if (name.trim() == "" || email.trim() == "" || 
-      password.trim() == "" || year.trim() == ""){
+      /*
+      if (userName.trim() == "" || userEmail.trim() == "" || 
+     userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
       }
+      */
+
+      const newUser = {
+        name: userName, 
+        email: userEmail, 
+        password: userPass, 
+        year: userYear,
+      }
+
+      axios.post('http://localhost:5000/users/add', newUser)
+      .then(res => console.log(res.data))
+      .catch( error => {   });
+
 
     }
 
