@@ -54,6 +54,8 @@ class TripStackScreens extends Component {
   };
   setSelectedTrip = (trip) => {
     this.setState({ selectedTrip: trip });
+    console.log("And the selected trip is...");
+    console.log(this.state.selectedTrip);
   };
 
   render() {
@@ -91,7 +93,7 @@ class TripStackScreens extends Component {
           name="Ride Details"
           children={() => (
             <RideInfoScreen
-              selectedTrip={this.state.selectedTrip}
+              getSelectedTrip={this.getSelectedTrip}
               navigation={this.props.navigation}
             />
           )}
@@ -209,8 +211,8 @@ export default class App extends Component {
   render() {
     return (
       /*
-      <LoginScreen />
-      */
+      <LoginScreen setUser={this.setUser} />
+*/
 
       <NavigationContainer>
         <BottomTab.Navigator

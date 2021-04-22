@@ -116,11 +116,8 @@ class RideListScreen extends Component {
     );
   }
 
-  onTripSelect() {
-    /*
-    console.log("Clicked");
+  onTripSelect(item) {
     this.props.setSelectedTrip(item);
-    */
     this.props.navigation.navigate("Ride Details");
   }
 
@@ -135,7 +132,15 @@ class RideListScreen extends Component {
         <FlatList
           data={this.getTrips()}
           renderItem={({ item }) => (
-            <TouchableOpacity key={item._id}>
+            <TouchableOpacity
+              onPress={() => {
+                console.log("I have an item: ");
+                console.log(this.props.trip);
+                this.props.setSelectedTrip(trip);
+                this.props.navigation.navigate("Ride Details");
+              }}
+              trip={item}
+            >
               <RegisteredTripCard
                 isDriver={true}
                 date={this.formatTime(item.time)}

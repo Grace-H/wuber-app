@@ -27,32 +27,32 @@ class LoginScreen extends Component {
   login = (email, pass) => {
     var username = email;
     var password = pass;
-    var authenticated = false; 
-    var user = null; 
+    var authenticated = false;
+    var user = null;
 
     axios({
       mathod: "get",
-      url: "http://localhost:5000/searchUser",
-      params: {username, password},
+      url: "http://localhost:5000/users/searchUser",
+      params: { username: username, password: password },
     })
-        .then(response=>{
-          if (!null){
-            authenticated = true; 
-            user = response.data; 
-          }
-          else {
-            alert("The credentials you provided could not be determined"
-            + "\n" 
-            + "to be authentic. Please try again.")
-          }
-        }) 
-        .catch(err => console.log(err)); 
-    
-       if (authenticated){
-        this.props.setUser(user); 
-        //navigation.navigate; 
-      }
-    
+      .then((response) => {
+        if (!null) {
+          authenticated = true;
+          user = response.data;
+        } else {
+          Alert.alert(
+            "The credentials you provided could not be determined" +
+              "\n" +
+              "to be authentic. Please try again."
+          );
+        }
+      })
+      .catch((err) => console.log(err));
+
+    if (authenticated) {
+      this.props.setUser(user);
+      //navigation.navigate;
+    }
   };
 
   render() {
