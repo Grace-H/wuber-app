@@ -210,10 +210,13 @@ export default class App extends Component {
 
   render() {
     return (
-      /*
-      <LoginScreen setUser={this.setUser} />
-*/
+      <SignUp />
 
+      /*
+      <LoginScreen setUser= {this.setUser} />
+      */
+
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -248,6 +251,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
+      */
     );
   }
 }

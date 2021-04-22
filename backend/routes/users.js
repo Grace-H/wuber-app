@@ -1,3 +1,8 @@
+/*
+* Routes for users collection
+* Author: Grace-H & Brendan-K
+*/
+
 const router = require("express").Router();
 let User = require("../models/user.model");
 
@@ -8,11 +13,11 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-//find one user's profile using their username and password
+//find one user's profile using their email and password
 router.route("/searchUser").get((req, res) => {
   User.findOne()
-    .where("username")
-    .equals(req.query.username)
+    .where("email")
+    .equals(req.query.userEmail)
     .where("password")
     .equals(req.query.password)
     .then((user) => res.json(user))
@@ -23,8 +28,10 @@ router.route("/searchUser").get((req, res) => {
 router.route("/add").post((req, res) => {
   const name = req.body.name;
   const email = req.body.email;
+  const password = req.body.password; 
+  const year = req.body.year;
 
-  const newUser = new User({ name, email });
+  const newUser = new User({ name, email, password, year });
 
   newUser
     .save()
