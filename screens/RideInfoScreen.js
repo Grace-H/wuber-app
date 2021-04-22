@@ -22,6 +22,51 @@ export default class RideInfoScreen extends Component {
     return this.props.getSelectedTrip();
   }
 
+  formatTime(t) {
+    const daysOftheWeek = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    const monthsOftheYear = [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ];
+
+    const time = new Date(t);
+
+    return (
+      daysOftheWeek[time.getUTCDay()] +
+      ", " +
+      monthsOftheYear[time.getUTCMonth() + 1] +
+      " " +
+      time.getUTCDate() +
+      ", " +
+      (time.getUTCHours() - 12 <= 0
+        ? time.getUTCHours()
+        : time.getUTCHours() - 12) +
+      ":" +
+      (time.getUTCMinutes() < 10 ? "" + time.getUTCMinutes() : "") +
+      time.getUTCMinutes() +
+      " " +
+      (time.getUTCHours() - 12 <= 0 ? "AM" : "PM")
+    );
+  }
+
   render() {
     const trip = this.getTrip();
 
@@ -40,7 +85,7 @@ export default class RideInfoScreen extends Component {
 
           <Text style={stylesCommon.textTitle}>Date</Text>
 
-          <Text style={stylesCommon.textBod}>{trip.time}</Text>
+          <Text style={stylesCommon.textBod}>{this.formatTime(trip.time)}</Text>
 
           <Text style={stylesCommon.textTitle}>Round Trip</Text>
 
@@ -53,7 +98,9 @@ export default class RideInfoScreen extends Component {
           )}
 
           {trip.isRoundTrip && (
-            <Text style={stylesCommon.textBod}>{trip.returnTime}</Text>
+            <Text style={stylesCommon.textBod}>
+              {trip.formatTime(trip.returnTime)}
+            </Text>
           )}
         </ScrollView>
 

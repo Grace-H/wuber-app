@@ -109,7 +109,7 @@ class RideListScreen extends Component {
       ", " +
       (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) +
       ":" +
-      (time.getMinutes() < 10 ? "" + time.getMinutes() : "") +
+      (time.getMinutes() < 10 ? "0" : "") +
       time.getMinutes() +
       " " +
       (time.getHours() - 12 <= 0 ? "AM" : "PM")
@@ -130,12 +130,9 @@ class RideListScreen extends Component {
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
-                console.log("I have an item: ");
-                console.log(item);
                 this.props.setSelectedTrip(item);
                 this.props.navigation.navigate("Ride Details");
               }}
-              trip={item}
             >
               <RegisteredTripCard
                 isDriver={true}

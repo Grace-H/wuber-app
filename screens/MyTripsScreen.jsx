@@ -35,21 +35,46 @@ class MyTripsScreen extends Component {
         }
     }
 
-    formatTime(t){
-
-        const daysOftheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        const monthsOftheYear = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-
+    formatTime(t) {
+        const daysOftheWeek = [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ];
+        const monthsOftheYear = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+    
         const time = new Date(t);
-
-
+    
         return (
-            daysOftheWeek[time.getDay()] + ', ' + 
-            monthsOftheYear[time.getMonth() + 1] + ' ' + 
-            time.getDate() + ', ' + 
-            (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) + ':' + 
-            (time.getMinutes() < 10 ? '' + time.getMinutes() : '') + time.getMinutes() + " " + 
-            (time.getHours() - 12 <= 0 ? "AM" : "PM")
+          daysOftheWeek[time.getUTCDay()] +
+          ", " +
+          monthsOftheYear[time.getUTCMonth() + 1] +
+          " " +
+          time.getUTCDate() +
+          ", " +
+          (time.getUTCHours() - 12 <= 0 ? time.getUTCHours() : time.getUTCHours() - 12) +
+          ":" +
+          (time.getUTCMinutes() < 10 ? "" + time.getUTCMinutes() : "") +
+          time.getUTCMinutes() +
+          " " +
+          (time.getUTCHours() - 12 <= 0 ? "AM" : "PM")
         );
     }
 
@@ -78,6 +103,10 @@ class MyTripsScreen extends Component {
                     data={this.getTrips()}
                     renderItem={({item}) => (
                         <TouchableOpacity
+                        onPress={() => {
+                            this.props.setSelectedTrip(item);
+                            this.props.navigation.navigate("Trip Details");
+                          }}
                             key={item._id}
                             >
                             <RegisteredTripCard

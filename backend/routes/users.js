@@ -1,7 +1,7 @@
 /*
-* Routes for users collection
-* Author: Grace-H & Brendan-K
-*/
+ * Routes for users collection
+ * Author: Grace-H & Brendan-K
+ */
 
 const router = require("express").Router();
 let User = require("../models/user.model");
@@ -10,6 +10,15 @@ let User = require("../models/user.model");
 router.route("/").get((req, res) => {
   User.find()
     .then((users) => res.json(users))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//find user profile by object id
+router.route("/findbyid/:id").get((req, res) => {
+  User.findById(req.params.id)
+    .then((user) => {
+      res.json(user);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
@@ -28,7 +37,7 @@ router.route("/searchUser").get((req, res) => {
 router.route("/add").post((req, res) => {
   const name = req.body.name;
   const email = req.body.email;
-  const password = req.body.password; 
+  const password = req.body.password;
   const year = req.body.year;
 
   const newUser = new User({ name, email, password, year });
