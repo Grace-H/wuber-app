@@ -34,15 +34,17 @@ class TripStackScreens extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTrip: null,
       passSearchQuery: null,
+      selectedTrip: null,
     };
   }
 
   getPassSearchQuery = () => {
-    console.log("Returning: ");
-    console.log(this.state.passSearchQuery);
     return this.state.passSearchQuery;
+  };
+
+  setSelectedTrip = (trip) => {
+    this.setState({ selectedTrip: trip });
   };
 
   setPassSearchQuery = (newQuery) => {
@@ -51,11 +53,6 @@ class TripStackScreens extends Component {
 
   getSelectedTrip = () => {
     return this.state.selectedTrip;
-  };
-  setSelectedTrip = (trip) => {
-    this.setState({ selectedTrip: trip });
-    console.log("And the selected trip is...");
-    console.log(this.state.selectedTrip);
   };
 
   render() {
@@ -210,13 +207,13 @@ export default class App extends Component {
 
   render() {
     return (
+      /*
       <SignUp />
-
+*/
       /*
       <LoginScreen setUser= {this.setUser} />
       */
 
-      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -251,7 +248,6 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      */
     );
   }
 }

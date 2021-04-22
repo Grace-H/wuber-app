@@ -124,19 +124,15 @@ class RideListScreen extends Component {
   render() {
     return (
       <SafeAreaView>
-        <Avatar source={require("../assets/WuberLogo.png")} size={120} />
-
-        <Text style={stylesCommon.textTitle}>
-          Rides you may be interested in{"\n"}
-        </Text>
+        <Text style={stylesCommon.textTitle}>Search Results</Text>
         <FlatList
           data={this.getTrips()}
           renderItem={({ item }) => (
             <TouchableOpacity
               onPress={() => {
                 console.log("I have an item: ");
-                console.log(this.props.trip);
-                this.props.setSelectedTrip(trip);
+                console.log(item);
+                this.props.setSelectedTrip(item);
                 this.props.navigation.navigate("Ride Details");
               }}
               trip={item}

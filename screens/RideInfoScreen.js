@@ -19,27 +19,28 @@ export default class RideInfoScreen extends Component {
   }
 
   getTrip() {
-    this.setState({
-      trip: this.props.getSelectedTrip(),
-    });
+    return this.props.getSelectedTrip();
   }
 
   render() {
-    this.getTrip();
-    const trip = this.state.trip;
+    const trip = this.getTrip();
 
     return (
       <View style={stylesCommon.container}>
         <Text style={stylesCommon.textTitleBlue}>More Information</Text>
 
         <ScrollView style={stylesCommon.scrollView}>
+          <Text style={stylesCommon.textTitle}>Origin</Text>
+
+          <Text style={stylesCommon.textBod}>{trip.origin}</Text>
+
           <Text style={stylesCommon.textTitle}>Destination</Text>
 
           <Text style={stylesCommon.textBod}>{trip.destination}</Text>
 
           <Text style={stylesCommon.textTitle}>Date</Text>
 
-          <Text style={stylesCommon.textBod}>{trip.date}</Text>
+          <Text style={stylesCommon.textBod}>{trip.time}</Text>
 
           <Text style={stylesCommon.textTitle}>Round Trip</Text>
 
