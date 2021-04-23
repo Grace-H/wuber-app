@@ -15,9 +15,6 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import stylesCommon from "./styles/stylesCommon";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useNavigation } from "@react-navigation/native";
-import { LogBox } from "react-native";
-
-//LogBox.ignoreAllLogs(true)
 
 export default function PassengerForm({ setQuery }) {
   const navigation = useNavigation();
@@ -214,6 +211,7 @@ export default function PassengerForm({ setQuery }) {
               ? time1.getHours()
               : time1.getHours() - 12) +
             ":" +
+            (time1.getMinutes() < 10 ? "0" : "") +
             time1.getMinutes() +
             " " +
             (time1.getHours() - 12 <= 0 ? "AM" : "PM")
@@ -241,6 +239,7 @@ export default function PassengerForm({ setQuery }) {
               ? time2.getHours()
               : time2.getHours() - 12) +
             ":" +
+            (time2.getMinutes() < 10 ? "0" : "") +
             time2.getMinutes() +
             " " +
             (time2.getHours() - 12 <= 0 ? "AM" : "PM")

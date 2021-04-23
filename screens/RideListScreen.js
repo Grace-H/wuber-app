@@ -109,33 +109,31 @@ class RideListScreen extends Component {
       ", " +
       (time.getHours() - 12 <= 0 ? time.getHours() : time.getHours() - 12) +
       ":" +
-      (time.getMinutes() < 10 ? "" + time.getMinutes() : "") +
+      (time.getMinutes() < 10 ? "0" : "") +
       time.getMinutes() +
       " " +
       (time.getHours() - 12 <= 0 ? "AM" : "PM")
     );
   }
 
-  onTripSelect() {
-    /*
-    console.log("Clicked");
+  onTripSelect(item) {
     this.props.setSelectedTrip(item);
-    */
     this.props.navigation.navigate("Ride Details");
   }
 
   render() {
     return (
       <SafeAreaView>
-        <Avatar source={require("../assets/WuberLogo.png")} size={120} />
-
-        <Text style={stylesCommon.textTitle}>
-          Rides you may be interested in{"\n"}
-        </Text>
+        <Text style={stylesCommon.textTitle}>Search Results</Text>
         <FlatList
           data={this.getTrips()}
           renderItem={({ item }) => (
-            <TouchableOpacity key={item._id}>
+            <TouchableOpacity
+              onPress={() => {
+                this.props.setSelectedTrip(item);
+                this.props.navigation.navigate("Ride Details");
+              }}
+            >
               <RegisteredTripCard
                 isDriver={true}
                 date={this.formatTime(item.time)}

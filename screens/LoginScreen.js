@@ -23,23 +23,23 @@ class LoginScreen extends Component {
    * the user clicks 'submit'.
    */
   login = (email, pass) => {
-
     const query = {
-      userEmail: email, 
-      password: pass, 
-    }; 
+      userEmail: email,
+      password: pass,
+    };
 
-    var authenticated = false; 
-    var user = null; 
+    var authenticated = false;
+    var user = null;
 
     axios({
       method: "get",
       url: "http://localhost:5000/users/searchUser",
       params: {
-        userEmail: query.userEmail, 
-        password: query.password, 
-      }
+        userEmail: query.userEmail,
+        password: query.password,
+      },
     })
+<<<<<<< HEAD
         .then(response=>{
           if (response.data !== null){
             alert("You were able to login!");
@@ -59,6 +59,27 @@ class LoginScreen extends Component {
         this.props.setUser(user); 
       }
     
+=======
+      .then((response) => {
+        if (response.data !== null) {
+          alert("You were able to login!");
+          authenticated = true;
+          user = response.data;
+        } else {
+          alert(
+            "The credentials you provided could not be determined to be authentic." +
+              "\n" +
+              "Please try again."
+          );
+        }
+      })
+      .catch((err) => console.log(err));
+
+    if (authenticated) {
+      this.props.setUser(user);
+      //navigation.navigate;
+    }
+>>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
   };
 
 

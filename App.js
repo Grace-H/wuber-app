@@ -34,15 +34,17 @@ class TripStackScreens extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedTrip: null,
       passSearchQuery: null,
+      selectedTrip: null,
     };
   }
 
   getPassSearchQuery = () => {
-    console.log("Returning: ");
-    console.log(this.state.passSearchQuery);
     return this.state.passSearchQuery;
+  };
+
+  setSelectedTrip = (trip) => {
+    this.setState({ selectedTrip: trip });
   };
 
   setPassSearchQuery = (newQuery) => {
@@ -51,9 +53,6 @@ class TripStackScreens extends Component {
 
   getSelectedTrip = () => {
     return this.state.selectedTrip;
-  };
-  setSelectedTrip = (trip) => {
-    this.setState({ selectedTrip: trip });
   };
 
   render() {
@@ -90,7 +89,7 @@ class TripStackScreens extends Component {
           name="Ride Details"
           children={() => (
             <RideInfoScreen
-              selectedTrip={this.state.selectedTrip}
+              getSelectedTrip={this.getSelectedTrip}
               navigation={this.props.navigation}
             />
           )}
@@ -170,21 +169,71 @@ function LoginStackScreens() {
   );
 }
 
-const MyTripsTopTabNavigator = () => (
-  <TopTab.Navigator
-    tabBarOptions={{
-      style: { backgroundColor: "#0041AD" },
-      labelStyle: { fontSize: 14, fontWeight: "bold" },
-      activeTintColor: "#ffffff",
-      indicatorStyle: { height: 3, backgroundColor: "#fff", paddingBottom: 6 },
-      inactiveTintColor: "#979A9A",
-      tabStyle: { height: 100, right: 5 },
-    }}
-  >
-    <TopTab.Screen component={MyTrip} name="Current Trips" />
-    <TopTab.Screen component={PastTripsScreen} name="Past Trips" />
-  </TopTab.Navigator>
-);
+class MyTripsTopTabNavigator extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedTrip: null,
+    };
+  }
+
+  setSelectedTrip = (trip) => {
+    this.setState({ selectedTrip: trip });
+  };
+
+  getSelectedTrip = () => {
+    return this.state.selectedTrip;
+  };
+
+  render() {
+    return (
+      <TopTab.Navigator
+        tabBarOptions={{
+          style: { backgroundColor: "#0041AD" },
+          labelStyle: { fontSize: 14, fontWeight: "bold" },
+          activeTintColor: "#ffffff",
+          indicatorStyle: {
+            height: 3,
+            backgroundColor: "#fff",
+            paddingBottom: 6,
+          },
+          inactiveTintColor: "#979A9A",
+          tabStyle: { height: 100, right: 5 },
+        }}
+      >
+        <TopTab.Screen
+          children={() => (
+            <Stack.Navigator>
+              <Stack.Screen
+                name="My Trips"
+                children={() => (
+                  <MyTripsScreen
+                    setSelectedTrip={this.setSelectedTrip}
+                    navigation={this.props.navigation}
+                  />
+                )}
+                options={{ headerShown: true }}
+              />
+
+              <Stack.Screen
+                name="Trip Details"
+                children={() => (
+                  <MyTripInfoScreen
+                    getSelectedTrip={this.getSelectedTrip}
+                    navigation={this.props.navigation}
+                  />
+                )}
+                options={{ headerShown: true }}
+              />
+            </Stack.Navigator>
+          )}
+          name="Current Trips"
+        />
+        <TopTab.Screen component={PastTripsScreen} name="Past Trips" />
+      </TopTab.Navigator>
+    );
+  }
+}
 
 export default class App extends Component {
   constructor(props) {
@@ -204,6 +253,7 @@ export default class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       
       <SignUp/>
       
@@ -226,11 +276,15 @@ export default class App extends Component {
       */
       
       
+=======
+      /*
+      <SignUp />
+*/
+>>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
       /*
       <LoginScreen setUser= {this.setUser} />
       */
 
-      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -265,7 +319,6 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      */
     );
   }
 }
@@ -285,9 +338,3 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
-
-class MyTrip extends Component {
-  render() {
-    return <MyTripsScreen />;
-  }
-}
