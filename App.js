@@ -253,34 +253,9 @@ export default class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      
-      <SignUp/>
-      
-
-      /*
-      <LoginScreen 
-      navigation={this.props.navigation} 
-      />
-      */
-
-      /*Working on trying to connect the login and create account screens.
-      <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen
-          name= "Login Stack"
-          component={LoginStackScreens}/>
-        </Stack.Navigator>
-
-      </NavigationContainer>
-      */
-      
-      
-=======
       /*
       <SignUp />
 */
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
       /*
       <LoginScreen setUser= {this.setUser} />
       */
