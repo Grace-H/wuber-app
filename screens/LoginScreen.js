@@ -5,10 +5,15 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
 class LoginScreen extends Component {
-  state = {
-    email: "",
-    password: "",
-  };
+
+  constructor(props){
+    super(props);
+    this.state = {
+      email: "",
+      password: "",
+    };
+  }
+  
 
   updateEmail = (text) => {
     this.setState({ email: text });
@@ -39,7 +44,6 @@ class LoginScreen extends Component {
         password: query.password,
       },
     })
-<<<<<<< HEAD
         .then(response=>{
           if (response.data !== null){
             alert("You were able to login!");
@@ -57,33 +61,16 @@ class LoginScreen extends Component {
     
        if (authenticated){
         this.props.setUser(user); 
+        this.props.navigation.navigate("App");
       }
     
-=======
-      .then((response) => {
-        if (response.data !== null) {
-          alert("You were able to login!");
-          authenticated = true;
-          user = response.data;
-        } else {
-          alert(
-            "The credentials you provided could not be determined to be authentic." +
-              "\n" +
-              "Please try again."
-          );
-        }
-      })
-      .catch((err) => console.log(err));
-
-    if (authenticated) {
-      this.props.setUser(user);
-      //navigation.navigate;
-    }
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
   };
 
+  createAccount = () =>{
+    this.props.navigation.navigate("Sign Up");
+  }
 
-  render(  ) {
+  render() {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text>{"\n"}</Text>
@@ -121,7 +108,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => this.props.navigation.navigate("Sign Up")}
+          onPress={this.createAccount}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
         </TouchableOpacity>

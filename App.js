@@ -155,18 +155,54 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Login Stack"
-        component={LoginStack}
+        name="Login"
+        children = {() => <LoginStack navigation = {this.props.navigation} 
+                                     setUser = {this.props.setUser}/>}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-        component={SignUp}
+        children = {() => <SignUp  navigation = {this.props.navigation}/>}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
+}
+
+const BottomTabNavigator = () => {
+  <BottomTab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, horizontal, tintColor }) => {
+              let IconComponent = Ionicons;
+              let iconName;
+              if (route.name === "Home") {
+                iconName = "car";
+                // Sometimes we want to add badges to some icons.
+                // You can check the implementation below.
+              } else if (route.name === "Profile") {
+                iconName = "person-circle";
+              } else if (route.name === "Notifications") {
+                iconName = "location";
+              } else if (route.name === "Trips") {
+                iconName = "map";
+              }
+
+              // You can return any component that you like here!
+              return (
+                <IconComponent name={iconName} size={25} color={"#147EFB"} />
+              );
+            },
+          })}
+        >
+          <BottomTab.Screen name="Home" component={TripStackScreens} />
+          <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+          <BottomTab.Screen
+            name="Notifications"
+            component={NotificationStackScreens}
+          />
+          <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
+        </BottomTab.Navigator>
 }
 
 class MyTripsTopTabNavigator extends Component {
@@ -253,38 +289,32 @@ export default class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-      
-      <SignUp/>
-      
 
       /*
+      <SignUp/>
+      */
+
+      
       <LoginScreen 
       navigation={this.props.navigation} 
       />
-      */
+      
 
       /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
-          name= "Login Stack"
+          name= "Login"
           component={LoginStackScreens}/>
+          <Stack.Screen
+          name = "App"
+          component = {BottomTabNavigator}/>
         </Stack.Navigator>
 
       </NavigationContainer>
       */
       
-      
-=======
       /*
-      <SignUp />
-*/
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
-      /*
-      <LoginScreen setUser= {this.setUser} />
-      */
-
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -319,6 +349,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
+      */
     );
   }
 }

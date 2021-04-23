@@ -33,7 +33,6 @@ const userSchema = new Schema(
       trim: true,
     },
     year: {
-<<<<<<< HEAD
         type: String, 
         required: true, 
         unique: false, 
@@ -52,15 +51,6 @@ const userSchema = new Schema(
         trim: true, 
     }
 }, {
-=======
-      type: String,
-      required: false,
-      unique: false,
-      trim: true,
-    },
-  },
-  {
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
     timestamps: true,
   }
 );
