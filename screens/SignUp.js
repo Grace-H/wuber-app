@@ -5,40 +5,6 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
 class SignUp extends Component {
-<<<<<<< HEAD
-
-    state = {
-      name: "", 
-      email: "",
-      password: "",
-      year: "",
-    }
-
-    /**
-     * These four function keeps our variables
-     * updated with user input. 
-     */
-    updateName = (text) => {
-      this.setState({ name: text });
-    };
-    updateEmail = (text) => {
-      this.setState({ email: text });
-    };
-    updatePassword = (text) => {
-      this.setState({ password: text });
-    };
-    updateYear = (text) => {
-      this.setState({ year: text });
-    };
-
-    createAccount = () => {
-      var userName = this.state.name; 
-      var userEmail = this.state.email;
-      var userPass = this.state.password; 
-      var userYear = this.state.year; 
-
-      
-=======
   userInput = {
     name: "",
     email: "",
@@ -69,9 +35,8 @@ class SignUp extends Component {
     var userEmail = this.userInput.email;
     var userPass = this.userInput.password;
     var userYear = this.userInput.year;
-
+  };
     /*
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -87,17 +52,6 @@ class SignUp extends Component {
         
         //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
 
-<<<<<<< HEAD
-        axios.post('http://localhost:5000/users/add', user)
-        .then(res => console.log(res.data))
-        .catch( error => {alert(error)});
-
-        //alert("It looks like your username or email is already used." + "\n" 
-        //  + "Please try again.")
-
-      }
-      
-=======
     const newUser = {
       name: userName,
       email: userEmail,
@@ -106,7 +60,6 @@ class SignUp extends Component {
     };
 
     console.log(newUser);
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
 
     axios
       .post("http://localhost:5000/users/add", newUser)
@@ -146,21 +99,6 @@ class SignUp extends Component {
         />
 
         <TextInput
-<<<<<<< HEAD
-        style={stylesCommon.loginInput}
-        placeholder="Graduating Year"
-        onChangeText={this.updateYear} 
-        />    
-        
-        <Text> {"\n"} </Text>
-
-        <TouchableOpacity 
-          style = {stylesCommon.customBtn}
-          onPress = {() => this.createAccount()}>
-          <Text style={stylesCommon.customBtnTextWhite}>
-            Sign Up
-          </Text>
-=======
           style={stylesCommon.loginInput}
           placeholder="Year in College"
           onChangeText={this.updateYear}
@@ -173,7 +111,6 @@ class SignUp extends Component {
           onPress={() => this.createAccount()}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
->>>>>>> a71a27602d7a6f5f940de30a61a51ac844cb2440
         </TouchableOpacity>
 
         <Text> {"\n"} </Text>
@@ -186,7 +123,7 @@ class SignUp extends Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  }*/
 }
 
 export default SignUp;
