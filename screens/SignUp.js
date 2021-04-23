@@ -5,6 +5,7 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
 class SignUp extends Component {
+<<<<<<< HEAD
 
     constructor(props){
       super(props);
@@ -41,6 +42,40 @@ class SignUp extends Component {
       var userYear = this.state.year; 
 
       
+=======
+  userInput = {
+    name: "",
+    email: "",
+    password: "",
+    year: "",
+  };
+
+  /**
+   * These four function keeps our variables
+   * updated with user input.
+   */
+  updateName = (text) => {
+    this.setState({ name: text });
+  };
+  updateEmail = (text) => {
+    this.setState({ email: text });
+  };
+  updatePassword = (text) => {
+    this.setState({ password: text });
+  };
+  updateYear = (text) => {
+    this.setState({ year: text });
+  };
+
+  createAccount = () => {
+    var userName = this.userInput.name;
+    console.log(userName);
+    var userEmail = this.userInput.email;
+    var userPass = this.userInput.password;
+    var userYear = this.userInput.year;
+  };
+    /*
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -56,6 +91,7 @@ class SignUp extends Component {
         
         //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
 
+<<<<<<< HEAD
         axios.post('http://localhost:5000/users/add', user)
         .then(res => console.log(alert("Your account was created!" + "\n" + 
                                         "You may return to the login screen and login. ")))
@@ -66,6 +102,21 @@ class SignUp extends Component {
 
       }
       
+=======
+    const newUser = {
+      name: userName,
+      email: userEmail,
+      password: userPass,
+      year: userYear,
+    };
+
+    console.log(newUser);
+
+    axios
+      .post("http://localhost:5000/users/add", newUser)
+      .then((res) => console.log("success!"))
+      .catch((error) => {});
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
   };
 
   render() {
@@ -100,6 +151,7 @@ class SignUp extends Component {
         />
 
         <TextInput
+<<<<<<< HEAD
         style={stylesCommon.loginInput}
         placeholder="Graduating Year"
         onChangeText={this.updateYear} 
@@ -113,6 +165,20 @@ class SignUp extends Component {
           <Text style={stylesCommon.customBtnTextWhite}>
             Sign Up
           </Text>
+=======
+          style={stylesCommon.loginInput}
+          placeholder="Year in College"
+          onChangeText={this.updateYear}
+        />
+
+        <Text> {"\n"} </Text>
+
+        <TouchableOpacity
+          style={stylesCommon.customBtn}
+          onPress={() => this.createAccount()}
+        >
+          <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
         </TouchableOpacity>
 
         <Text> {"\n"} </Text>
@@ -125,7 +191,7 @@ class SignUp extends Component {
         </TouchableOpacity>
       </View>
     );
-  }
+  }*/
 }
 
 export default SignUp;

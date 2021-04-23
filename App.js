@@ -289,6 +289,7 @@ export default class App extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
 
       /*
       <SignUp/>
@@ -314,6 +315,11 @@ export default class App extends Component {
       </NavigationContainer>
       */
       
+=======
+      /*
+      <SignUp />
+*/
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
       /*
       <NavigationContainer>
         <BottomTab.Navigator
