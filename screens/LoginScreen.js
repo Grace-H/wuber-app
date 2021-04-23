@@ -4,7 +4,6 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-
 class LoginScreen extends Component {
   state = {
     email: "",
@@ -33,8 +32,6 @@ class LoginScreen extends Component {
     var authenticated = false; 
     var user = null; 
 
-    alert(query.userEmail + " " + query.password);
-
     axios({
       method: "get",
       url: "http://localhost:5000/users/searchUser",
@@ -60,12 +57,12 @@ class LoginScreen extends Component {
     
        if (authenticated){
         this.props.setUser(user); 
-        //navigation.navigate; 
       }
     
   };
 
-  render() {
+
+  render(  ) {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text>{"\n"}</Text>
@@ -103,7 +100,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => navigation.navigate("Sign Up")}
+          onPress={() => this.props.navigation.navigate("Sign Up")}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
         </TouchableOpacity>

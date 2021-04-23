@@ -6,7 +6,7 @@ import axios from "axios";
 
 class SignUp extends Component {
 
-    userInput = {
+    state = {
       name: "", 
       email: "",
       password: "",
@@ -31,28 +31,36 @@ class SignUp extends Component {
     };
 
     createAccount = () => {
-      var userName = this.userInput.name; 
-      var userEmail = this.userInput.email;
-      var userPass = this.userInput.password; 
-      var userYear = this.userInput.year; 
+      var userName = this.state.name; 
+      var userEmail = this.state.email;
+      var userPass = this.state.password; 
+      var userYear = this.state.year; 
 
-      /*
+      
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
-      }
-      */
+        alert(userName + " " + userEmail + " " + userPass + " " + userYear)
+      }else {
 
-      const newUser = {
-        name: userName, 
-        email: userEmail, 
-        password: userPass, 
-        year: userYear,
-      }
+        const user = {
+          name: userName, 
+          email: userEmail, 
+          password: userPass, 
+          year: userYear,
+        }
+        
+        //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
 
-      axios.post('http://localhost:5000/users/add', newUser)
-      .then(res => console.log(res.data))
-      .catch( error => {   });
+        axios.post('http://localhost:5000/users/add', user)
+        .then(res => console.log(res.data))
+        .catch( error => {alert(error)});
+
+        //alert("It looks like your username or email is already used." + "\n" 
+        //  + "Please try again.")
+
+      }
+      
 
 
     }
@@ -95,13 +103,11 @@ class SignUp extends Component {
 
         <TextInput
         style={stylesCommon.loginInput}
-        placeholder="Year in College"
+        placeholder="Graduating Year"
         onChangeText={this.updateYear} 
         />    
         
-
         <Text> {"\n"} </Text>
-        
 
         <TouchableOpacity 
           style = {stylesCommon.customBtn}

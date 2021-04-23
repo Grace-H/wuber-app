@@ -33,7 +33,7 @@ const userSchema = new Schema({
     },
     year: {
         type: String, 
-        required: false, 
+        required: true, 
         unique: false, 
         trim: true, 
     }, 

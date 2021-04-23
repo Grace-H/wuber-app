@@ -68,7 +68,6 @@ class TripStackScreens extends Component {
           component={HomeScreen}
           options={{ headerShown: false }}
         />
-        <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Take a Trip" component={TakeATripScreen} />
         <Stack.Screen
           name="Passenger Stack"
@@ -147,11 +146,8 @@ function NotificationStackScreens() {
 /*
  * My hope is to use this as the navigator between
  * the login and create account pages.
- * I am following instructions on this from the link below.
- * This will help with authentication.
- * https://medium.com/the-react-native-log/building-an-authentication-flow-with-react-navigation-fb5de2203b5c
+ * 
  */
-
 function LoginStackScreens() {
   return (
     <Stack.Navigator
@@ -208,8 +204,27 @@ export default class App extends Component {
 
   render() {
     return (
-
+      
       <SignUp/>
+      
+
+      /*
+      <LoginScreen 
+      navigation={this.props.navigation} 
+      />
+      */
+
+      /*Working on trying to connect the login and create account screens.
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+          name= "Login Stack"
+          component={LoginStackScreens}/>
+        </Stack.Navigator>
+
+      </NavigationContainer>
+      */
+      
       
       /*
       <LoginScreen setUser= {this.setUser} />
