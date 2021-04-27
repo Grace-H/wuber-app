@@ -2,6 +2,7 @@ import React from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginScreen from '../LoginScreen.js';
+
 const StackNavigator = createStackNavigator();
 
 const LoginStack = () => (
@@ -13,4 +14,4 @@ const LoginStack = () => (
     </StackNavigator.Navigator>
   );
   
-  export { LoginStack };
+  export default { LoginStack };

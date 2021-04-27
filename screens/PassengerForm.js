@@ -2,7 +2,7 @@
  * PassengerForm.js
  * Form for passenger to search for a trip.
  *
- * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 06 March 21
  * Last Edited: 24 March 21 by Grace
  */

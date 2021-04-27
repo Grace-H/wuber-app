@@ -3,7 +3,7 @@
  * Displays a working list of active or pending rides that fit the
  * users search qualifications.
  *
- * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */

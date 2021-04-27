@@ -25,6 +25,7 @@ import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
+import OfferRideSuccessScreen from "./screens/OfferRideSuccessScreen.js";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -99,6 +100,11 @@ class TripStackScreens extends Component {
           component={RideRequestSuccessScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Offer Success"
+          component={OfferRideSuccessScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     );
   }
@@ -155,19 +161,14 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Login"
-        children={() => (
-          <LoginStack
-            navigation={this.props.navigation}
-            setUser={this.props.setUser}
-          />
-        )}
+        name="Login Stack"
+        children={() => <LoginStack />}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-        children={() => <SignUp navigation={this.props.navigation} />}
+        children={() => <SignUp />}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -291,22 +292,13 @@ export default class App extends Component {
 
   render() {
     return (
-      /*
-      <SignUp />
-*/
-      /*
-      <LoginScreen setUser= {this.setUser} />
-      */
-      /*
+      <NavigationContainer>
+        <StackNavigator>
+          <Stack.Screen component={LoginScreen} name="Login" />
 
-
-      /*
-      <SignUp/>
-      */
-
-      /*
-      <LoginScreen navigation={this.props.navigation} />
-*/
+          <Stack.Screen component={SignUp} name="SignUp" />
+        </StackNavigator>
+      </NavigationContainer>
 
       /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
@@ -322,6 +314,7 @@ export default class App extends Component {
       </NavigationContainer>
       */
 
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -355,7 +348,9 @@ export default class App extends Component {
           />
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
-      </NavigationContainer>
+      </NavigationContainer>]
+
+      */
     );
   }
 }
