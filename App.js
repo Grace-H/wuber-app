@@ -304,7 +304,9 @@ export default class App extends Component {
       <SignUp/>
       */
 
+      /*
       <LoginScreen navigation={this.props.navigation} />
+*/
 
       /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
@@ -320,7 +322,6 @@ export default class App extends Component {
       </NavigationContainer>
       */
 
-      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -355,7 +356,6 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      */
     );
   }
 }

@@ -78,8 +78,11 @@ router.route("/deletebyid/:id").delete((req, res) => {
 });
 
 router.route("/update/:id").post((req, res) => {
+  console.log("Trip's id: ");
+  console.log(req.params.id);
   Trip.findById(req.params.id)
     .then((trip) => {
+      console.log(trip);
       trip.seats = Number(req.body.seats);
       trip.passengers = req.body.passengers;
       trip.origin = req.body.origin;
@@ -94,6 +97,35 @@ router.route("/update/:id").post((req, res) => {
         .catch((err) => res.status(400).json("Error: " + err));
     })
     .catch((err) => res.status(400).json("Error: " + err));
+});
+
+//add a passenger to a trip
+router.route("/addPassenger").post((req, res) => {
+  console.log("request is running!");
+  Trip.updateOne({ _id: req.body.tripid }, req.body.trip)
+    /*
+    .then((trip) => {
+      trip.passengers = trip.passengers.push(req.body.passid);
+      //<--got through here
+      trip
+        .save()
+        .then(() => {
+          res.json("Trip updated!");
+          console.log("Hello");
+        })
+        .catch((err) => res.status(400).json("Error1: " + err));
+    })
+    */
+    .then(() => res.json("Trip updated!"))
+    .catch((err) => res.status(400).json("Error2: " + err));
+
+  /*
+  console.log(req.params.tripid);
+  console.log(req.params.passid);
+  Trip.updateOne({ _id: tripid }, { $addToSet: { passengers: [passid] } })
+    .then(() => res.json("Passenger added."))
+    .catch((err) => res.status(400).json("Error: " + err));
+    */
 });
 
 module.exports = router;

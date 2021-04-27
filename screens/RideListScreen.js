@@ -58,7 +58,6 @@ class RideListScreen extends Component {
     })
       .then((response) => {
         if (response.data.length > 0) {
-          console.log("Trips Found...");
           this.setState({
             trips: response.data,
           });
