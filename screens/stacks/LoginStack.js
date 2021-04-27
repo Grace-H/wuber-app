@@ -2,6 +2,7 @@ import React from 'react'
 import { createStackNavigator } from "@react-navigation/stack";
 
 import LoginScreen from '../LoginScreen.js';
+
 const StackNavigator = createStackNavigator();
 
 const LoginStack = () => (
@@ -9,8 +10,8 @@ const LoginStack = () => (
     screenOptions={{
       header: () => null
     }}>
-      <StackNavigator.Screen name="Login Stack" component={LoginScreen} />
+      <StackNavigator.Screen name="Login Stack" component={<LoginScreen/>} />
     </StackNavigator.Navigator>
   );
   
-  export { LoginStack };
+  export default { LoginStack };

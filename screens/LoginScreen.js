@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, Alert } from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
+import { withNavigation } from 'react-navigation';
 
 class LoginScreen extends Component {
 
@@ -44,7 +45,6 @@ class LoginScreen extends Component {
         password: query.password,
       },
     })
-<<<<<<< HEAD
         .then(response=>{
           if (response.data !== null){
             alert("You were able to login!");
@@ -65,27 +65,6 @@ class LoginScreen extends Component {
         this.props.navigation.navigate("App");
       }
     
-=======
-      .then((response) => {
-        if (response.data !== null) {
-          alert("You were able to login!");
-          authenticated = true;
-          user = response.data;
-        } else {
-          alert(
-            "The credentials you provided could not be determined to be authentic." +
-              "\n" +
-              "Please try again."
-          );
-        }
-      })
-      .catch((err) => console.log(err));
-
-    if (authenticated) {
-      this.props.setUser(user);
-      //navigation.navigate;
-    }
->>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
   };
 
   createAccount = () =>{

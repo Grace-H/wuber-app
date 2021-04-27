@@ -145,8 +145,7 @@ function NotificationStackScreens() {
 /*
  * My hope is to use this as the navigator between
  * the login and create account pages.
- * 
- */
+ * At the moment, this stack navigator is unneccesary. 
 function LoginStackScreens() {
   return (
     <Stack.Navigator
@@ -155,20 +154,25 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Login"
-        children = {() => <LoginStack navigation = {this.props.navigation} 
-                                     setUser = {this.props.setUser}/>}
+        name="Login Stack"
+        children = {() => <LoginStack 
+                          //navigation = {this.props.navigation} 
+                          //setUser = {this.props.setUser}
+                          />}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-        children = {() => <SignUp  navigation = {this.props.navigation}/>}
+        children = {() => <SignUp  
+                                //navigation = {this.props.navigation}
+                                />}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
 }
+*/
 
 const BottomTabNavigator = () => {
   <BottomTab.Navigator
@@ -289,16 +293,22 @@ export default class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-
-      /*
-      <SignUp/>
-      */
 
       
-      <LoginScreen 
-      navigation={this.props.navigation} 
-      />
+      <SignUp/>
+      
+
+      /*
+      <NavigationContainer>
+      <StackNavigator>
+        <Stack.Screen
+        name = "Login"
+        component = {LoginScreen}
+        options={{ headerShown: false }}
+        />
+      </StackNavigator>
+      </NavigationContainer>
+      */
       
 
       /*Working on trying to connect the login and create account screens.
@@ -315,11 +325,6 @@ export default class App extends Component {
       </NavigationContainer>
       */
       
-=======
-      /*
-      <SignUp />
-*/
->>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
       /*
       <NavigationContainer>
         <BottomTab.Navigator
