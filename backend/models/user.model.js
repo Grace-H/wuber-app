@@ -34,8 +34,20 @@ const userSchema = new Schema(
     },
     year: {
       type: String,
+      required: true,
+      unique: false,
+      trim: true,
+    },
+    gender: {
+      type: String,
       required: false,
       unique: false,
+      trim: true,
+    },
+    phone: {
+      type: String,
+      required: false,
+      unique: true,
       trim: true,
     },
   },

@@ -5,6 +5,44 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
 class SignUp extends Component {
+<<<<<<< HEAD
+
+    constructor(props){
+      super(props);
+      this.state = {
+        name: "", 
+        email: "",
+        password: "",
+        year: "",
+      }
+
+    }
+    
+    /**
+     * These four function keeps our variables
+     * updated with user input. 
+     */
+    updateName = (text) => {
+      this.setState({ name: text });
+    };
+    updateEmail = (text) => {
+      this.setState({ email: text });
+    };
+    updatePassword = (text) => {
+      this.setState({ password: text });
+    };
+    updateYear = (text) => {
+      this.setState({ year: text });
+    };
+
+    createAccount = () => {
+      var userName = this.state.name; 
+      var userEmail = this.state.email;
+      var userPass = this.state.password; 
+      var userYear = this.state.year; 
+
+      
+=======
   userInput = {
     name: "",
     email: "",
@@ -37,6 +75,7 @@ class SignUp extends Component {
     var userYear = this.userInput.year;
   };
     /*
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -52,6 +91,18 @@ class SignUp extends Component {
         
         //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
 
+<<<<<<< HEAD
+        axios.post('http://localhost:5000/users/add', user)
+        .then(res => console.log(alert("Your account was created!" + "\n" + 
+                                        "You may return to the login screen and login. ")))
+        .catch( error => {console.log(error)});
+
+        //alert("It looks like your username or email is already used." + "\n" 
+        //  + "Please try again.")
+
+      }
+      
+=======
     const newUser = {
       name: userName,
       email: userEmail,
@@ -65,6 +116,7 @@ class SignUp extends Component {
       .post("http://localhost:5000/users/add", newUser)
       .then((res) => console.log("success!"))
       .catch((error) => {});
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
   };
 
   render() {
@@ -99,6 +151,21 @@ class SignUp extends Component {
         />
 
         <TextInput
+<<<<<<< HEAD
+        style={stylesCommon.loginInput}
+        placeholder="Graduating Year"
+        onChangeText={this.updateYear} 
+        />    
+        
+        <Text> {"\n"} </Text>
+
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => this.createAccount()}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Sign Up
+          </Text>
+=======
           style={stylesCommon.loginInput}
           placeholder="Year in College"
           onChangeText={this.updateYear}
@@ -111,13 +178,14 @@ class SignUp extends Component {
           onPress={() => this.createAccount()}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
+>>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
         </TouchableOpacity>
 
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => alert("This will take you back to the login screen.")}
+          onPress={() => this.props.navigation.navigate("Login")}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign In</Text>
         </TouchableOpacity>
