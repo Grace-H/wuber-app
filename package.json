@@ -55,5 +55,18 @@
   "devDependencies": {
     "@babel/core": "~7.9.0"
   },
-  "private": true
+  "private": true,
+  "name": "wuber-app",
+  "description": "Grace & Gordon's pages for report 4",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Grace-H/wuber-app.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Grace-H/wuber-app/issues"
+  },
+  "homepage": "https://github.com/Grace-H/wuber-app#readme"
 }

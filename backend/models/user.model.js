@@ -33,24 +33,25 @@ const userSchema = new Schema(
       trim: true,
     },
     year: {
-        type: String, 
-        required: true, 
-        unique: false, 
-        trim: true, 
-    }, 
+      type: String,
+      required: true,
+      unique: false,
+      trim: true,
+    },
     gender: {
-        type: String, 
-        required: false, 
-        unique: false, 
-        trim: true, 
-    }, 
+      type: String,
+      required: false,
+      unique: false,
+      trim: true,
+    },
     phone: {
-        type: String, 
-        required: false, 
-        unique: true, 
-        trim: true, 
-    }
-}, {
+      type: String,
+      required: false,
+      unique: true,
+      trim: true,
+    },
+  },
+  {
     timestamps: true,
   }
 );
