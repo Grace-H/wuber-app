@@ -145,7 +145,7 @@ function NotificationStackScreens() {
 /*
  * My hope is to use this as the navigator between
  * the login and create account pages.
- * 
+ *
  */
 function LoginStackScreens() {
   return (
@@ -253,13 +253,12 @@ export default class App extends Component {
 
   render() {
     return (
-      /*
       <SignUp />
-*/
+
       /*
       <LoginScreen setUser= {this.setUser} />
       */
-
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -294,6 +293,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
+      */
     );
   }
 }
