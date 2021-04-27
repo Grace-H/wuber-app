@@ -4,78 +4,42 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-class SignUp extends Component {
-<<<<<<< HEAD
+export default function SignUp() {
 
-    constructor(props){
-      super(props);
-      this.state = {
+    
+    const state = {
         name: "", 
         email: "",
         password: "",
         year: "",
       }
 
-    }
+
     
     /**
      * These four function keeps our variables
      * updated with user input. 
      */
-    updateName = (text) => {
-      this.setState({ name: text });
+    const updateName = (text) => {
+     state.name = text; 
     };
-    updateEmail = (text) => {
-      this.setState({ email: text });
+    const updateEmail = (text) => {
+      state.email = text; 
     };
-    updatePassword = (text) => {
-      this.setState({ password: text });
+    const updatePassword = (text) => {
+      state.password = text; 
     };
-    updateYear = (text) => {
-      this.setState({ year: text });
+    const updateYear = (text) => {
+      state.year = text; 
     };
 
-    createAccount = () => {
+    const createAccount = () => {
       var userName = this.state.name; 
       var userEmail = this.state.email;
       var userPass = this.state.password; 
       var userYear = this.state.year; 
 
       
-=======
-  userInput = {
-    name: "",
-    email: "",
-    password: "",
-    year: "",
-  };
-
-  /**
-   * These four function keeps our variables
-   * updated with user input.
-   */
-  updateName = (text) => {
-    this.setState({ name: text });
-  };
-  updateEmail = (text) => {
-    this.setState({ email: text });
-  };
-  updatePassword = (text) => {
-    this.setState({ password: text });
-  };
-  updateYear = (text) => {
-    this.setState({ year: text });
-  };
-
-  createAccount = () => {
-    var userName = this.userInput.name;
-    console.log(userName);
-    var userEmail = this.userInput.email;
-    var userPass = this.userInput.password;
-    var userYear = this.userInput.year;
-  };
-  /*
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -103,7 +67,6 @@ class SignUp extends Component {
       
   };
 
-  render() {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text>{"\n"}</Text>
@@ -119,25 +82,25 @@ class SignUp extends Component {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Name"
-          onChangeText={this.updateName}
+          onChangeText={updateName()}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Email Address"
-          onChangeText={this.updateEmail}
+          onChangeText={updateEmail()}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
-          onChangeText={this.updatePassword}
+          onChangeText={updatePassword()}
         />
 
         <TextInput
         style={stylesCommon.loginInput}
         placeholder="Graduating Year"
-        onChangeText={this.updateYear} 
+        onChangeText={updateYear()} 
         />    
         
         <Text> {"\n"} </Text>
@@ -154,13 +117,11 @@ class SignUp extends Component {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => this.props.navigation.navigate("Login")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign In</Text>
         </TouchableOpacity>
       </View>
     );
-  }
+  
 }
-
-export default SignUp;
