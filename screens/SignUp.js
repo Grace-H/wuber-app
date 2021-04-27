@@ -4,39 +4,42 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-class SignUp extends Component {
-  userInput = {
-    name: "",
-    email: "",
-    password: "",
-    year: "",
-  };
+export default function SignUp() {
 
-  /**
-   * These four function keeps our variables
-   * updated with user input.
-   */
-  updateName = (text) => {
-    this.setState({ name: text });
-  };
-  updateEmail = (text) => {
-    this.setState({ email: text });
-  };
-  updatePassword = (text) => {
-    this.setState({ password: text });
-  };
-  updateYear = (text) => {
-    this.setState({ year: text });
-  };
+    
+    const state = {
+        name: "", 
+        email: "",
+        password: "",
+        year: "",
+      }
 
-  createAccount = () => {
-    var userName = this.userInput.name;
-    console.log(userName);
-    var userEmail = this.userInput.email;
-    var userPass = this.userInput.password;
-    var userYear = this.userInput.year;
-  };
-  /*
+
+    
+    /**
+     * These four function keeps our variables
+     * updated with user input. 
+     */
+    const updateName = (text) => {
+     state.name = text; 
+    };
+    const updateEmail = (text) => {
+      state.email = text; 
+    };
+    const updatePassword = (text) => {
+      state.password = text; 
+    };
+    const updateYear = (text) => {
+      state.year = text; 
+    };
+
+    const createAccount = () => {
+      var userName = this.state.name; 
+      var userEmail = this.state.email;
+      var userPass = this.state.password; 
+      var userYear = this.state.year; 
+
+      
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -52,7 +55,6 @@ class SignUp extends Component {
         
         //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
 
-<<<<<<< HEAD
         axios.post('http://localhost:5000/users/add', user)
         .then(res => console.log(alert("Your account was created!" + "\n" + 
                                         "You may return to the login screen and login. ")))
@@ -63,24 +65,8 @@ class SignUp extends Component {
 
       }
       
-=======
-    const newUser = {
-      name: userName,
-      email: userEmail,
-      password: userPass,
-      year: userYear,
-    };
-
-    console.log(newUser);
-
-    axios
-      .post("http://localhost:5000/users/add", newUser)
-      .then((res) => console.log("success!"))
-      .catch((error) => {});
->>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
   };
 
-  render() {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text>{"\n"}</Text>
@@ -96,47 +82,46 @@ class SignUp extends Component {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Name"
-          onChangeText={this.updateName}
+          onChangeText={updateName()}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Email Address"
-          onChangeText={this.updateEmail}
+          onChangeText={updateEmail()}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
-          onChangeText={this.updatePassword}
+          onChangeText={updatePassword()}
         />
 
         <TextInput
-          style={stylesCommon.loginInput}
-          placeholder="Year in College"
-          onChangeText={this.updateYear}
-        />
-
+        style={stylesCommon.loginInput}
+        placeholder="Graduating Year"
+        onChangeText={updateYear()} 
+        />    
+        
         <Text> {"\n"} </Text>
 
-        <TouchableOpacity
-          style={stylesCommon.customBtn}
-          onPress={() => this.createAccount()}
-        >
-          <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
+        <TouchableOpacity 
+          style = {stylesCommon.customBtn}
+          onPress = {() => this.createAccount()}>
+          <Text style={stylesCommon.customBtnTextWhite}>
+            Sign Up
+          </Text>
         </TouchableOpacity>
 
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => this.props.navigation.navigate("Login")}
+          onPress={() => navigation.navigate("Login")}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign In</Text>
         </TouchableOpacity>
       </View>
     );
-  }*/
+  
 }
-
-export default SignUp;

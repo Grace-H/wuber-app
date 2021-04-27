@@ -152,7 +152,7 @@ function NotificationStackScreens() {
 /*
  * My hope is to use this as the navigator between
  * the login and create account pages.
- *
+ * 
  */
 function LoginStackScreens() {
   return (
@@ -162,19 +162,14 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Login"
-        children={() => (
-          <LoginStack
-            navigation={this.props.navigation}
-            setUser={this.props.setUser}
-          />
-        )}
+        name="Login Stack"
+        children = {() => <LoginStack />}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-        children={() => <SignUp navigation={this.props.navigation} />}
+        children = {() => <SignUp/>}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
@@ -183,36 +178,38 @@ function LoginStackScreens() {
 
 const BottomTabNavigator = () => {
   <BottomTab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        let IconComponent = Ionicons;
-        let iconName;
-        if (route.name === "Home") {
-          iconName = "car";
-          // Sometimes we want to add badges to some icons.
-          // You can check the implementation below.
-        } else if (route.name === "Profile") {
-          iconName = "person-circle";
-        } else if (route.name === "Notifications") {
-          iconName = "location";
-        } else if (route.name === "Trips") {
-          iconName = "map";
-        }
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, horizontal, tintColor }) => {
+              let IconComponent = Ionicons;
+              let iconName;
+              if (route.name === "Home") {
+                iconName = "car";
+                // Sometimes we want to add badges to some icons.
+                // You can check the implementation below.
+              } else if (route.name === "Profile") {
+                iconName = "person-circle";
+              } else if (route.name === "Notifications") {
+                iconName = "location";
+              } else if (route.name === "Trips") {
+                iconName = "map";
+              }
 
-        // You can return any component that you like here!
-        return <IconComponent name={iconName} size={25} color={"#147EFB"} />;
-      },
-    })}
-  >
-    <BottomTab.Screen name="Home" component={TripStackScreens} />
-    <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
-    <BottomTab.Screen
-      name="Notifications"
-      component={NotificationStackScreens}
-    />
-    <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
-  </BottomTab.Navigator>;
-};
+              // You can return any component that you like here!
+              return (
+                <IconComponent name={iconName} size={25} color={"#147EFB"} />
+              );
+            },
+          })}
+        >
+          <BottomTab.Screen name="Home" component={TripStackScreens} />
+          <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+          <BottomTab.Screen
+            name="Notifications"
+            component={NotificationStackScreens}
+          />
+          <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
+        </BottomTab.Navigator>
+}
 
 class MyTripsTopTabNavigator extends Component {
   constructor(props) {
@@ -297,21 +294,24 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      /*
-      <SignUp />
-*/
-      /*
-      <LoginScreen setUser= {this.setUser} />
-      */
-      /*
+    return (  
 
+      
+      
+      <NavigationContainer>
+        <StackNavigator>
+        <Stack.Screen
+          component = {LoginScreen}
+          name = 'Login'/>
 
-      /*
-      <SignUp/>
-      */
+        <Stack.Screen
+          component = {SignUp}
+          name = 'SignUp'/>
+        </StackNavigator>
+      </NavigationContainer>
+      
 
-      //<LoginScreen navigation={this.props.navigation} />
+      
 
       /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
@@ -326,8 +326,8 @@ export default class App extends Component {
 
       </NavigationContainer>
       */
-
       
+      /*
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -362,7 +362,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      
+      */
     );
   }
 }
