@@ -112,21 +112,6 @@ class SignUp extends Component {
         />
 
         <TextInput
-<<<<<<< HEAD
-        style={stylesCommon.loginInput}
-        placeholder="Graduating Year"
-        onChangeText={this.updateYear} 
-        />    
-        
-        <Text> {"\n"} </Text>
-
-        <TouchableOpacity 
-          style = {stylesCommon.customBtn}
-          onPress = {() => this.createAccount()}>
-          <Text style={stylesCommon.customBtnTextWhite}>
-            Sign Up
-          </Text>
-=======
           style={stylesCommon.loginInput}
           placeholder="Year in College"
           onChangeText={this.updateYear}
@@ -139,7 +124,6 @@ class SignUp extends Component {
           onPress={() => this.createAccount()}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
->>>>>>> 014f6c0985d93324290b0d348308681e8e7c37be
         </TouchableOpacity>
 
         <Text> {"\n"} </Text>

@@ -25,6 +25,8 @@ import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
+import OfferRideSuccessScreen from "./screens/OfferRideSuccessScreen.js";
+
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -97,6 +99,11 @@ class TripStackScreens extends Component {
         <Stack.Screen
           name="Ride Requested"
           component={RideRequestSuccessScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Offer Success"
+          component={OfferRideSuccessScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
@@ -304,7 +311,7 @@ export default class App extends Component {
       <SignUp/>
       */
 
-      <LoginScreen navigation={this.props.navigation} />
+      //<LoginScreen navigation={this.props.navigation} />
 
       /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
@@ -320,7 +327,7 @@ export default class App extends Component {
       </NavigationContainer>
       */
 
-      /*
+      
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -355,7 +362,7 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      */
+      
     );
   }
 }

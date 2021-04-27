@@ -3,7 +3,7 @@
  * 
  * Displays a users profile information and allows for it to be edited. 
  * 
- * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 24 March 21
  * Last Edited: 24 March by Brendan Keefer
  */

@@ -322,7 +322,7 @@ export default function DriverForm({ navigation }) {
 
         <Text>{"\n"}</Text>
 
-        <TouchableOpacity style={stylesCommon.customBtnBG} onPress={onSubmit}>
+        <TouchableOpacity style={stylesCommon.customBtnBG} onPress= {() => {navigation.navigate("Offer Success")}}>
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>
