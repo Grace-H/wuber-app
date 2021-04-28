@@ -292,7 +292,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <NavigationContainer>
+      /*<NavigationContainer>
         <StackNavigator>
           <Stack.Screen component={LoginScreen} name="Login" />
 
@@ -314,7 +314,7 @@ export default class App extends Component {
       </NavigationContainer>
       */
 
-      /*
+      
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -348,9 +348,9 @@ export default class App extends Component {
           />
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
-      </NavigationContainer>]
+      </NavigationContainer>
 
-      */
+      
     );
   }
 }
