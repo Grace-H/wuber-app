@@ -71,7 +71,7 @@ export default class RideInfoScreen extends Component {
 
   handleJoinTrip = () => {
     const ntrip = this.props.getSelectedTrip();
-    ntrip.passengers.push({ _id: this.state.userid });
+    ntrip.passengers.push({ user: this.state.userid, approved: false });
     const pass = this.state.userid;
     const terms = {
       tripid: ntrip._id,

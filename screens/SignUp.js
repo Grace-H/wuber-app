@@ -59,11 +59,9 @@ export default function SignUp() {
         .post("http://localhost:5000/users/add", user)
         .then((res) =>
           console.log(
-            alert(
-              "Your account was created!" +
-                "\n" +
-                "You may return to the login screen and login. "
-            )
+            "Your account was created!" +
+              "\n" +
+              "You may return to the login screen and login. "
           )
         )
         .catch((error) => {
