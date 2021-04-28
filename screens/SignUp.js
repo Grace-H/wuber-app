@@ -4,7 +4,7 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-export default function SignUp() {
+export default function SignUp({navigation}) {
   const state = {
     name: "",
     email: "",
