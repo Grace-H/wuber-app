@@ -78,6 +78,7 @@ export default function LoginScreen({navigation}) {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
+          secureTextEntry={true}
           onChangeText={text => updatePassword(text)}
         />
 
