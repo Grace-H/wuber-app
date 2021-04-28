@@ -41,7 +41,6 @@ export default function LoginScreen({navigation}) {
     })
         .then(response=>{
           if (response.data !== null){
-            alert("You were able to login!");
             user = response.data; 
             navigation.navigate("App");
           }
@@ -57,7 +56,6 @@ export default function LoginScreen({navigation}) {
     
   };
 
-  
 
     return (
       <View style={{ flex: 1, alignItems: "center" }}>

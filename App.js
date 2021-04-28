@@ -278,6 +278,7 @@ class MyTripsTopTabNavigator extends Component {
 }
 
 function MainStackNavigator() {
+
   return (
 
     <NavigationContainer>
@@ -311,7 +312,9 @@ export default class App extends Component {
   render() {
     return (
       
-      <MainStackNavigator/>
+      <MainStackNavigator
+      setUser = {this.setUser}
+      />
 
       
     );
