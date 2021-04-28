@@ -20,18 +20,24 @@ import axios from 'axios';
          super(props);
          this.state = {
              userid: "606cd4960520b9ce1ac31c5b",
+             foundUserName: null,
          }
     }
 
-    getDriverName = () => {
-        const userid = "606cd4960520b9ce1ac31c5b";
-        let username = "Driver not found."
+    //get the name of a user from the database using the ObjectId of the user
+    getName = (userid) => {
         axios.get('http://localhost:5000/users/findbyid/' + userid)
             .then(res => {
-                username = res.data.name;
+                console.log(res.data);
+                this.setState({ foundUserName: res.data.name });
+                console.log(this.state.foundUserName);
             })
             .catch(err => console.log("Error: " + err));
-        return username;
+        if(this.state.foundUserName != null){
+            return this.state.foundUserName;
+        } else {
+            return "Driver not found.";
+        }
     }
 
     formatTime(t) {
@@ -108,7 +114,7 @@ import axios from 'axios';
                     <ListItem bottomDivider topDivider>
                         <Avatar source={require('../assets/blank-profile-picture.png')} />
                         <ListItem.Content>
-                        <ListItem.Title>{this.getDriverName()}</ListItem.Title>
+                        <ListItem.Title>{this.getName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
                         {/*trip.driver != this.state.userid &&
                         //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.

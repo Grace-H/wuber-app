@@ -62,7 +62,7 @@ export default function SignUp({ navigation }) {
           )
         )
         .catch((error) => {
-          console.log(error);
+          console.log("There's an error! " + error);
         });
 
       //alert("It looks like your username or email is already used." + "\n"
