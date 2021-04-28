@@ -4,7 +4,7 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-export default function LoginScreen( { navigation }) {
+export default function LoginScreen({navigation}) {
 
   const state = {
     email: "",      
@@ -24,13 +24,11 @@ export default function LoginScreen( { navigation }) {
    * This is the function that will be called when
    * the user clicks 'submit'.
    */
-  const login = (email, pass) => {
+  const authenticate = (email, pass) => {
     const query = {
       userEmail: email,
       password: pass,
     };
-
-    var authenticated = false;
     var user = null;
 
     axios({
@@ -43,9 +41,8 @@ export default function LoginScreen( { navigation }) {
     })
         .then(response=>{
           if (response.data !== null){
-            alert("You were able to login!");
-            authenticated = true; 
             user = response.data; 
+            navigation.navigate("App");
           }
           else { 
             alert("The credentials you provided could not be determined to be authentic."
@@ -54,16 +51,11 @@ export default function LoginScreen( { navigation }) {
             );
           }
         }) 
-        .catch(err => console.log(err)); 
-    
-       if (authenticated){
-        //this.props.setUser(user); 
-        //navigation.navigate("App");
-      }
+        .catch(err => console.log(err));
+        
     
   };
 
-  
 
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
@@ -80,20 +72,21 @@ export default function LoginScreen( { navigation }) {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Email Address"
-          onChangeText={updateEmail()}
+          onChangeText={text => updateEmail(text)}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
-          onChangeText={updatePassword()}
+          secureTextEntry={true}
+          onChangeText={text => updatePassword(text)}
         />
 
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => login(this.state.email, this.state.password)}
+          onPress={() => authenticate(state.email, state.password)}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
@@ -102,7 +95,7 @@ export default function LoginScreen( { navigation }) {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={ () => {navigation.navigate('Sign Up')}}
+          onPress={ () => {navigation.navigate("Sign Up")}}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
         </TouchableOpacity>

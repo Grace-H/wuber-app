@@ -4,7 +4,7 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
-export default function SignUp() {
+export default function SignUp({ navigation }) {
   const state = {
     name: "",
     email: "",
@@ -30,10 +30,10 @@ export default function SignUp() {
   };
 
   const createAccount = () => {
-    var userName = this.state.name;
-    var userEmail = this.state.email;
-    var userPass = this.state.password;
-    var userYear = this.state.year;
+    var userName = state.name;
+    var userEmail = state.email;
+    var userPass = state.password;
+    var userYear = state.year;
 
     if (
       userName.trim() == "" ||
@@ -44,21 +44,18 @@ export default function SignUp() {
       alert(
         "One or more fields are empty. Please input data and submit again."
       );
-      alert(userName + " " + userEmail + " " + userPass + " " + userYear);
     } else {
-      const user = {
+      const newUser = {
         name: userName,
         email: userEmail,
         password: userPass,
         year: userYear,
       };
 
-      //alert(newUser.name + " " + newUser.email + " " + newUser.password + " " + newUser.year)
-
       axios
-        .post("http://localhost:5000/users/add", user)
+        .post("http://localhost:5000/users/add", newUser)
         .then((res) =>
-          console.log(
+          alert(
             "Your account was created!" +
               "\n" +
               "You may return to the login screen and login. "
@@ -88,32 +85,32 @@ export default function SignUp() {
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Name"
-        onChangeText={updateName()}
+        onChangeText={(text) => updateName(text)}
       />
 
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Email Address"
-        onChangeText={updateEmail()}
+        onChangeText={(text) => updateEmail(text)}
       />
 
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Password"
-        onChangeText={updatePassword()}
+        onChangeText={(text) => updatePassword(text)}
       />
 
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Graduating Year"
-        onChangeText={updateYear()}
+        onChangeText={(text) => updateYear(text)}
       />
 
       <Text> {"\n"} </Text>
 
       <TouchableOpacity
         style={stylesCommon.customBtn}
-        onPress={() => this.createAccount()}
+        onPress={() => createAccount()}
       >
         <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
       </TouchableOpacity>

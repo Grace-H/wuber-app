@@ -6,7 +6,7 @@
  * Last Edited: 8 apr by Grace
  */
 import React, { useState } from "react";
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
 import { Input, Button, colors } from "react-native-elements";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import stylesCommon from "./styles/stylesCommon";
@@ -29,7 +29,8 @@ export default function DriverForm({ navigation }) {
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showReturnTime, setShowReturnTime] = useState(false);
-  const [showPayment, setPayment] = useState(false);
+  const [text, setText] = useState('');
+  const [text2, setText2] = useState('');
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -303,22 +304,21 @@ export default function DriverForm({ navigation }) {
           onPress={showPaymentOption}
         />
         {opChecked && (
-          <Button
-            title={"Venmo"}
-            type="clear"
-            buttonStyle={{ justifyContent: "space-between" }}
-            onPress={showPaymentItems}
+          <TextInput
+          style = {{height : 40}}
+          placeholder = "Cash or Venmo?"
+          onChangeText={text => setText(text)}
+          defaultValue={text}
           />
         )}
         {opChecked && (
-          <Button
-            title={"Cash"}
-            type="clear"
-            buttonStyle={{ justifyContent: "space-between" }}
-            onPress={showPaymentItems}
+          <TextInput
+          style = {{height : 40}}
+          placeholder = "How much $?"
+            onChangeText={text2 => setText2(text2)}
+            defaultValue={text2}
           />
         )}
-        {showPayment && <Input placeholder="How much $?" />}
 
         <Text>{"\n"}</Text>
 
