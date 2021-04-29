@@ -11,7 +11,7 @@
 
 
 import React, {Component} from 'react';
-import { SafeAreaView, Text, ScrollView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, TouchableHighlight } from 'react-native';
 import { Icon, ListItem, Avatar } from 'react-native-elements';
 import axios from 'axios';
 
@@ -34,49 +34,14 @@ import axios from 'axios';
             return this.state.driverName;
     }
 
-    getPassengerNames(passengers) {
-        console.log(passengers);
-        let query = [];
-        passengers.forEach(p => {
-            query.push(p.userid);
-        });
-        console.log(query);
-        console.log("Working");
-        if(query.length > 0){
-        axios({
-          method: "get",
-          url: "http://localhost:5000/users/listbyid",
-          params: {
-            passengers: query
-          },
-        })
-          .then((response) => {
-              console.log("Response");
-            console.log(response.data);
-            if (response.data.length > 0) {
-                
-              this.setState({
-                passengers: response.data,
-              });
-            } else {
-              console.log("No Users found.");
-              this.setState({
-                passengers: response.data,
-              });
-            }
-          })
-          .catch((err) => console.log("Didn't work: " + err));
-        }
-        console.log(this.state.passengers);
-        return this.state.passengers;
-      }
+    //approve passenger p
+    handleApprovePassenger = (p) => {
+        console.log("Approve passenger pressed");
+    }
 
-    getDriverName = (userid) => {
-        axios.get('http://localhost:5000/users/findbyid/' + userid)
-            .then(res => this.setState({ driverName: res.data.name }))
-            .catch(err => console.log("Error: " + err));
-
-            return this.state.driverName;
+    //deny passenger p
+    handleDenyPassenger = (p) => {
+        console.log("Deny passenger pressed");
     }
 
     formatTime(t) {
@@ -123,9 +88,8 @@ import axios from 'axios';
       }
 
      render() { 
-         const trip = this.props.getSelectedTrip();
-
-         return (
+        const trip = this.props.getSelectedTrip();
+        return (
              <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.dateTitle}>{this.formatTime(trip.time)}</Text>
@@ -155,16 +119,8 @@ import axios from 'axios';
                         <ListItem.Content>
                         <ListItem.Title>{this.getDriverName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
-                        {/*trip.driver != this.state.userid &&
+                        {trip.driver != this.state.userid &&
                         //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.
-Bad object: {
-  "fontSize": "30x",
-  "color": "red",
-  "backgroundColor": "transparent",
-  "fontFamily": "FontAwesome",
-  "fontWeight": "normal",
-  "fontStyle": "normal"
-}
 
                         <ListItem.Chevron 
                             name='comment-o'
@@ -172,20 +128,56 @@ Bad object: {
                             size='25x'
                             color="grey"
                         />
-                        */}
+                        }
                         
                     </ListItem>
                     <Text style={{fontSize: 24, marginVertical: 8}}>
                         Passengers
                     </Text>
-                    {this.getPassengerNames(trip.passengers).map((p) => {
+                    {trip.passengers.map((p) => 
+                        
                         <ListItem bottomDivider topDivider>
                             <Avatar source={require('../assets/blank-profile-picture.png')} />
                             <ListItem.Content>
                             <ListItem.Title>{p.name}</ListItem.Title>
                             </ListItem.Content>
+                            {p.userid != this.state.userid && 
+                            <Icon 
+                            name='comment-o'
+                            type='font-awesome'
+                            color="grey"
+                            />
+                            /*<ListItem.Chevron 
+                            name='comment-o'
+                            type='font-awesome'
+                            size='25x'
+                            color="grey"
+                            />
+                            */}
+                            {(trip.driver == this.state.userid && !p.approved) &&
+                            <Icon 
+                            name='check'
+                            type='font-awesome'
+                            color="green"
+                            />}
+                            {(trip.driver == this.state.userid && !p.approved) && 
+                            <Icon 
+                            name='times'
+                            type='font-awesome'
+                            color="red"
+                            />
+                            /*<TouchableHighlight onPress={this.handleDenyPassenger(p)}>
+                            <ListItem.Chevron 
+                                name='times'
+                                type='font-awesome'
+                                size='30x'
+                                color="red"
+                                
+                            />
+                            </TouchableHighlight>*/}
+
                         </ListItem>
-                    })}
+                    )}
                 </ScrollView>
              </SafeAreaView>
          );

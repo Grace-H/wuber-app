@@ -25,6 +25,8 @@ import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
+import ChatScreen from "./screens/ChatScreen";
+import Messages from "./screens/Messages";
 import OfferRideSuccessScreen from "./screens/OfferRideSuccessScreen.js";
 import { startClock } from "react-native-reanimated";
 
@@ -200,8 +202,14 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <BottomTab.Screen name="Home" component={TripStackScreens} />
-      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+      <BottomTab.Screen 
+        name="Home" 
+        component={TripStackScreens} 
+      />
+      <BottomTab.Screen 
+        name="Trips" 
+        component={MyTripsTopTabNavigator} 
+      />
       <BottomTab.Screen
         name="Notifications"
         component={NotificationStackScreens}
@@ -278,7 +286,25 @@ class MyTripsTopTabNavigator extends Component {
   }
 }
 
+function MessagesStackScreens() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: null,
+      }}
+    >
+      <Stack.Screen
+        name="MessagesList"
+        component={Messages}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Chat" component={ChatScreen} />
+    </Stack.Navigator>
+  )
+}
+
 function MainStackNavigator() {
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -311,7 +337,93 @@ export default class App extends Component {
   }
 
   render() {
-    return <MainStackNavigator setUser={this.setUser} />;
+    return (
+      //<SignUp />
+
+      /*
+      <LoginScreen setUser= {this.setUser} />
+      */
+      /*
+
+
+      
+      <SignUp/>
+      */
+
+      //<LoginScreen navigation={this.props.navigation} />
+
+      /*Working on trying to connect the login and create account screens.
+      <NavigationContainer>
+        <Stack.Navigator>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Sign Up"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
+          <Stack.Screen
+          name = "App"
+          component = {BottomTabNavigator}/>
+        </Stack.Navigator>
+
+      </NavigationContainer>
+      */
+      <NavigationContainer>
+        <BottomTab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, horizontal, tintColor }) => {
+              let IconComponent = Ionicons;
+              let iconName;
+              if (route.name === "Home") {
+                iconName = "car";
+              } else if (route.name === "Profile") {
+                iconName = "person-circle";
+              } else if (route.name === "Notifications") {
+                iconName = "location";
+              } else if (route.name === "Trips") {
+                iconName = "map";
+              } else if (route.name === "Messages") {
+                iconName= "chatbox-ellipses";
+              }
+              return (
+                <IconComponent name={iconName} size={25} color={"#147EFB"} />
+              );
+            },
+          })}
+        >
+          <BottomTab.Screen 
+            name="Home" 
+            component={TripStackScreens} 
+          />
+          <BottomTab.Screen 
+            name="Trips" 
+              component={MyTripsTopTabNavigator} 
+          />
+          <BottomTab.Screen 
+            name="Messages" 
+            component={MessagesStackScreens} 
+          />
+          <BottomTab.Screen
+            name="Notifications"
+            component={NotificationStackScreens}
+          />
+          <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
+        </BottomTab.Navigator>
+      </NavigationContainer>
+      //
+      /*
+    return (
+      
+      <MainStackNavigator
+      setUser = {this.setUser}
+      />
+      */
+    );
   }
 }
 

@@ -73,6 +73,8 @@ export default function LoginScreen({navigation}) {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Email Address"
+          keyboardType='email-address'
+          autoCorrect={false}
           onChangeText={text => updateEmail(text)}
         />
 

@@ -6,7 +6,13 @@
  * Last Edited: 8 apr by Grace
  */
 import React, { useState } from "react";
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { Input, Button, colors } from "react-native-elements";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import stylesCommon from "./styles/stylesCommon";
@@ -29,8 +35,8 @@ export default function DriverForm({ navigation }) {
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showReturnTime, setShowReturnTime] = useState(false);
-  const [text, setText] = useState('');
-  const [text2, setText2] = useState('');
+  const [text, setText] = useState("");
+  const [text2, setText2] = useState("");
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
@@ -132,7 +138,7 @@ export default function DriverForm({ navigation }) {
       isRoundTrip: rtChecked,
       returnTime: fullrtDate,
       payment: text,
-      dollars: text2
+      dollars: text2,
     };
 
     axios
@@ -307,24 +313,29 @@ export default function DriverForm({ navigation }) {
         />
         {opChecked && (
           <TextInput
-          style = {{height : 40}}
-          placeholder = "Cash or Venmo?"
-          onChangeText={text => setText(text)}
-          defaultValue={text}
+            style={{ height: 40 }}
+            placeholder="Cash or Venmo?"
+            onChangeText={(text) => setText(text)}
+            defaultValue={text}
           />
         )}
         {opChecked && (
           <TextInput
-          style = {{height : 40}}
-          placeholder = "How much $?"
-            onChangeText={text2 => setText2(text2)}
+            style={{ height: 40 }}
+            placeholder="How much $?"
+            onChangeText={(text2) => setText2(text2)}
             defaultValue={text2}
           />
         )}
 
         <Text>{"\n"}</Text>
 
-        <TouchableOpacity style={stylesCommon.customBtnBG} onPress= {() => {navigation.navigate("Offer Success")}}>
+        <TouchableOpacity
+          style={stylesCommon.customBtnBG}
+          onPress={() => {
+            navigation.navigate("Offer Success");
+          }}
+        >
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>
