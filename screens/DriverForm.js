@@ -131,6 +131,8 @@ export default function DriverForm({ navigation }) {
       time: fullDate,
       isRoundTrip: rtChecked,
       returnTime: fullrtDate,
+      payment: text,
+      dollars: text2
     };
 
     axios

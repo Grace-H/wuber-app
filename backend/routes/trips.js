@@ -57,6 +57,8 @@ router.route("/add").post((req, res) => {
     time,
     isRoundTrip,
     returnTime,
+    payment,
+    dollars,
   });
 
   newTrip
@@ -90,7 +92,8 @@ router.route("/update/:id").post((req, res) => {
       trip.time = Date.parse(req.body.time);
       trip.isRoundTrip = req.body.isRoundTrip;
       trip.returnTime = Date.parse(req.body.returnTime);
-
+      trip.payment = req.body.payment;
+      trip.dollars = Number(req.body.dollars);
       trip
         .save()
         .then(() => res.json("Trip updated!"))

@@ -176,40 +176,40 @@ function LoginStackScreens() {
   );
 }
 
-function BottomTabNavigator(){
+function BottomTabNavigator() {
   return (
-  <BottomTab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        let IconComponent = Ionicons;
-        let iconName;
-        if (route.name === "Home") {
-          iconName = "car";
-          // Sometimes we want to add badges to some icons.
-          // You can check the implementation below.
-        } else if (route.name === "Profile") {
-          iconName = "person-circle";
-        } else if (route.name === "Notifications") {
-          iconName = "location";
-        } else if (route.name === "Trips") {
-          iconName = "map";
-        }
+    <BottomTab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          let IconComponent = Ionicons;
+          let iconName;
+          if (route.name === "Home") {
+            iconName = "car";
+            // Sometimes we want to add badges to some icons.
+            // You can check the implementation below.
+          } else if (route.name === "Profile") {
+            iconName = "person-circle";
+          } else if (route.name === "Notifications") {
+            iconName = "location";
+          } else if (route.name === "Trips") {
+            iconName = "map";
+          }
 
-        // You can return any component that you like here!
-        return <IconComponent name={iconName} size={25} color={"#147EFB"} />;
-      },
-    })}
-  >
-    <BottomTab.Screen name="Home" component={TripStackScreens} />
-    <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
-    <BottomTab.Screen
-      name="Notifications"
-      component={NotificationStackScreens}
-    />
-    <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
-  </BottomTab.Navigator>
+          // You can return any component that you like here!
+          return <IconComponent name={iconName} size={25} color={"#147EFB"} />;
+        },
+      })}
+    >
+      <BottomTab.Screen name="Home" component={TripStackScreens} />
+      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+      <BottomTab.Screen
+        name="Notifications"
+        component={NotificationStackScreens}
+      />
+      <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
+    </BottomTab.Navigator>
   );
-};
+}
 
 class MyTripsTopTabNavigator extends Component {
   constructor(props) {
@@ -252,6 +252,7 @@ class MyTripsTopTabNavigator extends Component {
                   <MyTripsScreen
                     setSelectedTrip={this.setSelectedTrip}
                     navigation={this.props.navigation}
+                    options={{ headerShown: false }}
                   />
                 )}
                 options={{ headerShown: true }}
@@ -278,18 +279,31 @@ class MyTripsTopTabNavigator extends Component {
 }
 
 function MainStackNavigator() {
+<<<<<<< HEAD
   
+=======
+>>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
   return (
-
     <NavigationContainer>
+<<<<<<< HEAD
     <Stack.Navigator>
       <Stack.Screen name = "Login" component = {LoginScreen}  />
       <Stack.Screen name = "Sign Up" component = {SignUp}/>
       <Stack.Screen name = "App" component = {BottomTabNavigator}/>
     </Stack.Navigator>
 
+=======
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Sign Up" component={SignUp} />
+        <Stack.Screen
+          name="App"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+>>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
     </NavigationContainer>
-
   );
 }
 
@@ -310,6 +324,7 @@ export default class App extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     return (
       
       <MainStackNavigator
@@ -317,6 +332,9 @@ export default class App extends Component {
       />
 
     );
+=======
+    return <MainStackNavigator setUser={this.setUser} />;
+>>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
   }
 }
 
