@@ -10,7 +10,7 @@ const LoginStack = () => (
     screenOptions={{
       header: () => null
     }}>
-      <StackNavigator.Screen name="Login Stack" component={<LoginScreen/>} />
+      <StackNavigator.Screen name="Login Stack" component={LoginScreen} />
     </StackNavigator.Navigator>
   );
   

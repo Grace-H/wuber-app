@@ -20,18 +20,63 @@ import axios from 'axios';
          super(props);
          this.state = {
              userid: "606cd4960520b9ce1ac31c5b",
+             driverName: "Driver not found.",
+             passengers: []
          }
     }
 
-    getDriverName = () => {
-        const userid = "606cd4960520b9ce1ac31c5b";
-        let username = "Driver not found."
+    //get the name of a user from the database using the ObjectId of the user
+    getDriverName = (userid) => {
         axios.get('http://localhost:5000/users/findbyid/' + userid)
-            .then(res => {
-                username = res.data.name;
-            })
+            .then(res => this.setState({ driverName: res.data.name }))
             .catch(err => console.log("Error: " + err));
-        return username;
+
+            return this.state.driverName;
+    }
+
+    getPassengerNames(passengers) {
+        console.log(passengers);
+        let query = [];
+        passengers.forEach(p => {
+            query.push(p.userid);
+        });
+        console.log(query);
+        console.log("Working");
+        if(query.length > 0){
+        axios({
+          method: "get",
+          url: "http://localhost:5000/users/listbyid",
+          params: {
+            passengers: query
+          },
+        })
+          .then((response) => {
+              console.log("Response");
+            console.log(response.data);
+            if (response.data.length > 0) {
+                
+              this.setState({
+                passengers: response.data,
+              });
+            } else {
+              console.log("No Users found.");
+              this.setState({
+                passengers: response.data,
+              });
+            }
+          })
+          .catch((err) => console.log("Didn't work: " + err));
+        }
+        console.log(this.state.passengers);
+        return this.state.passengers;
+      }
+
+    getDriverName = (userid) => {
+        axios.get('http://localhost:5000/users/findbyid/' + userid)
+            .then(res => this.setState({ driverName: res.data.name }))
+            .catch(err => console.log("Error: " + err));
+
+            return this.state.driverName;
     }
 
     formatTime(t) {
@@ -108,7 +153,7 @@ import axios from 'axios';
                     <ListItem bottomDivider topDivider>
                         <Avatar source={require('../assets/blank-profile-picture.png')} />
                         <ListItem.Content>
-                        <ListItem.Title>{this.getDriverName()}</ListItem.Title>
+                        <ListItem.Title>{this.getDriverName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
                         {/*trip.driver != this.state.userid &&
                         //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.
@@ -133,31 +178,14 @@ Bad object: {
                     <Text style={{fontSize: 24, marginVertical: 8}}>
                         Passengers
                     </Text>
-                    <ListItem bottomDivider topDivider>
-                        <Avatar source={require('../assets/blank-profile-picture.png')} />
-                        <ListItem.Content>
-                        <ListItem.Title>Rebecca Johnson</ListItem.Title>
-                        </ListItem.Content>
-                  
-                    
-                    </ListItem>
-                    <ListItem bottomDivider topDivider>
-                        <Avatar source={require('../assets/blank-profile-picture.png')} />
-                        <ListItem.Content>
-                        <ListItem.Title>Samuel Smith</ListItem.Title>
-                        </ListItem.Content>
-                        
-                     
-                    
-                    </ListItem>
-                    <ListItem bottomDivider topDivider>
-                        <Avatar source={require('../assets/blank-profile-picture.png')} />
-                        <ListItem.Content>
-                        <ListItem.Title>John Huntington</ListItem.Title>
-                        </ListItem.Content>
-                        
-                    
-                    </ListItem>
+                    {this.getPassengerNames(trip.passengers).map((p) => {
+                        <ListItem bottomDivider topDivider>
+                            <Avatar source={require('../assets/blank-profile-picture.png')} />
+                            <ListItem.Content>
+                            <ListItem.Title>{p.name}</ListItem.Title>
+                            </ListItem.Content>
+                        </ListItem>
+                    })}
                 </ScrollView>
              </SafeAreaView>
          );

@@ -1,17 +1,15 @@
 /*
- * RideRequestSuccessScreen.js
- * Lets a user know that they have successfully requested to join a 
- * ride and presents other options. 
+ * OfferRideSuccessScreen.js
+ * Lets a user know that they have successfully created the offered ride.
  * 
  * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
- * Date Created: 05 March 21
- * Last Edited: 21 March 21 by Brendan Keefer
+ * Date Created: 27 April 21 by Gordon Olson
  */
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { Avatar } from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
-export default function RideRequestSuccessScreen({navigation}) {
+export default function OfferRideSuccessScreen({navigation}) {
     return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Avatar
@@ -19,21 +17,20 @@ export default function RideRequestSuccessScreen({navigation}) {
           size = {200}
         />
         <Text style = {stylesCommon.textTitle}
-            >You have successfully requested
-            to join this trip!
+            >You have successfully offered this trip!
         </Text>
         <Text>
           {"\n"}
         </Text>
         <Text style = {stylesCommon.textSub}
-            >Would you like to join another trip?
+            >Would you like to create another trip?
         </Text>
         <Text>
           {"\n"}
         </Text>
         <TouchableOpacity 
         style = {stylesCommon.customBtnSM}
-        onPress = {() => {navigation.navigate('Find a Ride')}}>
+        onPress = {() => {navigation.navigate('Driver Stack')}}>
           <Text style={stylesCommon.customBtnTextWhite}>
             Yes
           </Text>

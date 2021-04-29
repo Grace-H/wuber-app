@@ -27,6 +27,8 @@ import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
 import ChatScreen from "./screens/ChatScreen";
 import Messages from "./screens/Messages";
+import OfferRideSuccessScreen from "./screens/OfferRideSuccessScreen.js";
+import { startClock } from "react-native-reanimated";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -101,6 +103,11 @@ class TripStackScreens extends Component {
           component={RideRequestSuccessScreen}
           options={{ headerShown: false }}
         />
+        <Stack.Screen
+          name="Offer Success"
+          component={OfferRideSuccessScreen}
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     );
   }
@@ -157,52 +164,54 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Login"
-        component={LoginScreen}
+        name="Login Stack"
+        children={() => <LoginStack />}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-        component={SignUp}
+        children={() => <SignUp />}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
 }
 
-const BottomTabNavigator = () => {
-  <BottomTab.Navigator
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, horizontal, tintColor }) => {
-        let IconComponent = Ionicons;
-        let iconName;
-        if (route.name === "Home") {
-          iconName = "car";
-          // Sometimes we want to add badges to some icons.
-          // You can check the implementation below.
-        } else if (route.name === "Profile") {
-          iconName = "person-circle";
-        } else if (route.name === "Notifications") {
-          iconName = "location";
-        } else if (route.name === "Trips") {
-          iconName = "map";
-        }
+function BottomTabNavigator() {
+  return (
+    <BottomTab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, horizontal, tintColor }) => {
+          let IconComponent = Ionicons;
+          let iconName;
+          if (route.name === "Home") {
+            iconName = "car";
+            // Sometimes we want to add badges to some icons.
+            // You can check the implementation below.
+          } else if (route.name === "Profile") {
+            iconName = "person-circle";
+          } else if (route.name === "Notifications") {
+            iconName = "location";
+          } else if (route.name === "Trips") {
+            iconName = "map";
+          }
 
-        // You can return any component that you like here!
-        return <IconComponent name={iconName} size={25} color={"#147EFB"} />;
-      },
-    })}
-  >
-    <BottomTab.Screen name="Home" component={TripStackScreens} />
-    <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
-    <BottomTab.Screen
-      name="Notifications"
-      component={NotificationStackScreens}
-    />
-    <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
-  </BottomTab.Navigator>;
-};
+          // You can return any component that you like here!
+          return <IconComponent name={iconName} size={25} color={"#147EFB"} />;
+        },
+      })}
+    >
+      <BottomTab.Screen name="Home" component={TripStackScreens} />
+      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+      <BottomTab.Screen
+        name="Notifications"
+        component={NotificationStackScreens}
+      />
+      <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
+    </BottomTab.Navigator>
+  );
+}
 
 class MyTripsTopTabNavigator extends Component {
   constructor(props) {
@@ -245,6 +254,7 @@ class MyTripsTopTabNavigator extends Component {
                   <MyTripsScreen
                     setSelectedTrip={this.setSelectedTrip}
                     navigation={this.props.navigation}
+                    options={{ headerShown: false }}
                   />
                 )}
                 options={{ headerShown: true }}
@@ -287,6 +297,22 @@ function MessagesStackScreens() {
   )
 }
 
+function MainStackNavigator() {
+
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="Sign Up" component={SignUp} />
+        <Stack.Screen
+          name="App"
+          component={BottomTabNavigator}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
 
 export default class App extends Component {
   constructor(props) {
@@ -305,8 +331,7 @@ export default class App extends Component {
   }
 
   render() {
-    return (
-      /*
+    /*return (
       <SignUp />
 */
       /*
@@ -321,7 +346,7 @@ export default class App extends Component {
 
       //<LoginScreen navigation={this.props.navigation} />
 
-      //Working on trying to connect the login and create account screens.
+      /*Working on trying to connect the login and create account screens.
       <NavigationContainer>
         <Stack.Navigator>
       <Stack.Screen
@@ -341,7 +366,7 @@ export default class App extends Component {
         </Stack.Navigator>
 
       </NavigationContainer>
-      /*
+      //
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -389,6 +414,11 @@ export default class App extends Component {
         </BottomTab.Navigator>
       </NavigationContainer>
       */
+    return (
+      
+      <MainStackNavigator
+      setUser = {this.setUser}
+      />
     );
   }
 }

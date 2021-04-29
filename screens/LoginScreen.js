@@ -1,39 +1,37 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, TextInput, Alert } from "react-native";
+import { View, TouchableOpacity, Text, TextInput} from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
-import { withNavigation } from 'react-navigation';
+import App from "../App.js";
 
-class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      password: "",
-    };
-  }
+export default function LoginScreen({navigation}) {
 
-  updateEmail = (text) => {
-    this.setState({ email: text });
+  const state = {
+    email: "",      
+    password: "",
+  };
+  
+
+  const updateEmail = (text) => {
+    state.email = text;
   };
 
-  updatePassword = (text) => {
-    this.setState({ password: text });
+  const updatePassword = (text) => {
+    state.password = text; 
   };
 
   /*
    * This is the function that will be called when
    * the user clicks 'submit'.
    */
-  login = (email, pass) => {
+  const authenticate = (email, pass) => {
     const query = {
       userEmail: email,
       password: pass,
     };
 
-    var authenticated = false;
-    var user = null;
+    var user = null; 
 
     axios({
       method: "get",
@@ -43,33 +41,24 @@ class LoginScreen extends Component {
         password: query.password,
       },
     })
-      .then((response) => {
-        if (response.data !== null) {
-          alert("You were able to login!");
-          authenticated = true;
-          user = response.data;
-        } else {
-          alert(
-            "The credentials you provided could not be determined to be authentic." +
-              "\n" +
-              "Please try again."
-          );
-        }
-      })
-      .catch((err) => console.log(err));
-
-    if (authenticated) {
-      this.props.setUser(user);
-      //navigation.navigate;
-    }
+        .then(response=>{
+          if (response.data !== null){
+            navigation.navigate("App");
+          }
+          else { 
+            alert("The credentials you provided could not be determined to be authentic."
+            + "\n" 
+            + "Please try again."
+            );
+          }
+        }) 
+        .catch(err => console.log(err));
+        
+    
   };
 
-  createAccount = () => {
-    this.props.navigation.navigate("Sign Up");
-  };
 
-  render() {
-    return (
+    return (      
       <View style={{ flex: 1, alignItems: "center" }}>
         <Text>{"\n"}</Text>
 
@@ -84,23 +73,23 @@ class LoginScreen extends Component {
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Email Address"
-          onChangeText={this.updateEmail}
           keyboardType='email-address'
           autoCorrect={false}
+          onChangeText={text => updateEmail(text)}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
-          onChangeText={this.updatePassword}
           secureTextEntry={true}
+          onChangeText={text => updatePassword(text)}
         />
 
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => this.login(this.state.email, this.state.password)}
+          onPress={() => authenticate(state.email, state.password)}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
@@ -109,13 +98,11 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={() => this.props.navigation.navigate("Sign Up")}
+          onPress={ () => {navigation.navigate("Sign Up")}}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
         </TouchableOpacity>
       </View>
     );
-  }
+  
 }
-
-export default LoginScreen;

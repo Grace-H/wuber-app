@@ -38,18 +38,6 @@ const userSchema = new Schema(
       unique: false,
       trim: true,
     },
-    gender: {
-      type: String,
-      required: false,
-      unique: false,
-      trim: true,
-    },
-    phone: {
-      type: String,
-      required: false,
-      unique: true,
-      trim: true,
-    },
   },
   {
     timestamps: true,

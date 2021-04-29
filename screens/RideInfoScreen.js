@@ -2,19 +2,21 @@
  * RideInfoScreen.js
  * Displays the information for an individual trip once it is selected.
  *
- * Author: Grace Hunter, Gordon Olsen, Emily Ray, & Brendan Keefer
+ * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
  * Last Edited: 21 March 21 by Brendan Keefer
  */
 import React, { Component } from "react";
 import { View, Text, TouchableOpacity, ScrollView } from "react-native";
 import stylesCommon from "./styles/stylesCommon";
+import axios from "axios";
 
 export default class RideInfoScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       trip: null,
+      userid: "606cd5580520b9ce1ac31c5d", //make dynamic
     };
   }
 
@@ -67,6 +69,22 @@ export default class RideInfoScreen extends Component {
     );
   }
 
+  handleJoinTrip = () => {
+    const ntrip = this.props.getSelectedTrip();
+    ntrip.passengers.push({ user: this.state.userid, approved: false });
+    const pass = this.state.userid;
+    const terms = {
+      tripid: ntrip._id,
+      trip: ntrip,
+    };
+
+    axios
+      .post("http://localhost:5000/trips/addPassenger", terms)
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log("Error3: " + error));
+    this.props.navigation.navigate("Ride Requested");
+  };
+
   render() {
     const trip = this.getTrip();
 
@@ -93,6 +111,10 @@ export default class RideInfoScreen extends Component {
             {trip.isRoundTrip ? "Yes" : "No"}
           </Text>
 
+          <Text style ={stylesCommon.textBod}>{trip.payment}</Text>
+          <Text style ={stylesCommon.textBod}>{trip.dollars}</Text>
+
+
           {trip.isRoundTrip && (
             <Text style={stylesCommon.textTitle}>Return Time</Text>
           )}
@@ -107,7 +129,7 @@ export default class RideInfoScreen extends Component {
         <TouchableOpacity
           style={stylesCommon.customBtnBG}
           onPress={() => {
-            navigation.navigate("Ride Requested");
+            this.handleJoinTrip();
           }}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Join Ride</Text>
