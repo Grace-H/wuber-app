@@ -111,6 +111,10 @@ export default class RideInfoScreen extends Component {
             {trip.isRoundTrip ? "Yes" : "No"}
           </Text>
 
+          <Text style ={stylesCommon.textBod}>{trip.payment}</Text>
+          <Text style ={stylesCommon.textBod}>{trip.dollars}</Text>
+
+
           {trip.isRoundTrip && (
             <Text style={stylesCommon.textTitle}>Return Time</Text>
           )}
