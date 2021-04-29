@@ -25,6 +25,8 @@ import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
+import ChatScreen from "./screens/ChatScreen";
+import Messages from "./screens/Messages";
 
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
@@ -145,12 +147,8 @@ function NotificationStackScreens() {
 /*
  * My hope is to use this as the navigator between
  * the login and create account pages.
-<<<<<<< HEAD
- * At the moment, this stack navigator is unneccesary. 
-=======
  *
  */
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
 function LoginStackScreens() {
   return (
     <Stack.Navigator
@@ -159,39 +157,19 @@ function LoginStackScreens() {
       }}
     >
       <Stack.Screen
-<<<<<<< HEAD
-        name="Login Stack"
-        children = {() => <LoginStack 
-                          //navigation = {this.props.navigation} 
-                          //setUser = {this.props.setUser}
-                          />}
-=======
         name="Login"
-        children={() => (
-          <LoginStack
-            navigation={this.props.navigation}
-            setUser={this.props.setUser}
-          />
-        )}
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
+        component={LoginScreen}
         options={{ headerShown: false }}
       />
 
       <Stack.Screen
         name="Sign Up"
-<<<<<<< HEAD
-        children = {() => <SignUp  
-                                //navigation = {this.props.navigation}
-                                />}
-=======
-        children={() => <SignUp navigation={this.props.navigation} />}
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
+        component={SignUp}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );
 }
-*/
 
 const BottomTabNavigator = () => {
   <BottomTab.Navigator
@@ -292,6 +270,24 @@ class MyTripsTopTabNavigator extends Component {
   }
 }
 
+function MessagesStackScreens() {
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerTitle: null,
+      }}
+    >
+      <Stack.Screen
+        name="Messages"
+        component={Messages}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen name="Chat" component={ChatScreen} />
+    </Stack.Navigator>
+  )
+}
+
+
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -310,8 +306,6 @@ export default class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-=======
       /*
       <SignUp />
 */
@@ -320,49 +314,33 @@ export default class App extends Component {
       */
       /*
 
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
 
       
       <SignUp/>
-<<<<<<< HEAD
-      
-
-      /*
-      <NavigationContainer>
-      <StackNavigator>
-        <Stack.Screen
-        name = "Login"
-        component = {LoginScreen}
-        options={{ headerShown: false }}
-        />
-      </StackNavigator>
-      </NavigationContainer>
-      */
-      
-=======
       */
 
-      <LoginScreen navigation={this.props.navigation} />
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
+      //<LoginScreen navigation={this.props.navigation} />
 
-      /*Working on trying to connect the login and create account screens.
+      //Working on trying to connect the login and create account screens.
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen
-          name= "Login"
-          component={LoginStackScreens}/>
+      <Stack.Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Sign Up"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
           <Stack.Screen
           name = "App"
           component = {BottomTabNavigator}/>
         </Stack.Navigator>
 
       </NavigationContainer>
-      */
-<<<<<<< HEAD
-      
-=======
-
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
       /*
       <NavigationContainer>
         <BottomTab.Navigator
@@ -380,6 +358,8 @@ export default class App extends Component {
                 iconName = "location";
               } else if (route.name === "Trips") {
                 iconName = "map";
+              } else if (route.name === "Chat") {
+                iconName= "chatbox-ellipses";
               }
 
               // You can return any component that you like here!
@@ -389,8 +369,18 @@ export default class App extends Component {
             },
           })}
         >
-          <BottomTab.Screen name="Home" component={TripStackScreens} />
-          <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+          <BottomTab.Screen 
+            name="Home" 
+            component={TripStackScreens} 
+          />
+          <BottomTab.Screen 
+            name="Trips" 
+              component={MyTripsTopTabNavigator} 
+          />
+          <BottomTab.Screen 
+            name="Chat" 
+            component={ChatScreen} 
+          />
           <BottomTab.Screen
             name="Notifications"
             component={NotificationStackScreens}

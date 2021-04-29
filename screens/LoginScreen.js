@@ -43,28 +43,6 @@ class LoginScreen extends Component {
         password: query.password,
       },
     })
-<<<<<<< HEAD
-        .then(response=>{
-          if (response.data !== null){
-            alert("You were able to login!");
-            authenticated = true; 
-            user = response.data; 
-          }
-          else { 
-            alert("The credentials you provided could not be determined to be authentic."
-            + "\n" 
-            + "Please try again."
-            );
-          }
-        }) 
-        .catch(err => console.log(err)); 
-    
-       if (authenticated){
-        this.props.setUser(user); 
-        this.props.navigation.navigate("App");
-      }
-    
-=======
       .then((response) => {
         if (response.data !== null) {
           alert("You were able to login!");
@@ -84,7 +62,6 @@ class LoginScreen extends Component {
       this.props.setUser(user);
       //navigation.navigate;
     }
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
   };
 
   createAccount = () => {
@@ -108,12 +85,15 @@ class LoginScreen extends Component {
           style={stylesCommon.loginInput}
           placeholder="Email Address"
           onChangeText={this.updateEmail}
+          keyboardType='email-address'
+          autoCorrect={false}
         />
 
         <TextInput
           style={stylesCommon.loginInput}
           placeholder="Password"
           onChangeText={this.updatePassword}
+          secureTextEntry={true}
         />
 
         <Text> {"\n"} </Text>
@@ -129,7 +109,7 @@ class LoginScreen extends Component {
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
-          onPress={this.createAccount}
+          onPress={() => this.props.navigation.navigate("Sign Up")}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
         </TouchableOpacity>

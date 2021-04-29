@@ -5,44 +5,6 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 
 class SignUp extends Component {
-<<<<<<< HEAD
-
-    constructor(props){
-      super(props);
-      this.state = {
-        name: "", 
-        email: "",
-        password: "",
-        year: "",
-      }
-
-    }
-    
-    /**
-     * These four function keeps our variables
-     * updated with user input. 
-     */
-    updateName = (text) => {
-      this.setState({ name: text });
-    };
-    updateEmail = (text) => {
-      this.setState({ email: text });
-    };
-    updatePassword = (text) => {
-      this.setState({ password: text });
-    };
-    updateYear = (text) => {
-      this.setState({ year: text });
-    };
-
-    createAccount = () => {
-      var userName = this.state.name; 
-      var userEmail = this.state.email;
-      var userPass = this.state.password; 
-      var userYear = this.state.year; 
-
-      
-=======
   userInput = {
     name: "",
     email: "",
@@ -75,7 +37,6 @@ class SignUp extends Component {
     var userYear = this.userInput.year;
   };
   /*
->>>>>>> 22b66ac8a81bdccb8d2b1116afef10e5c4a5d02f
       if (userName.trim() == "" || userEmail.trim() == "" || 
      userPass.trim() == "" || userYear.trim() == ""){
         alert("One or more fields are empty. Please input data and submit again.")
@@ -102,7 +63,7 @@ class SignUp extends Component {
       }
       
   };
-
+*/
   render() {
     return (
       <View style={{ flex: 1, alignItems: "center" }}>
@@ -162,5 +123,4 @@ class SignUp extends Component {
     );
   }
 }
-
 export default SignUp;
