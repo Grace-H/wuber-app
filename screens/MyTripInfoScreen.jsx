@@ -151,16 +151,8 @@ import axios from 'axios';
                         <ListItem.Content>
                         <ListItem.Title>{this.getDriverName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
-                        {/*trip.driver != this.state.userid &&
+                        {trip.driver != this.state.userid &&
                         //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.
-Bad object: {
-  "fontSize": "30x",
-  "color": "red",
-  "backgroundColor": "transparent",
-  "fontFamily": "FontAwesome",
-  "fontWeight": "normal",
-  "fontStyle": "normal"
-}
 
                         <ListItem.Chevron 
                             name='comment-o'
@@ -168,7 +160,7 @@ Bad object: {
                             size='25x'
                             color="grey"
                         />
-                        */}
+                        }
                         
                     </ListItem>
                     <Text style={{fontSize: 24, marginVertical: 8}}>
@@ -181,8 +173,29 @@ Bad object: {
                             <ListItem.Content>
                             <ListItem.Title>{p.name}</ListItem.Title>
                             </ListItem.Content>
+                            {p.userid != this.state.userid && 
+                            <ListItem.Chevron 
+                            name='comment-o'
+                            type='font-awesome'
+                            size='25x'
+                            color="grey"
+                            />}
+                            {(trip.driver == this.state.userid && !p.approved) &&
+                            <ListItem.Chevron 
+                                name='check'
+                                type='font-awesome'
+                                size='30x'
+                                color="green"
+                            />}
+                            {(trip.driver == this.state.userid && !p.approved) && 
+                            <ListItem.Chevron 
+                                name='times'
+                                type='font-awesome'
+                                size='30x'
+                                color="red"
+                            />}
+
                         </ListItem>
-                        
                     )}
                 </ScrollView>
              </SafeAreaView>
