@@ -338,15 +338,11 @@ export default class App extends Component {
 
   render() {
     return (
-      //<SignUp />
+      /*<SignUp />
 
-      /*
-      <LoginScreen setUser= {this.setUser} />
       */
+      <LoginScreen setUser= {this.setUser} />
       /*
-
-
-      
       <SignUp/>
       */
 
@@ -372,7 +368,6 @@ export default class App extends Component {
         </Stack.Navigator>
 
       </NavigationContainer>
-      */
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
