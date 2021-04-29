@@ -59,6 +59,16 @@ const tripSchema = new Schema({
     },
     returnTime: {
         type: Date,
+    },
+    payment: {
+        type: String,
+        required: false,
+        trim: true
+    },
+    dollars:{
+        type: String,
+        required: false,
+        trim: true
     }
 }, {
     timestamps: true,
