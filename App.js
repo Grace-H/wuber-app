@@ -427,7 +427,7 @@ export default class App extends Component {
       
     return (*/
 
-      <MainStackNavigator setUser={this.setUser} />
+      <MainStackNavigator setUser={this.setUser} getUser={this.getUser} />
     );
   }
 }
