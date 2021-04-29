@@ -11,8 +11,9 @@
 
 
 import React, {Component} from 'react';
-import { SafeAreaView, Text, ScrollView, StyleSheet, View, TouchableHighlight } from 'react-native';
-import { Icon, ListItem, Avatar } from 'react-native-elements';
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, } from 'react-native';
+import { ListItem, Avatar, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
  class MyTripInfoScreen extends Component {
@@ -35,13 +36,32 @@ import axios from 'axios';
     }
 
     //approve passenger p
-    handleApprovePassenger = (p) => {
+    handleApprovePassenger = (currtrip, p) => {
         console.log("Approve passenger pressed");
+        currtrip.passengers.forEach(pass => {
+            if(pass == p){
+                pass.approved = true;
+            }
+        });
+        const terms = {
+            tripid: currtrip._id,
+            trip: currtrip,
+          };
+      
+        axios
+            .post("http://localhost:5000/trips/addPassenger", terms)
+            .then((res) => console.log(res.data))
+            .catch((error) => console.log("Error: " + error));
     }
 
     //deny passenger p
-    handleDenyPassenger = (p) => {
+    handleDenyPassenger = (trip, p) => {
         console.log("Deny passenger pressed");
+    }
+
+    //handle message user p
+    handleMessageUser = (p) => {
+        console.log("Message user pressed");
     }
 
     formatTime(t) {
@@ -120,16 +140,13 @@ import axios from 'axios';
                         <ListItem.Title>{this.getDriverName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
                         {trip.driver != this.state.userid &&
-                        //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.
-
                         <ListItem.Chevron 
                             name='comment-o'
                             type='font-awesome'
                             size='25x'
                             color="grey"
                         />
-                        }
-                        
+                        } 
                     </ListItem>
                     <Text style={{fontSize: 24, marginVertical: 8}}>
                         Passengers
@@ -142,11 +159,18 @@ import axios from 'axios';
                             <ListItem.Title>{p.name}</ListItem.Title>
                             </ListItem.Content>
                             {p.userid != this.state.userid && 
-                            <Icon 
-                            name='comment-o'
-                            type='font-awesome'
-                            color="grey"
+                            <Button
+                                title=""
+                                type="clear"
+                                onPress={() => {handleMessageUser(p)}}
+                                icon={
+                                    <Icon 
+                                        name='comment-o'
+                                        size={30}
+                                        color='grey'
+                                    />}
                             />
+                            
                             /*<ListItem.Chevron 
                             name='comment-o'
                             type='font-awesome'
@@ -155,17 +179,29 @@ import axios from 'axios';
                             />
                             */}
                             {(trip.driver == this.state.userid && !p.approved) &&
-                            <Icon 
-                            name='check'
-                            type='font-awesome'
-                            color="green"
+                            <Button
+                                title=""
+                                type="clear"
+                                onPress={() => {this.handleApprovePassenger(trip, p)}}
+                                icon={
+                                    <Icon 
+                                        name='check'
+                                        size={30}
+                                        color='green'
+                                    />}
                             />}
                             {(trip.driver == this.state.userid && !p.approved) && 
-                            <Icon 
-                            name='times'
-                            type='font-awesome'
-                            color="red"
-                            />
+                            <Button
+                            title=""
+                            type="clear"
+                            onPress={() => {this.handleDenyPassenger(trip, p)}}
+                            icon={
+                                <Icon 
+                                    name='times'
+                                    size={30}
+                                    color='red'
+                                />}
+                        />
                             /*<TouchableHighlight onPress={this.handleDenyPassenger(p)}>
                             <ListItem.Chevron 
                                 name='times'
