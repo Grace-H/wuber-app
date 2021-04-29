@@ -79,21 +79,28 @@ class MyTripsScreen extends Component {
     }
 
     getTrips() {
-        axios.get('http://localhost:5000/trips')
-            .then(response => {
-                if(response.data.length > 0) {
-                    this.setState({
-                        trips: response.data
-                    });
-                }
-                else{
-                    this.setState({
-                        trips: null,
-                    });
-                }
+        axios({
+            method: "get",
+            url: "http://localhost:5000/trips/searchbydriver",
+            params: {
+              userid: this.state.userid
+            },
+          })
+            .then((response) => {
+              if (response.data.length > 0) {
+                this.setState({
+                  trips: response.data,
+                });
+              } else {
+                console.log("No Trips found.");
+                this.setState({
+                  trips: [],
+                });
+              }
             })
-            .catch(err => console.log(err));
-        return this.state.trips;
+            .catch((err) => console.log("Didn't work: " + err));
+          return this.state.trips;
+      
     }
 
     render() { 

@@ -37,9 +37,11 @@ router.route("/searchUser").get((req, res) => {
 //for testing in Insomnia swtich "query" to "body"
 router.route("/listbyid").get((req, res) => {
   let p = [];
-  req.query.passengers.forEach((nId) => {
-    p.push({ _id: nId });
-  });
+  if (req.query.passenger.length > 0) {
+    req.query.passengers.forEach((nId) => {
+      p.push({ _id: nId });
+    });
+  }
   User.find({ $or: p }, function (err, result) {
     if (err) {
       res.send(err);

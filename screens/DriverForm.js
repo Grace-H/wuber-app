@@ -3,8 +3,9 @@
  * Form for driver to input details for a ride they would like to offer.
  * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
- * Last Edited: 8 apr by Grace
+ * Last Edited: 29 apr by Grace
  */
+
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -41,7 +42,6 @@ export default function DriverForm({ navigation }) {
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setDate(currentDate);
-    console.log(date);
   };
 
   const onTimeChange = (event, selectedTime) => {
@@ -129,7 +129,7 @@ export default function DriverForm({ navigation }) {
     );
 
     const trip = {
-      driver: "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn
+      driver: "606cd4b30520b9ce1ac31c5c", //change to be dynamic, set to Grace rn
       seats: seats,
       passengers: [],
       origin: origin,
@@ -144,7 +144,9 @@ export default function DriverForm({ navigation }) {
     axios
       .post("http://localhost:5000/trips/add", trip)
       .then((res) => console.log(res.data))
-      .catch((error) => {});
+      .catch((error) => console.log("Error: " + error));
+
+    navigation.navigate("Offer Success");
   };
 
   return (
@@ -333,7 +335,7 @@ export default function DriverForm({ navigation }) {
         <TouchableOpacity
           style={stylesCommon.customBtnBG}
           onPress={() => {
-            navigation.navigate("Offer Success");
+            onSubmit();
           }}
         >
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
