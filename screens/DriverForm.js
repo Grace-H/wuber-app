@@ -315,7 +315,7 @@ export default function DriverForm({ navigation }) {
         />
         {opChecked && (
           <TextInput
-            style={{ height: 40 }}
+            style={{ margin: 15, height: 40 }}
             placeholder="Cash or Venmo?"
             onChangeText={(text) => setText(text)}
             defaultValue={text}

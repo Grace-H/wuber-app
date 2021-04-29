@@ -363,7 +363,7 @@ export default class App extends Component {
       /*<SignUp />
 
       */
-      <LoginScreen setUser={this.setUser} />
+      //<LoginScreen setUser= {this.setUser} />
       /*
       <SignUp/>
       */
@@ -424,13 +424,10 @@ export default class App extends Component {
         </BottomTab.Navigator>
       </NavigationContainer>
       //
-      /*
-    return (
       
-      <MainStackNavigator
-      setUser = {this.setUser}
-      />
-      */
+    return (*/
+
+      <MainStackNavigator setUser={this.setUser} />
     );
   }
 }
