@@ -51,10 +51,7 @@ import axios from 'axios';
           },
         })
           .then((response) => {
-              console.log("Response");
-            console.log(response.data);
             if (response.data.length > 0) {
-                
               this.setState({
                 passengers: response.data,
               });
@@ -67,7 +64,6 @@ import axios from 'axios';
           })
           .catch((err) => console.log("Didn't work: " + err));
         }
-        console.log(this.state.passengers);
         return this.state.passengers;
       }
 
@@ -123,9 +119,9 @@ import axios from 'axios';
       }
 
      render() { 
-         const trip = this.props.getSelectedTrip();
-
-         return (
+        const trip = this.props.getSelectedTrip();
+        console.log(trip.passengers);
+        return (
              <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.dateTitle}>{this.formatTime(trip.time)}</Text>
@@ -178,14 +174,16 @@ Bad object: {
                     <Text style={{fontSize: 24, marginVertical: 8}}>
                         Passengers
                     </Text>
-                    {this.getPassengerNames(trip.passengers).map((p) => {
+                    {trip.passengers.map((p) => 
+                        
                         <ListItem bottomDivider topDivider>
                             <Avatar source={require('../assets/blank-profile-picture.png')} />
                             <ListItem.Content>
                             <ListItem.Title>{p.name}</ListItem.Title>
                             </ListItem.Content>
                         </ListItem>
-                    })}
+                        
+                    )}
                 </ScrollView>
              </SafeAreaView>
          );
