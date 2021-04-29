@@ -202,8 +202,14 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <BottomTab.Screen name="Home" component={TripStackScreens} />
-      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+      <BottomTab.Screen 
+        name="Home" 
+        component={TripStackScreens} 
+      />
+      <BottomTab.Screen 
+        name="Trips" 
+        component={MyTripsTopTabNavigator} 
+      />
       <BottomTab.Screen
         name="Notifications"
         component={NotificationStackScreens}
@@ -288,7 +294,7 @@ function MessagesStackScreens() {
       }}
     >
       <Stack.Screen
-        name="Messages"
+        name="MessagesList"
         component={Messages}
         options={{ headerShown: false }}
       />
@@ -331,9 +337,9 @@ export default class App extends Component {
   }
 
   render() {
-    /*return (
-      <SignUp />
-*/
+    return (
+      //<SignUp />
+
       /*
       <LoginScreen setUser= {this.setUser} />
       */
@@ -366,7 +372,7 @@ export default class App extends Component {
         </Stack.Navigator>
 
       </NavigationContainer>
-      //
+      */
       <NavigationContainer>
         <BottomTab.Navigator
           screenOptions={({ route }) => ({
@@ -375,19 +381,15 @@ export default class App extends Component {
               let iconName;
               if (route.name === "Home") {
                 iconName = "car";
-                // Sometimes we want to add badges to some icons.
-                // You can check the implementation below.
               } else if (route.name === "Profile") {
                 iconName = "person-circle";
               } else if (route.name === "Notifications") {
                 iconName = "location";
               } else if (route.name === "Trips") {
                 iconName = "map";
-              } else if (route.name === "Chat") {
+              } else if (route.name === "Messages") {
                 iconName= "chatbox-ellipses";
               }
-
-              // You can return any component that you like here!
               return (
                 <IconComponent name={iconName} size={25} color={"#147EFB"} />
               );
@@ -403,8 +405,8 @@ export default class App extends Component {
               component={MyTripsTopTabNavigator} 
           />
           <BottomTab.Screen 
-            name="Chat" 
-            component={ChatScreen} 
+            name="Messages" 
+            component={MessagesStackScreens} 
           />
           <BottomTab.Screen
             name="Notifications"
@@ -413,12 +415,14 @@ export default class App extends Component {
           <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
         </BottomTab.Navigator>
       </NavigationContainer>
-      */
+      //
+      /*
     return (
       
       <MainStackNavigator
       setUser = {this.setUser}
       />
+      */
     );
   }
 }

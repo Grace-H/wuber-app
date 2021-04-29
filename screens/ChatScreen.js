@@ -14,7 +14,6 @@ export default class ChatScreen extends React.Component {
         return {
             _id: fire.uid,
             email: this.props.route.params.email,
-            password: this.props.route.params.password
         }
     }
 

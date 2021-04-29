@@ -1,21 +1,8 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet, FlatList, TextInput, Touchable } from 'react-native';
+import { View, Text, Button, StyleSheet, FlatList, TextInput,   TouchableOpacity,
+  SafeAreaView, } from 'react-native';
 import stylesCommon from './styles/stylesCommon';
-import MessageStyles, {
-  Container,
-  Card,
-  UserInfo,
-  UserImgWrapper,
-  UserImg,
-  UserInfoText,
-  UserName,
-  PostTime,
-  MessageText,
-  TextSection,
-} from './styles/MessageStyles';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { email } from '@sideway/address';
-
+import MessageCard from "../components/MessageCard.js";
 const MessagesList = [
   {
     id: '1',
@@ -44,39 +31,40 @@ const MessagesList = [
 ];
 
 export default class ChatScreen extends React.Component {
-    state = {
-        email: "",
-        password: ""
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      email: this.props.route.params.email
+    };
+  }
     render(){
     return (
-      <Container>
+      <SafeAreaView>
         <Text style = {stylesCommon.textTitleBlue}>Messages</Text>
         <Text>{"\n"}</Text>
-        <FlatList 
-          data={MessagesList}
-          keyExtractor={item=>item.id}
-          renderItem={({item}) => (
-            <TouchableOpacity
+      <FlatList
+        data={MessagesList}
+        renderItem={({ item }) => (
+          <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate("Chat", { email: this.state.email, password: this.state.password});
+                this.props.navigation.navigate("Chat", { email: this.state.email});
               }}
-            >
-                <Card>
-                <View style = {MessageStyles.UserInfo}>
-                    <View style = {MessageStyles.TextSection}>
-                    <View style = {MessageStyles.UserInfoText}>
-                        <Text style = {MessageStyles.UserName}>{item.userName}</Text>
-                        <Text style = {MessageStyles.PostTime}>{item.messageTime}</Text>
-                    </View>
-                    <Text styl = {MessageStyles.MessageText}>{item.messageText}</Text>
-                    </View>
-                </View>
-                </Card>
-            </TouchableOpacity>
-          )}
-        />
-      </Container>
+          >
+            <MessageCard
+              userName={item.userName}
+              messageTime={item.messageTime}
+              messageText={item.messageText}
+            />
+          </TouchableOpacity>
+        )}
+        keyExtractor={(item) => item.id}
+        ListEmptyComponent={
+          <Text>
+            No messages.
+          </Text>
+        }
+      />
+    </SafeAreaView>
     );
 }};
 
