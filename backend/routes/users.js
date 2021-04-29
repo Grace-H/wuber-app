@@ -33,6 +33,22 @@ router.route("/searchUser").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//get a list of users matching a list of ids
+//for testing in Insomnia swtich "query" to "body"
+router.route("/listbyid").get((req, res) => {
+  let p = [];
+  req.query.passengers.forEach((nId) => {
+    p.push({ _id: nId });
+  });
+  User.find({ $or: p }, function (err, result) {
+    if (err) {
+      res.send(err);
+    } else {
+      res.send(result);
+    }
+  });
+});
+
 //add a user
 router.route("/add").post((req, res) => {
   const name = req.body.name;
