@@ -55,8 +55,28 @@ import axios from 'axios';
     }
 
     //deny passenger p
-    handleDenyPassenger = (trip, p) => {
+    handleDenyPassenger = (currtrip, p) => {
         console.log("Deny passenger pressed");
+        let index = -1;
+        for(let i = 0; i < currtrip.passengers.length; i++){
+            if(currtrip.passengers[i] == p){
+                index = i;
+            }
+        }
+
+        if(index != -1){
+            currtrip.passengers.splice(index, 1);
+        }
+
+        const terms = {
+            tripid: currtrip._id,
+            trip: currtrip,
+          };
+      
+        axios
+            .post("http://localhost:5000/trips/addPassenger", terms)
+            .then((res) => console.log(res.data))
+            .catch((error) => console.log("Error: " + error));
     }
 
     //handle message user p
@@ -190,7 +210,7 @@ import axios from 'axios';
                                         color='green'
                                     />}
                             />}
-                            {(trip.driver == this.state.userid && !p.approved) && 
+                            {(trip.driver == this.state.userid) && 
                             <Button
                             title=""
                             type="clear"
