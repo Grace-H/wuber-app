@@ -15,17 +15,7 @@ import { Text, SafeAreaView } from 'react-native';
 import RegisteredTripCard from '../components/RegisteredTripCard.jsx';
 import axios from 'axios';
 
-/*
- * Takes trip data of format
- * [{
- *   id: String
- *   isDriver: boolean
- *   date: String
- *   departure: String
- *   destination: String
- * },]
- */
-class MyTripsScreen extends Component {
+class MyDrivesScreen extends Component {
     
     constructor(props){
         super(props);
@@ -79,21 +69,28 @@ class MyTripsScreen extends Component {
     }
 
     getTrips() {
-        axios.get('http://localhost:5000/trips')
-            .then(response => {
-                if(response.data.length > 0) {
-                    this.setState({
-                        trips: response.data
-                    });
-                }
-                else{
-                    this.setState({
-                        trips: null,
-                    });
-                }
+        axios({
+            method: "get",
+            url: "http://localhost:5000/trips/searchbydriver",
+            params: {
+              userid: this.state.userid
+            },
+          })
+            .then((response) => {
+              if (response.data.length > 0) {
+                this.setState({
+                  trips: response.data,
+                });
+              } else {
+                console.log("No Trips found.");
+                this.setState({
+                  trips: [],
+                });
+              }
             })
-            .catch(err => console.log(err));
-        return this.state.trips;
+            .catch((err) => console.log("Didn't work: " + err));
+          return this.state.trips;
+      
     }
 
     render() { 
@@ -105,7 +102,7 @@ class MyTripsScreen extends Component {
                         <TouchableOpacity
                         onPress={() => {
                             this.props.setSelectedTrip(item);
-                            this.props.navigation.navigate("Trip Details");
+                            this.props.navigation.navigate("Drive Details");
                           }}
                             key={item._id}
                             >
@@ -126,4 +123,4 @@ class MyTripsScreen extends Component {
     }
 }
  
-export default MyTripsScreen;
+export default MyDrivesScreen;

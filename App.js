@@ -17,7 +17,8 @@ import RideListScreen from "./screens/RideListScreen.js";
 import MyTripInfoScreen from "./screens/MyTripInfoScreen";
 import RideInfoScreen from "./screens/RideInfoScreen.js";
 import RideRequestSuccessScreen from "./screens/RideRequestSuccessScreen.js";
-import MyTripsScreen from "./screens/MyTripsScreen.jsx";
+import MyDrivesScreen from "./screens/MyDrivesScreen.jsx";
+import MyRidesScreen from "./screens/MyRidesScreen.jsx";
 import SettingsScreen from "./screens/dummies/SettingsScreen.js";
 import { ProfileStack } from "./screens/stacks/ProfileStack.js";
 import NotificationDisplay from "./screens/dummies/NotificationDisplay.js";
@@ -202,14 +203,8 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <BottomTab.Screen 
-        name="Home" 
-        component={TripStackScreens} 
-      />
-      <BottomTab.Screen 
-        name="Trips" 
-        component={MyTripsTopTabNavigator} 
-      />
+      <BottomTab.Screen name="Home" component={TripStackScreens} />
+      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
       <BottomTab.Screen
         name="Notifications"
         component={NotificationStackScreens}
@@ -255,19 +250,19 @@ class MyTripsTopTabNavigator extends Component {
           children={() => (
             <Stack.Navigator>
               <Stack.Screen
-                name="My Trips"
+                name="Trips I'm Driving"
                 children={() => (
-                  <MyTripsScreen
+                  <MyDrivesScreen
                     setSelectedTrip={this.setSelectedTrip}
                     navigation={this.props.navigation}
                     options={{ headerShown: false }}
                   />
                 )}
-                options={{ headerShown: true }}
+                options={{ headerShown: false }}
               />
 
               <Stack.Screen
-                name="Trip Details"
+                name="Drive Details"
                 children={() => (
                   <MyTripInfoScreen
                     getSelectedTrip={this.getSelectedTrip}
@@ -278,9 +273,37 @@ class MyTripsTopTabNavigator extends Component {
               />
             </Stack.Navigator>
           )}
-          name="Current Trips"
+          name="Drives"
         />
-        <TopTab.Screen component={PastTripsScreen} name="Past Trips" />
+        <TopTab.Screen
+          children={() => (
+            <Stack.Navigator>
+              <Stack.Screen
+                name="Trips I'm Riding"
+                children={() => (
+                  <MyRidesScreen
+                    setSelectedTrip={this.setSelectedTrip}
+                    navigation={this.props.navigation}
+                    options={{ headerShown: false }}
+                  />
+                )}
+                options={{ headerShown: false }}
+              />
+
+              <Stack.Screen
+                name="Ride Details"
+                children={() => (
+                  <MyTripInfoScreen
+                    getSelectedTrip={this.getSelectedTrip}
+                    navigation={this.props.navigation}
+                  />
+                )}
+                options={{ headerShown: true }}
+              />
+            </Stack.Navigator>
+          )}
+          name="Rides"
+        />
       </TopTab.Navigator>
     );
   }
@@ -300,11 +323,10 @@ function MessagesStackScreens() {
       />
       <Stack.Screen name="Chat" component={ChatScreen} />
     </Stack.Navigator>
-  )
+  );
 }
 
 function MainStackNavigator() {
-
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -383,7 +405,7 @@ export default class App extends Component {
               } else if (route.name === "Trips") {
                 iconName = "map";
               } else if (route.name === "Messages") {
-                iconName= "chatbox-ellipses";
+                iconName = "chatbox-ellipses";
               }
               return (
                 <IconComponent name={iconName} size={25} color={"#147EFB"} />
@@ -391,18 +413,9 @@ export default class App extends Component {
             },
           })}
         >
-          <BottomTab.Screen 
-            name="Home" 
-            component={TripStackScreens} 
-          />
-          <BottomTab.Screen 
-            name="Trips" 
-              component={MyTripsTopTabNavigator} 
-          />
-          <BottomTab.Screen 
-            name="Messages" 
-            component={MessagesStackScreens} 
-          />
+          <BottomTab.Screen name="Home" component={TripStackScreens} />
+          <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+          <BottomTab.Screen name="Messages" component={MessagesStackScreens} />
           <BottomTab.Screen
             name="Notifications"
             component={NotificationStackScreens}

@@ -3,10 +3,17 @@
  * Form for driver to input details for a ride they would like to offer.
  * Author: Grace Hunter, Gordon Olson, Emily Ray, & Brendan Keefer
  * Date Created: 05 March 21
- * Last Edited: 8 apr by Grace
+ * Last Edited: 29 apr by Grace
  */
+
 import React, { useState } from "react";
-import { StyleSheet, Text, SafeAreaView, TouchableOpacity, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  SafeAreaView,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { Input, Button, colors } from "react-native-elements";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 import stylesCommon from "./styles/stylesCommon";
@@ -29,13 +36,12 @@ export default function DriverForm({ navigation }) {
   const [showDate, setShowDate] = useState(false);
   const [showTime, setShowTime] = useState(false);
   const [showReturnTime, setShowReturnTime] = useState(false);
-  const [text, setText] = useState('');
-  const [text2, setText2] = useState('');
+  const [text, setText] = useState("");
+  const [text2, setText2] = useState("");
 
   const onDateChange = (event, selectedDate) => {
     const currentDate = selectedDate || date;
     setDate(currentDate);
-    console.log(date);
   };
 
   const onTimeChange = (event, selectedTime) => {
@@ -123,7 +129,7 @@ export default function DriverForm({ navigation }) {
     );
 
     const trip = {
-      driver: "606cd4960520b9ce1ac31c5b", //change to be dynamic, set to Grace rn
+      driver: "606cd4b30520b9ce1ac31c5c", //change to be dynamic, set to Grace rn
       seats: seats,
       passengers: [],
       origin: origin,
@@ -132,13 +138,15 @@ export default function DriverForm({ navigation }) {
       isRoundTrip: rtChecked,
       returnTime: fullrtDate,
       payment: text,
-      dollars: text2
+      dollars: text2,
     };
 
     axios
       .post("http://localhost:5000/trips/add", trip)
       .then((res) => console.log(res.data))
-      .catch((error) => {});
+      .catch((error) => console.log("Error: " + error));
+
+    navigation.navigate("Offer Success");
   };
 
   return (
@@ -307,24 +315,29 @@ export default function DriverForm({ navigation }) {
         />
         {opChecked && (
           <TextInput
-          style = {{height : 40}}
-          placeholder = "Cash or Venmo?"
-          onChangeText={text => setText(text)}
-          defaultValue={text}
+            style={{ height: 40 }}
+            placeholder="Cash or Venmo?"
+            onChangeText={(text) => setText(text)}
+            defaultValue={text}
           />
         )}
         {opChecked && (
           <TextInput
-          style = {{height : 40}}
-          placeholder = "How much $?"
-            onChangeText={text2 => setText2(text2)}
+            style={{ height: 40 }}
+            placeholder="How much $?"
+            onChangeText={(text2) => setText2(text2)}
             defaultValue={text2}
           />
         )}
 
         <Text>{"\n"}</Text>
 
-        <TouchableOpacity style={stylesCommon.customBtnBG} onPress= {() => {navigation.navigate("Offer Success")}}>
+        <TouchableOpacity
+          style={stylesCommon.customBtnBG}
+          onPress={() => {
+            onSubmit();
+          }}
+        >
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>

@@ -14,7 +14,7 @@ data you asked for. These routes are defined in the folder './routes'
 
 --> Example files?
 Trip is a good example. Look at ./routes/trips.js to see the routes for trips.
-RideListScreen.js searches trips, DriverForm.js adds a trip, and MyTripsScreen.jsx
+RideListScreen.js searches trips, DriverForm.js adds a trip, and MyDrivesScreen.jsx
 gets all trips for a user (not yet, currently just all trips for all users).
 
 --> Working with Axios
