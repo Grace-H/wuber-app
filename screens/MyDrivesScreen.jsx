@@ -15,17 +15,7 @@ import { Text, SafeAreaView } from 'react-native';
 import RegisteredTripCard from '../components/RegisteredTripCard.jsx';
 import axios from 'axios';
 
-/*
- * Takes trip data of format
- * [{
- *   id: String
- *   isDriver: boolean
- *   date: String
- *   departure: String
- *   destination: String
- * },]
- */
-class MyTripsScreen extends Component {
+class MyDrivesScreen extends Component {
     
     constructor(props){
         super(props);
@@ -112,7 +102,7 @@ class MyTripsScreen extends Component {
                         <TouchableOpacity
                         onPress={() => {
                             this.props.setSelectedTrip(item);
-                            this.props.navigation.navigate("Trip Details");
+                            this.props.navigation.navigate("Drive Details");
                           }}
                             key={item._id}
                             >
@@ -133,4 +123,4 @@ class MyTripsScreen extends Component {
     }
 }
  
-export default MyTripsScreen;
+export default MyDrivesScreen;
