@@ -47,6 +47,8 @@ router.route("/add").post((req, res) => {
   const time = Date.parse(req.body.time);
   const isRoundTrip = req.body.isRoundTrip;
   const returnTime = Date.parse(req.body.returnTime);
+  const payment = req.body.payment;
+  const dollars = req.body.dollars;
 
   const newTrip = new Trip({
     driver,
