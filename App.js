@@ -350,20 +350,20 @@ export default class App extends Component {
     };
   }
 
-  getUser() {
+  getUser = () => {
     return this.state.user;
-  }
+  };
 
-  setUser(newUser) {
+  setUser = (newUser) => {
     this.setState({ user: newUser });
-  }
+  };
 
   render() {
     return (
       /*<SignUp />
 
       */
-      <LoginScreen setUser= {this.setUser} />
+      <LoginScreen setUser={this.setUser} />
       /*
       <SignUp/>
       */
