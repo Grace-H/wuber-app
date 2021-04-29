@@ -4,6 +4,7 @@ import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 import App from "../App.js";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function LoginScreen({navigation}) {
 
@@ -70,16 +71,18 @@ export default function LoginScreen({navigation}) {
           {"\n"}
         </Text>
 
-        <TextInput
+        <Input
           style={stylesCommon.loginInput}
+         // leftIcon ={{type: 'font-awesome', name: 'fa-envelope'}}
           placeholder="Email Address"
           keyboardType='email-address'
           autoCorrect={false}
           onChangeText={text => updateEmail(text)}
         />
 
-        <TextInput
+        <Input
           style={stylesCommon.loginInput}
+         // leftIcon ={{type: 'font-awesome', name: 'fa-lock'}}
           placeholder="Password"
           secureTextEntry={true}
           onChangeText={text => updatePassword(text)}
