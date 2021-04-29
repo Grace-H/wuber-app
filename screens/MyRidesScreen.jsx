@@ -71,7 +71,7 @@ class MyRidesScreen extends Component {
     getTrips() {
         axios({
             method: "get",
-            url: "http://localhost:5000/trips/searchbydriver",
+            url: "http://localhost:5000/trips/searchbypassenger",
             params: {
               userid: this.state.userid
             },

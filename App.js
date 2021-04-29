@@ -350,13 +350,13 @@ export default class App extends Component {
     };
   }
 
-  getUser() {
+  getUser = () => {
     return this.state.user;
-  }
+  };
 
-  setUser(newUser) {
+  setUser = (newUser) => {
     this.setState({ user: newUser });
-  }
+  };
 
   render() {
     return (
@@ -426,11 +426,8 @@ export default class App extends Component {
       //
       
     return (*/
-      
-      <MainStackNavigator
-      setUser = {this.setUser}
-      />
-      
+
+      <MainStackNavigator setUser={this.setUser} getUser={this.getUser} />
     );
   }
 }

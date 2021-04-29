@@ -3,7 +3,6 @@
  * Author: Grace-H
  * Last Modified: 29 April 2021
  */
-
 const router = require("express").Router();
 let Trip = require("../models/trip.model");
 
@@ -33,10 +32,25 @@ router.route("/search").get((req, res) => {
 });
 
 //find list of trips where userid is driver
+//change "query" to "body" when testing in Insomnia
 router.route("/searchbydriver").get((req, res) => {
+  var mongoose = require("mongoose");
+
   Trip.find()
     .where("driver")
-    .equals(req.query.userid)
+    .equals(mongoose.Types.ObjectId(req.query.userid))
+    .sort({ time: 1 })
+    .then((trips) => res.json(trips))
+    .catch((err) => res.statusMessage(400).json("Error: " + err));
+});
+
+//find list of trips where userid is passenger
+//change "query" to "body" when testing in Insomnia
+router.route("/searchbypassenger").get((req, res) => {
+  var mongoose = require("mongoose");
+  Trip.find()
+    .where("passengers.user")
+    .equals(mongoose.Types.ObjectId(req.query.userid))
     .sort({ time: 1 })
     .then((trips) => res.json(trips))
     .catch((err) => res.statusMessage(400).json("Error: " + err));
