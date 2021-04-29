@@ -278,12 +278,12 @@ class MyTripsTopTabNavigator extends Component {
 }
 
 function MainStackNavigator() {
-
+  
   return (
 
     <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name = "Login" component = {LoginScreen}/>
+      <Stack.Screen name = "Login" component = {LoginScreen}  />
       <Stack.Screen name = "Sign Up" component = {SignUp}/>
       <Stack.Screen name = "App" component = {BottomTabNavigator}/>
     </Stack.Navigator>
@@ -316,7 +316,6 @@ export default class App extends Component {
       setUser = {this.setUser}
       />
 
-      
     );
   }
 }
