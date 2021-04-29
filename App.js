@@ -279,20 +279,8 @@ class MyTripsTopTabNavigator extends Component {
 }
 
 function MainStackNavigator() {
-<<<<<<< HEAD
-  
-=======
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
   return (
     <NavigationContainer>
-<<<<<<< HEAD
-    <Stack.Navigator>
-      <Stack.Screen name = "Login" component = {LoginScreen}  />
-      <Stack.Screen name = "Sign Up" component = {SignUp}/>
-      <Stack.Screen name = "App" component = {BottomTabNavigator}/>
-    </Stack.Navigator>
-
-=======
       <Stack.Navigator>
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Sign Up" component={SignUp} />
@@ -302,7 +290,6 @@ function MainStackNavigator() {
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
     </NavigationContainer>
   );
 }
@@ -324,17 +311,7 @@ export default class App extends Component {
   }
 
   render() {
-<<<<<<< HEAD
-    return (
-      
-      <MainStackNavigator
-      setUser = {this.setUser}
-      />
-
-    );
-=======
     return <MainStackNavigator setUser={this.setUser} />;
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
   }
 }
 
