@@ -109,8 +109,8 @@ class MyRidesScreen extends Component {
                             <RegisteredTripCard
                                 isDriver={item.driver == this.state.userid}
                                 date={this.formatTime(item.time)}
-                                destination={item.destination}
-                                departure={item.origin}
+                                destination={item.destination.substring(16, item.destination.indexOf(','))}
+                                departure={item.origin.substring(16, item.origin.indexOf(','))}
                                 driverBadge={true}
                             />
                         </TouchableOpacity>
