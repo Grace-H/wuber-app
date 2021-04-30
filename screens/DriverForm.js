@@ -76,9 +76,6 @@ export default function DriverForm({ navigation }) {
   };
 
   const showPaymentOption = () => {
-    if (opChecked) {
-      setPayment(false);
-    }
     setopChecked(!opChecked);
   };
 
@@ -315,7 +312,7 @@ export default function DriverForm({ navigation }) {
         />
         {opChecked && (
           <TextInput
-            style={{ margin: 15, height: 40 }}
+            style={{ marginLeft: 10, height: 40,  borderColor: '#808080' }}
             placeholder="Cash or Venmo?"
             onChangeText={(text) => setText(text)}
             defaultValue={text}
@@ -323,7 +320,7 @@ export default function DriverForm({ navigation }) {
         )}
         {opChecked && (
           <TextInput
-            style={{ height: 40 }}
+            style={{ marginLeft: 10, height: 40 , borderColor: '#808080'}}
             placeholder="How much $?"
             onChangeText={(text2) => setText2(text2)}
             defaultValue={text2}

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, Input, TextInput, StyleSheet} from "react-native";
+import { View, TouchableOpacity, Text, TextInput, StyleSheet} from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
-import App from "../App.js";
+//import App from "../App.js";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 export default function LoginScreen({navigation}) {
@@ -70,39 +70,23 @@ export default function LoginScreen({navigation}) {
           {"\n"}
           {"\n"}
         </Text>
-      <View style = {styles.loginContainer}>
-        <Icon
-          style = {styles.searchIcon}
-          name = 'envelope'
-          color = '#000'
-          size = {14}
-        />
+        
+        
         <TextInput
           style={styles.input}
-          //leftIcon ={{type: 'font-awesome', name: 'fa-envelope'}}
           placeholder="Email Address"
           keyboardType='email-address'
           autoCorrect={false}
           autoCapitalize='none'
           onChangeText={text => updateEmail(text)}
         />
-      </View>
-      <View style = {styles.loginContainer}>
-        <Icon
-          style = {styles.searchIcon}
-          name = 'lock'
-          color = '#000'
-          size = {14}
-        />
         <TextInput
           style={styles.input}
-          //leftIcon ={{type: 'font-awesome', name: 'fa-lock'}}
           placeholder="Password"
           secureTextEntry={true}
           autoCapitalize='none'
           onChangeText={text => updatePassword(text)}
         />
-      </View>
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
@@ -125,25 +109,16 @@ export default function LoginScreen({navigation}) {
   
 }
 const styles = StyleSheet.create({
-  loginContainer: {
-    flex : 1,
-    flexDirection : 'row',
-    justifyContent: 'center',
-    alignItems : 'center',
-    borderBottomWidth: 1,
-   // borderColor: '#000',
-  },
-  searchIcon:{
-    padding : 10,
-  },
   input : {
-    flex: 1,
-    paddingTop: 10,
-    paddingRight: 10,
-    paddingBottom: 10,
-    paddingLeft: 0,
+    height: 45,
+    justifyContent: 'center',
+    alignItems : 'center',    
     backgroundColor: '#fff',
     color: '#424242',
+    marginTop: 20,
+    borderWidth: 3,
+    width : 250,
+    textAlign: "center",
   },
 });
 
