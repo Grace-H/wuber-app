@@ -15,7 +15,7 @@ import stylesCommon from './styles/stylesCommon';
 export default function NotificationsScreen ({ navigation }) {
       //Dummy message.
   const [message,  setMessage] = useState([
-    { name: 'Brendan Keefer @ 9:00am on 03/26/21', key: '1' },
+    { name: 'Wuber Development Team @ 9:00am on 03/26/21', key: '1' },
   ]);
   return(
 
