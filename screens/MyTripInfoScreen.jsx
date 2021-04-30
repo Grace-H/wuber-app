@@ -137,10 +137,10 @@ import axios from 'axios';
                     <View style={styles.destination}>
                         <View>
                             <Text style={styles.destination}>
-                                From: {trip.origin}
+                                From: {trip.origin.substring(16, trip.origin.indexOf(','))}
                             </Text >
                             <Text style={styles.destination}>
-                                To: {trip.destination}
+                                To: {trip.destination.substring(16, trip.destination.indexOf(','))}
                             </Text>
                         </View>
                         <Icon 
