@@ -100,11 +100,11 @@ export default class RideInfoScreen extends Component {
         <ScrollView style={stylesCommon.scrollView}>
           <Text style={stylesCommon.textTitle}>Origin</Text>
 
-          <Text style={stylesCommon.textBod}>{trip.origin}</Text>
+          <Text style={stylesCommon.textBod}>{trip.origin.substring(16, trip.origin.indexOf(','))}</Text>
 
           <Text style={stylesCommon.textTitle}>Destination</Text>
 
-          <Text style={stylesCommon.textBod}>{trip.destination}</Text>
+          <Text style={stylesCommon.textBod}>{trip.destination.substring(16, trip.destination.indexOf(','))}</Text>
 
           <Text style={stylesCommon.textTitle}>Date</Text>
 
