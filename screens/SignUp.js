@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
+import firebase from "firebase";
 import axios from "axios";
+import auth from '@react-native-firebase/auth';
 
 export default function SignUp({ navigation }) {
   const state = {
@@ -66,10 +68,14 @@ export default function SignUp({ navigation }) {
           "Please make sure your password is at least 8 characters.");
         });
 
+        //firebase.auth().createUserWithEmailAndPassword(email,password)
+
       //alert("It looks like your username or email is already used." + "\n"
       //  + "Please try again.")
     }
   };
+  //const doRegister = () =>{ auth().createUserWithEmailAndPassword(email, password)};
+
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
@@ -87,17 +93,23 @@ export default function SignUp({ navigation }) {
         style={stylesCommon.loginInput}
         placeholder="Name"
         onChangeText={(text) => updateName(text)}
+        autoCorrect={false}
       />
 
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Email Address"
         onChangeText={(text) => updateEmail(text)}
+        autoCorrect={false}
+        autoCapitalize='none'
+        keyboardType='email-address'
       />
 
       <TextInput
         style={stylesCommon.loginInput}
         placeholder="Password"
+        secureTextEntry={true}
+        autoCapitalize='none'
         onChangeText={(text) => updatePassword(text)}
       />
 

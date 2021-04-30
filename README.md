@@ -1,3 +1,3 @@
 # wuber-app
 
-Grace & Gordon's pages for report 4
+Main app for the Wuber project

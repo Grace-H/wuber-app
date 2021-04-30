@@ -84,6 +84,7 @@ export default StyleSheet.create({
     color: "#147EFB",
     fontWeight: "500",
     marginTop: 30,
+    marginLeft: 35,
     width: 350,
   },
   loginInput: {

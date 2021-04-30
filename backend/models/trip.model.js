@@ -1,22 +1,12 @@
-const mongoose = require("mongoose");
-
-const Schema = mongoose.Schema;
-
 /*
-const passengerSchema = new Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true,
-    },
-    approved: {
-        type: Boolean,
-        required: true,
-    }
-}, {
-    timestamps: true,
-});
-*/
+ * Mongoose Schema for trip
+ * Author: Grace Hunter and Gordon Olson
+ * Last Modified: 29 April 2021
+ *
+ */
+
+const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
 const tripSchema = new Schema(
   {

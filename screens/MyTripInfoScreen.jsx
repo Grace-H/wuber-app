@@ -6,13 +6,14 @@
  * 
  * Author: Grace Hunter
  * Date: 24 March 2021
- * last modified: 24 mar Grace
+ * last modified: 29 April Grace
  */
 
 
 import React, {Component} from 'react';
-import { SafeAreaView, Text, ScrollView, StyleSheet, View } from 'react-native';
-import { Icon, ListItem, Avatar } from 'react-native-elements';
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, } from 'react-native';
+import { ListItem, Avatar, Button } from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 
  class MyTripInfoScreen extends Component {
@@ -34,49 +35,53 @@ import axios from 'axios';
             return this.state.driverName;
     }
 
-    getPassengerNames(passengers) {
-        console.log(passengers);
-        let query = [];
-        passengers.forEach(p => {
-            query.push(p.userid);
-        });
-        console.log(query);
-        console.log("Working");
-        if(query.length > 0){
-        axios({
-          method: "get",
-          url: "http://localhost:5000/users/listbyid",
-          params: {
-            passengers: query
-          },
-        })
-          .then((response) => {
-              console.log("Response");
-            console.log(response.data);
-            if (response.data.length > 0) {
-                
-              this.setState({
-                passengers: response.data,
-              });
-            } else {
-              console.log("No Users found.");
-              this.setState({
-                passengers: response.data,
-              });
+    //approve passenger p
+    handleApprovePassenger = (currtrip, p) => {
+        console.log("Approve passenger pressed");
+        currtrip.passengers.forEach(pass => {
+            if(pass == p){
+                pass.approved = true;
             }
-          })
-          .catch((err) => console.log("Didn't work: " + err));
+        });
+        const terms = {
+            tripid: currtrip._id,
+            trip: currtrip,
+          };
+      
+        axios
+            .post("http://localhost:5000/trips/addPassenger", terms)
+            .then((res) => console.log(res.data))
+            .catch((error) => console.log("Error: " + error));
+    }
+
+    //deny passenger p
+    handleDenyPassenger = (currtrip, p) => {
+        console.log("Deny passenger pressed");
+        let index = -1;
+        for(let i = 0; i < currtrip.passengers.length; i++){
+            if(currtrip.passengers[i] == p){
+                index = i;
+            }
         }
-        console.log(this.state.passengers);
-        return this.state.passengers;
-      }
 
-    getDriverName = (userid) => {
-        axios.get('http://localhost:5000/users/findbyid/' + userid)
-            .then(res => this.setState({ driverName: res.data.name }))
-            .catch(err => console.log("Error: " + err));
+        if(index != -1){
+            currtrip.passengers.splice(index, 1);
+        }
 
-            return this.state.driverName;
+        const terms = {
+            tripid: currtrip._id,
+            trip: currtrip,
+          };
+      
+        axios
+            .post("http://localhost:5000/trips/addPassenger", terms)
+            .then((res) => console.log(res.data))
+            .catch((error) => console.log("Error: " + error));
+    }
+
+    //handle message user p
+    handleMessageUser = (p) => {
+        console.log("Message user pressed");
     }
 
     formatTime(t) {
@@ -123,9 +128,8 @@ import axios from 'axios';
       }
 
      render() { 
-         const trip = this.props.getSelectedTrip();
-
-         return (
+        const trip = this.props.getSelectedTrip();
+        return (
              <SafeAreaView style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.dateTitle}>{this.formatTime(trip.time)}</Text>
@@ -155,37 +159,81 @@ import axios from 'axios';
                         <ListItem.Content>
                         <ListItem.Title>{this.getDriverName(trip.driver)}</ListItem.Title>
                         </ListItem.Content>
-                        {/*trip.driver != this.state.userid &&
-                        //icon causing error: Warning: Failed prop type: Invalid prop `fontSize` of type `string` supplied to `Text`, expected `number`.
-Bad object: {
-  "fontSize": "30x",
-  "color": "red",
-  "backgroundColor": "transparent",
-  "fontFamily": "FontAwesome",
-  "fontWeight": "normal",
-  "fontStyle": "normal"
-}
-
+                        {trip.driver != this.state.userid &&
                         <ListItem.Chevron 
                             name='comment-o'
                             type='font-awesome'
                             size='25x'
                             color="grey"
                         />
-                        */}
-                        
+                        } 
                     </ListItem>
                     <Text style={{fontSize: 24, marginVertical: 8}}>
                         Passengers
                     </Text>
-                    {this.getPassengerNames(trip.passengers).map((p) => {
+                    {trip.passengers.map((p) => 
+                        
                         <ListItem bottomDivider topDivider>
                             <Avatar source={require('../assets/blank-profile-picture.png')} />
                             <ListItem.Content>
                             <ListItem.Title>{p.name}</ListItem.Title>
                             </ListItem.Content>
+                            {p.userid != this.state.userid && 
+                            <Button
+                                title=""
+                                type="clear"
+                                onPress={() => {handleMessageUser(p)}}
+                                icon={
+                                    <Icon 
+                                        name='comment-o'
+                                        size={30}
+                                        color='grey'
+                                    />}
+                            />
+                            
+                            /*<ListItem.Chevron 
+                            name='comment-o'
+                            type='font-awesome'
+                            size='25x'
+                            color="grey"
+                            />
+                            */}
+                            {(trip.driver == this.state.userid && !p.approved) &&
+                            <Button
+                                title=""
+                                type="clear"
+                                onPress={() => {this.handleApprovePassenger(trip, p)}}
+                                icon={
+                                    <Icon 
+                                        name='check'
+                                        size={30}
+                                        color='green'
+                                    />}
+                            />}
+                            {(trip.driver == this.state.userid) && 
+                            <Button
+                            title=""
+                            type="clear"
+                            onPress={() => {this.handleDenyPassenger(trip, p)}}
+                            icon={
+                                <Icon 
+                                    name='times'
+                                    size={30}
+                                    color='red'
+                                />}
+                        />
+                            /*<TouchableHighlight onPress={this.handleDenyPassenger(p)}>
+                            <ListItem.Chevron 
+                                name='times'
+                                type='font-awesome'
+                                size='30x'
+                                color="red"
+                                
+                            />
+                            </TouchableHighlight>*/}
+
                         </ListItem>
-                    })}
+                    )}
                 </ScrollView>
              </SafeAreaView>
          );

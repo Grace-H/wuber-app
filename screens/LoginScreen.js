@@ -1,8 +1,13 @@
 import React, { Component } from "react";
-import { View, TouchableOpacity, Text, TextInput} from "react-native";
+import { View, TouchableOpacity, Text, TextInput, StyleSheet} from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
+<<<<<<< HEAD
+=======
+//import App from "../App.js";
+import Icon from 'react-native-vector-icons/FontAwesome';
+>>>>>>> cab15c224a1d3c067cb07eede9530bed19a166fb
 
 export default function LoginScreen({navigation}, props) {
 
@@ -68,20 +73,23 @@ export default function LoginScreen({navigation}, props) {
           {"\n"}
           {"\n"}
         </Text>
-
+        
+        
         <TextInput
-          style={stylesCommon.loginInput}
+          style={styles.input}
           placeholder="Email Address"
+          keyboardType='email-address'
+          autoCorrect={false}
+          autoCapitalize='none'
           onChangeText={text => updateEmail(text)}
         />
-
         <TextInput
-          style={stylesCommon.loginInput}
+          style={styles.input}
           placeholder="Password"
           secureTextEntry={true}
+          autoCapitalize='none'
           onChangeText={text => updatePassword(text)}
         />
-
         <Text> {"\n"} </Text>
 
         <TouchableOpacity
@@ -103,3 +111,17 @@ export default function LoginScreen({navigation}, props) {
     );
   
 }
+const styles = StyleSheet.create({
+  input : {
+    height: 45,
+    justifyContent: 'center',
+    alignItems : 'center',    
+    backgroundColor: '#fff',
+    color: '#424242',
+    marginTop: 20,
+    borderWidth: 3,
+    width : 250,
+    textAlign: "center",
+  },
+});
+

@@ -17,6 +17,7 @@ export default class RideInfoScreen extends Component {
     this.state = {
       trip: null,
       userid: "606cd5580520b9ce1ac31c5d", //make dynamic
+      username: "Grace Hunter", //make dynamic
     };
   }
 
@@ -71,7 +72,11 @@ export default class RideInfoScreen extends Component {
 
   handleJoinTrip = () => {
     const ntrip = this.props.getSelectedTrip();
-    ntrip.passengers.push({ user: this.state.userid, approved: false });
+    ntrip.passengers.push({
+      user: this.state.userid,
+      approved: false,
+      name: this.state.username,
+    });
     const pass = this.state.userid;
     const terms = {
       tripid: ntrip._id,
@@ -110,6 +115,9 @@ export default class RideInfoScreen extends Component {
           <Text style={stylesCommon.textBod}>
             {trip.isRoundTrip ? "Yes" : "No"}
           </Text>
+
+          <Text style={stylesCommon.textBod}>{trip.payment}</Text>
+          <Text style={stylesCommon.textBod}>{trip.dollars}</Text>
 
           {trip.isRoundTrip && (
             <Text style={stylesCommon.textTitle}>Return Time</Text>

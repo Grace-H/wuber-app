@@ -1,10 +1,12 @@
 /*
  * Routes for trips collection
  * Author: Grace-H
+ * Last Modified: 29 April 2021
  */
 const router = require("express").Router();
 let Trip = require("../models/trip.model");
 
+//get all trips
 router.route("/").get((req, res) => {
   Trip.find(req.query)
     .sort({ time: 1 })
@@ -12,16 +14,7 @@ router.route("/").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-/*
-    .where("time")
-    .gt(req.body.startDate)
-    .lt(req.body.endDate)
-    .where("destination")
-    .equals(req.body.startDate)
-    .where("origin")
-    .equals(req.body.endDate)
-    .sort({ date: -1 })
-    */
+//search trips by origin and destination
 router.route("/search").get((req, res) => {
   Trip.find()
     /*
@@ -38,6 +31,32 @@ router.route("/search").get((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//find list of trips where userid is driver
+//change "query" to "body" when testing in Insomnia
+router.route("/searchbydriver").get((req, res) => {
+  var mongoose = require("mongoose");
+
+  Trip.find()
+    .where("driver")
+    .equals(mongoose.Types.ObjectId(req.query.userid))
+    .sort({ time: 1 })
+    .then((trips) => res.json(trips))
+    .catch((err) => res.statusMessage(400).json("Error: " + err));
+});
+
+//find list of trips where userid is passenger
+//change "query" to "body" when testing in Insomnia
+router.route("/searchbypassenger").get((req, res) => {
+  var mongoose = require("mongoose");
+  Trip.find()
+    .where("passengers.user")
+    .equals(mongoose.Types.ObjectId(req.query.userid))
+    .sort({ time: 1 })
+    .then((trips) => res.json(trips))
+    .catch((err) => res.statusMessage(400).json("Error: " + err));
+});
+
+//add new trip
 router.route("/add").post((req, res) => {
   const driver = req.body.driver;
   const seats = Number(req.body.seats);
@@ -47,6 +66,8 @@ router.route("/add").post((req, res) => {
   const time = Date.parse(req.body.time);
   const isRoundTrip = req.body.isRoundTrip;
   const returnTime = Date.parse(req.body.returnTime);
+  const payment = req.body.payment;
+  const dollars = req.body.dollars;
 
   const newTrip = new Trip({
     driver,
@@ -67,18 +88,21 @@ router.route("/add").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//find trip by id
 router.route("/findbyid/:id").get((req, res) => {
   Trip.findById(req.params.id)
     .then((trip) => res.json(trip))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//delete trip by id
 router.route("/deletebyid/:id").delete((req, res) => {
   Trip.findByIdAndDelete(req.params.id)
     .then(() => res.json("Trip deleted."))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+//update a trip by id
 router.route("/update/:id").post((req, res) => {
   console.log("Trip's id: ");
   console.log(req.params.id);
@@ -93,7 +117,7 @@ router.route("/update/:id").post((req, res) => {
       trip.isRoundTrip = req.body.isRoundTrip;
       trip.returnTime = Date.parse(req.body.returnTime);
       trip.payment = req.body.payment;
-      trip.dollars = Number(req.body.dollars);
+      trip.dollars = req.body.dollars;
       trip
         .save()
         .then(() => res.json("Trip updated!"))
@@ -102,33 +126,14 @@ router.route("/update/:id").post((req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
-//add a passenger to a trip
+//replace a trip in DB with a new one
+//pass in trip id and a new trip object
 router.route("/addPassenger").post((req, res) => {
   console.log("request is running!");
   Trip.updateOne({ _id: req.body.tripid }, req.body.trip)
-    /*
-    .then((trip) => {
-      trip.passengers = trip.passengers.push(req.body.passid);
-      //<--got through here
-      trip
-        .save()
-        .then(() => {
-          res.json("Trip updated!");
-          console.log("Hello");
-        })
-        .catch((err) => res.status(400).json("Error1: " + err));
-    })
-    */
+
     .then(() => res.json("Trip updated!"))
     .catch((err) => res.status(400).json("Error2: " + err));
-
-  /*
-  console.log(req.params.tripid);
-  console.log(req.params.passid);
-  Trip.updateOne({ _id: tripid }, { $addToSet: { passengers: [passid] } })
-    .then(() => res.json("Passenger added."))
-    .catch((err) => res.status(400).json("Error: " + err));
-    */
 });
 
 module.exports = router;
