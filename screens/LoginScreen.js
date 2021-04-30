@@ -5,7 +5,7 @@ import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function LoginScreen({navigation}, props) {
+export default function LoginScreen({navigation}) {
 
   const state = {
     email: "",      
