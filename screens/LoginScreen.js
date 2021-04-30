@@ -3,11 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, StyleSheet} from "react-native
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
-<<<<<<< HEAD
-=======
-//import App from "../App.js";
 import Icon from 'react-native-vector-icons/FontAwesome';
->>>>>>> cab15c224a1d3c067cb07eede9530bed19a166fb
 
 export default function LoginScreen({navigation}, props) {
 

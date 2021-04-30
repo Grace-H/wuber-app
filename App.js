@@ -14,11 +14,10 @@ import LoginStack from "./screens/stacks/LoginStack.js";
 import HomeScreen from "./screens/HomeScreen.js";
 import TakeATripScreen from "./screens/TakeATripScreen.js";
 import RideListScreen from "./screens/RideListScreen.js";
-import MyTripInfoScreen from "./screens/MyTripInfoScreen";
+import MyTripInfoScreen from "./screens/MyTripInfoScreen.jsx";
 import RideInfoScreen from "./screens/RideInfoScreen.js";
 import RideRequestSuccessScreen from "./screens/RideRequestSuccessScreen.js";
-import MyDrivesScreen from "./screens/MyDrivesScreen.jsx";
-import MyRidesScreen from "./screens/MyRidesScreen.jsx";
+import MyTripsScreen from "./screens/MyTripInfoScreen.jsx";
 import SettingsScreen from "./screens/dummies/SettingsScreen.js";
 import { ProfileStack } from "./screens/stacks/ProfileStack.js";
 import NotificationDisplay from "./screens/dummies/NotificationDisplay.js";
@@ -26,8 +25,6 @@ import { NotificationsStack } from "./screens/stacks/NotificationsStack.js";
 import PastTripsScreen from "./screens/dummies/PastTripsScreen.js";
 import LoginScreen from "./screens/LoginScreen";
 import SignUp from "./screens/SignUp";
-import ChatScreen from "./screens/ChatScreen";
-import Messages from "./screens/Messages";
 import OfferRideSuccessScreen from "./screens/OfferRideSuccessScreen.js";
 import { startClock } from "react-native-reanimated";
 
@@ -153,32 +150,6 @@ function NotificationStackScreens() {
   );
 }
 
-/*
- * My hope is to use this as the navigator between
- * the login and create account pages.
- *
- */
-function LoginStackScreens() {
-  return (
-    <Stack.Navigator
-      screenOptions={{
-        headerTitle: null,
-      }}
-    >
-      <Stack.Screen
-        name="Login Stack"
-        children={() => <LoginStack />}
-        options={{ headerShown: false }}
-      />
-
-      <Stack.Screen
-        name="Sign Up"
-        children={() => <SignUp />}
-        options={{ headerShown: false }}
-      />
-    </Stack.Navigator>
-  );
-}
 
 function BottomTabNavigator() {
   return (
@@ -263,19 +234,19 @@ class MyTripsTopTabNavigator extends Component {
           children={() => (
             <Stack.Navigator>
               <Stack.Screen
-                name="Trips I'm Driving"
+                name="My Trips"
                 children={() => (
-                  <MyDrivesScreen
+                  <MyTripsScreen
                     setSelectedTrip={this.setSelectedTrip}
                     navigation={this.props.navigation}
                     options={{ headerShown: false }}
                   />
                 )}
-                options={{ headerShown: false }}
+                options={{ headerShown: true }}
               />
 
               <Stack.Screen
-                name="Drive Details"
+                name="Trip Details"
                 children={() => (
                   <MyTripInfoScreen
                     getSelectedTrip={this.getSelectedTrip}
@@ -286,69 +257,14 @@ class MyTripsTopTabNavigator extends Component {
               />
             </Stack.Navigator>
           )}
-          name="Drives"
+          name="Current Trips"
         />
-        <TopTab.Screen
-          children={() => (
-            <Stack.Navigator>
-              <Stack.Screen
-                name="Trips I'm Riding"
-                children={() => (
-                  <MyRidesScreen
-                    setSelectedTrip={this.setSelectedTrip}
-                    navigation={this.props.navigation}
-                    options={{ headerShown: false }}
-                  />
-                )}
-                options={{ headerShown: false }}
-              />
-
-              <Stack.Screen
-                name="Ride Details"
-                children={() => (
-                  <MyTripInfoScreen
-                    getSelectedTrip={this.getSelectedTrip}
-                    navigation={this.props.navigation}
-                  />
-                )}
-                options={{ headerShown: true }}
-              />
-            </Stack.Navigator>
-          )}
-          name="Rides"
-        />
+        <TopTab.Screen component={PastTripsScreen} name="Past Trips" />
       </TopTab.Navigator>
     );
   }
 }
 
-<<<<<<< HEAD
-class MainStackNavigator extends Component {
-
-
-  /*
-  function getUser() {
-    return User;
-  }
-  
-  function setUser(newUser){
-    User = newUser; 
-  }
-  */
-  
-  render() {
-      return (
-        <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name = "Login" component = {LoginScreen} />
-          <Stack.Screen name = "Sign Up" component = {SignUp}/>
-          <Stack.Screen name = "App" component = {BottomTabNavigator}/>
-        </Stack.Navigator>
-
-        </NavigationContainer>
-      );
-    }
-=======
 function MessagesStackScreens() {
   return (
     <Stack.Navigator
@@ -380,112 +296,22 @@ function MainStackNavigator() {
       </Stack.Navigator>
     </NavigationContainer>
   );
->>>>>>> cab15c224a1d3c067cb07eede9530bed19a166fb
-}
 
+}
 
 
 export default class App extends Component {
 
-  /*
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-    };
-  }
-
-  getUser = () => {
-    return this.state.user;
-  };
-
-  setUser = (newUser) => {
-    this.setState({ user: newUser });
-<<<<<<< HEAD
-  }
-  */
 
   render() {
     return (
       
       <MainStackNavigator/>
-=======
-  };
 
-  render() {
-    return (
-      /*<SignUp />
-
-      */
-      //<LoginScreen setUser= {this.setUser} />
-      /*
-      <SignUp/>
-      */
-
-      //<LoginScreen navigation={this.props.navigation} />
-
-      /*Working on trying to connect the login and create account screens.
-      <NavigationContainer>
-        <Stack.Navigator>
-      <Stack.Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ headerShown: false }}
-      />
->>>>>>> cab15c224a1d3c067cb07eede9530bed19a166fb
-
-      <Stack.Screen
-        name="Sign Up"
-        component={SignUp}
-        options={{ headerShown: false }}
-      />
-          <Stack.Screen
-          name = "App"
-          component = {BottomTabNavigator}/>
-        </Stack.Navigator>
-
-      </NavigationContainer>
-      <NavigationContainer>
-        <BottomTab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused, horizontal, tintColor }) => {
-              let IconComponent = Ionicons;
-              let iconName;
-              if (route.name === "Home") {
-                iconName = "car";
-              } else if (route.name === "Profile") {
-                iconName = "person-circle";
-              } else if (route.name === "Notifications") {
-                iconName = "location";
-              } else if (route.name === "Trips") {
-                iconName = "map";
-              } else if (route.name === "Messages") {
-                iconName = "chatbox-ellipses";
-              }
-              return (
-                <IconComponent name={iconName} size={25} color={"#147EFB"} />
-              );
-            },
-          })}
-        >
-          <BottomTab.Screen name="Home" component={TripStackScreens} />
-          <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
-          <BottomTab.Screen name="Messages" component={MessagesStackScreens} />
-          <BottomTab.Screen
-            name="Notifications"
-            component={NotificationStackScreens}
-          />
-          <BottomTab.Screen name="Profile" component={ProfileStackScreens} />
-        </BottomTab.Navigator>
-      </NavigationContainer>
-      //
-      
-    return (*/
-
-      <MainStackNavigator setUser={this.setUser} getUser={this.getUser} />
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   container: {

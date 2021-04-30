@@ -8,7 +8,7 @@
  * Last Edited: 24 March by Brendan Keefer
  */
 import React from 'react';
-import { Avatar } from 'react-native-elements';
+import { Avatar, Button } from 'react-native-elements';
 import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import stylesCommon from './styles/stylesCommon';
 
@@ -44,22 +44,37 @@ export default function ProfileScreen({ navigation }) {
             </Text>
 
             <Text style = {stylesCommon.textTitle}>
-              Gender
+              Graduating Year
             </Text>
 
             <Text style = {stylesCommon.textBod}>
-              N/A
+              Various
             </Text>
 
           </ScrollView>
 
             <TouchableOpacity 
-            style = {stylesCommon.customBtnBG}
-            onPress = {() => {navigation.navigate('Settings')}}>
+              style = {stylesCommon.customBtnBG}
+              onPress = {() => {navigation.navigate('Settings')}}>
               <Text style={stylesCommon.customBtnTextWhite}>
                 Edit
               </Text>
             </TouchableOpacity>
+
+            <Text>
+              {"\n"}{"\n"}{"\n"}            
+            </Text>
+
+            <TouchableOpacity
+              style = {stylesCommon.customBtnBG}
+              onPress = {() => {navigation.navigate('Login')}}>
+              <Text style={stylesCommon.customBtnTextWhite}>
+                Logout
+              </Text>
+              
+            </TouchableOpacity>
+
+            
 
             <Text>
               {"\n"}

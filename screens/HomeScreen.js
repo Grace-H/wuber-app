@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, TouchableOpacity, Text } from 'react-native';
-import { Avatar } from 'react-native-elements';
+import { Avatar, Button} from 'react-native-elements';
 import stylesCommon from './styles/stylesCommon';
 
 export default function HomeScreen({navigation}) {
     return (
-
+      
       <View style={{ flex: 1, alignItems: 'center' }}>
 
         <Text>
