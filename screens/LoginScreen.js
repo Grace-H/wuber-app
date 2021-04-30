@@ -83,6 +83,7 @@ export default function LoginScreen({navigation}) {
           placeholder="Email Address"
           keyboardType='email-address'
           autoCorrect={false}
+          autoCapitalize='none'
           onChangeText={text => updateEmail(text)}
         />
       </View>
@@ -98,6 +99,7 @@ export default function LoginScreen({navigation}) {
           //leftIcon ={{type: 'font-awesome', name: 'fa-lock'}}
           placeholder="Password"
           secureTextEntry={true}
+          autoCapitalize='none'
           onChangeText={text => updatePassword(text)}
         />
       </View>

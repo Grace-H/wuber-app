@@ -13,7 +13,8 @@ export default class ChatScreen extends React.Component {
     get user() {
         return {
             _id: fire.uid,
-            email: this.props.route.params.email,
+            //email: this.props.route.params.email,
+            email: fire.email
         }
     }
 

@@ -34,9 +34,17 @@ export default class ChatScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: this.props.route.params.email
+      //email: this.props.route.params.email
     };
   }
+
+  get user() {
+    return {
+        _id: fire.uid,
+        //email: this.props.route.params.email,
+        email: fire.email
+    }
+}
     render(){
     return (
       <SafeAreaView>
@@ -47,7 +55,7 @@ export default class ChatScreen extends React.Component {
         renderItem={({ item }) => (
           <TouchableOpacity
               onPress={() => {
-                this.props.navigation.navigate("Chat", { email: this.state.email});
+                this.props.navigation.navigate("Chat", { email: this.email});
               }}
           >
             <MessageCard

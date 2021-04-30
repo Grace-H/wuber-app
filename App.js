@@ -196,6 +196,8 @@ function BottomTabNavigator() {
             iconName = "location";
           } else if (route.name === "Trips") {
             iconName = "map";
+          } else if (route.name === "Messages") {
+            iconName = "chatbox-ellipses";
           }
 
           // You can return any component that you like here!
@@ -203,8 +205,18 @@ function BottomTabNavigator() {
         },
       })}
     >
-      <BottomTab.Screen name="Home" component={TripStackScreens} />
-      <BottomTab.Screen name="Trips" component={MyTripsTopTabNavigator} />
+      <BottomTab.Screen 
+        name="Home" 
+        component={TripStackScreens} 
+      />
+      <BottomTab.Screen 
+        name="Trips" 
+        component={MyTripsTopTabNavigator} 
+      />
+      <BottomTab.Screen
+        name="Messages"
+        component={MessagesStackScreens}
+      />
       <BottomTab.Screen
         name="Notifications"
         component={NotificationStackScreens}

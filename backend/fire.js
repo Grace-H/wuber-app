@@ -23,7 +23,7 @@ class fire {
     checkAuth = () => {
         firebase.auth().onAuthStateChanged(user => {
             if (!user) {
-                firebase.auth().signInWithEmailAndPassword();
+                firebase.auth().signInAnonymously();
             }
         });
     };
@@ -33,7 +33,7 @@ class fire {
             const message = {
                 text: item.text,
                 timestamp: firebase.database.ServerValue.TIMESTAMP,
-                user: item.user
+                //user: item.user
             }
 
             this.db.push(message)
