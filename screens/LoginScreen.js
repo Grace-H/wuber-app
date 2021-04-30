@@ -3,9 +3,8 @@ import { View, TouchableOpacity, Text, TextInput} from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
 import axios from "axios";
-import App from "../App.js";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({navigation}, props) {
 
   const state = {
     email: "",      
@@ -43,7 +42,8 @@ export default function LoginScreen({navigation}) {
     })
         .then(response=>{
           if (response.data !== null){
-            navigation.navigate("App");
+              user = response.data; 
+              navigation.navigate("App");
           }
           else { 
             alert("The credentials you provided could not be determined to be authentic."
@@ -53,7 +53,6 @@ export default function LoginScreen({navigation}) {
           }
         }) 
         .catch(err => console.log(err));
-        
     
   };
 

@@ -31,6 +31,7 @@ import { startClock } from "react-native-reanimated";
 const Stack = createStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 const BottomTab = createBottomTabNavigator();
+var User = null; 
 
 class TripStackScreens extends Component {
   constructor(props) {
@@ -278,36 +279,38 @@ class MyTripsTopTabNavigator extends Component {
   }
 }
 
-function MainStackNavigator() {
-<<<<<<< HEAD
-  
-=======
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
-  return (
-    <NavigationContainer>
-<<<<<<< HEAD
-    <Stack.Navigator>
-      <Stack.Screen name = "Login" component = {LoginScreen}  />
-      <Stack.Screen name = "Sign Up" component = {SignUp}/>
-      <Stack.Screen name = "App" component = {BottomTabNavigator}/>
-    </Stack.Navigator>
+class MainStackNavigator extends Component {
 
-=======
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
-        <Stack.Screen
-          name="App"
-          component={BottomTabNavigator}
-          options={{ headerShown: false }}
-        />
-      </Stack.Navigator>
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
-    </NavigationContainer>
-  );
+
+  /*
+  function getUser() {
+    return User;
+  }
+  
+  function setUser(newUser){
+    User = newUser; 
+  }
+  */
+  
+  render() {
+      return (
+        <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name = "Login" component = {LoginScreen} />
+          <Stack.Screen name = "Sign Up" component = {SignUp}/>
+          <Stack.Screen name = "App" component = {BottomTabNavigator}/>
+        </Stack.Navigator>
+
+        </NavigationContainer>
+      );
+    }
 }
 
+
+
 export default class App extends Component {
+
+  /*
   constructor(props) {
     super(props);
     this.state = {
@@ -322,19 +325,14 @@ export default class App extends Component {
   setUser(newUser) {
     this.setState({ user: newUser });
   }
+  */
 
   render() {
-<<<<<<< HEAD
     return (
       
-      <MainStackNavigator
-      setUser = {this.setUser}
-      />
+      <MainStackNavigator/>
 
     );
-=======
-    return <MainStackNavigator setUser={this.setUser} />;
->>>>>>> d9cbae01921235d6a10d79bd82881598f59a0ccb
   }
 }
 
