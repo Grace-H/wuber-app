@@ -15,6 +15,10 @@ import RNDateTimePicker from "@react-native-community/datetimepicker";
 import stylesCommon from "./styles/stylesCommon";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { useNavigation } from "@react-navigation/native";
+import { LogBox } from 'react-native';
+
+// Ignore all log notifications:
+LogBox.ignoreAllLogs();
 
 export default function PassengerForm({ setQuery }) {
   const navigation = useNavigation();
@@ -127,7 +131,7 @@ export default function PassengerForm({ setQuery }) {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={stylesCommon.textTitleBlue}>Passenger Information:</Text>
+      <Text style={stylesCommon.textTitlePass}>Passenger Information:</Text>
       <Text>
         {"\n"}
         {"\n"}
@@ -262,7 +266,7 @@ export default function PassengerForm({ setQuery }) {
 
         <Text>{"\n"}</Text>
 
-        <TouchableOpacity style={stylesCommon.customBtnBG} onPress={onSubmit}>
+        <TouchableOpacity style={stylesCommon.customBtnForm} onPress={onSubmit}>
           <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
         </TouchableOpacity>
       </KeyboardAwareScrollView>
@@ -275,6 +279,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 10,
+    justifyContent: "center",
+    alignItems: "center"
   },
   label: {
     color: colors.grey3,

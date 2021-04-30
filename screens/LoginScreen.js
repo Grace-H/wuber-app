@@ -60,9 +60,8 @@ export default function LoginScreen({navigation}, props) {
 
     return (      
       <View style={{ flex: 1, alignItems: "center" }}>
-        <Text>{"\n"}</Text>
 
-        <Avatar source={require("../assets/WuberLogo.png")} size={200} />
+        <Avatar source={require("../assets/WuberLogo.png")} size={200} marginTop={100} />
 
         <Text>
           {"\n"}
@@ -86,23 +85,21 @@ export default function LoginScreen({navigation}, props) {
           autoCapitalize='none'
           onChangeText={text => updatePassword(text)}
         />
-        <Text> {"\n"} </Text>
+        
+         <TouchableOpacity
+          onPress={ () => {navigation.navigate("Sign Up")}}>
+          <Text style={stylesCommon.textItalic}>Don't have an account? Sign up!</Text>
+        </TouchableOpacity>
+
+        <View style={{marginTop: 20}}></View>
 
         <TouchableOpacity
           style={stylesCommon.customBtn}
           onPress={() => authenticate(state.email, state.password)}
         >
-          <Text style={stylesCommon.customBtnTextWhite}>Submit</Text>
+          <Text style={stylesCommon.customBtnTextWhite}>Login</Text>
         </TouchableOpacity>
 
-        <Text> {"\n"} </Text>
-
-        <TouchableOpacity
-          style={stylesCommon.customBtn}
-          onPress={ () => {navigation.navigate("Sign Up")}}
-        >
-          <Text style={stylesCommon.customBtnTextWhite}>Create Account</Text>
-        </TouchableOpacity>
       </View>
     );
   
@@ -115,7 +112,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     color: '#424242',
     marginTop: 20,
-    borderWidth: 3,
+    borderWidth: 2,
     width : 250,
     textAlign: "center",
   },

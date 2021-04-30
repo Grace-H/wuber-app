@@ -2,9 +2,7 @@ import React, { Component } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import { Avatar } from "react-native-elements";
 import stylesCommon from "./styles/stylesCommon";
-import firebase from "firebase";
 import axios from "axios";
-import auth from '@react-native-firebase/auth';
 
 export default function SignUp({ navigation }) {
   const state = {
@@ -79,9 +77,8 @@ export default function SignUp({ navigation }) {
 
   return (
     <View style={{ flex: 1, alignItems: "center" }}>
-      <Text>{"\n"}</Text>
 
-      <Avatar source={require("../assets/WuberLogo.png")} size={200} />
+      <Avatar source={require("../assets/WuberLogo.png")} size={200} marginTop={100} />
 
       <Text>
         {"\n"}
@@ -119,7 +116,12 @@ export default function SignUp({ navigation }) {
         onChangeText={(text) => updateYear(text)}
       />
 
-      <Text> {"\n"} </Text>
+        <TouchableOpacity
+          onPress={ () => {navigation.navigate("Login")}}>
+          <Text style={stylesCommon.textItalic}>Have an account? Sign in.</Text>
+        </TouchableOpacity>
+
+        <View style={{marginTop: 20}}></View>
 
       <TouchableOpacity
         style={stylesCommon.customBtn}
@@ -128,14 +130,6 @@ export default function SignUp({ navigation }) {
         <Text style={stylesCommon.customBtnTextWhite}>Sign Up</Text>
       </TouchableOpacity>
 
-      <Text> {"\n"} </Text>
-
-      <TouchableOpacity
-        style={stylesCommon.customBtn}
-        onPress={() => navigation.navigate("Login")}
-      >
-        <Text style={stylesCommon.customBtnTextWhite}>Sign In</Text>
-      </TouchableOpacity>
     </View>
   );
 }

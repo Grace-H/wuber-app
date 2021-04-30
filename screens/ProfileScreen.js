@@ -16,14 +16,16 @@ export default function ProfileScreen({ navigation }) {
     return (
         <View style = {stylesCommon.container}>
 
-          <Text style = {stylesCommon.appHeader}>
-            Profile
-          </Text>
+      <View style={stylesCommon.appHeaderWhite}></View>
+      <Text style = {stylesCommon.appHeaderTextBlue}>
+        Profile
+      </Text>
 
           <Avatar
             rounded
-            source = {require('../assets/avatar.jpg')}
+            source = {require('../assets/avatar.png')}
             size = {150}
+            marginTop={50}
           />
 
           <ScrollView style = {stylesCommon.scrollView}>
@@ -62,7 +64,7 @@ export default function ProfileScreen({ navigation }) {
             </TouchableOpacity>
 
             <Text>
-              {"\n"}{"\n"}{"\n"}            
+              {"\n"}           
             </Text>
 
             <TouchableOpacity

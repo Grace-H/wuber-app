@@ -49,11 +49,12 @@ const styles = StyleSheet.create( {
         paddingRight: 20,
         alignItems: "center",
         paddingTop: 40,
-        backgroundColor: "#fff",
+        //backgroundColor: "#fff",
     },
     card: {
         width: 100,
-        marginBottom: 15
+        marginBottom: 15,
+        marginTop: -50
     },
     userName: {
         fontSize: 14,
@@ -62,7 +63,7 @@ const styles = StyleSheet.create( {
     },
     postTime: {
         fontSize: 12,
-        color: "#666",
+        color: "#EE8A22",
         //font-family: 'Lato-Regular';
     },
     messageText: {
@@ -90,7 +91,7 @@ const styles = StyleSheet.create( {
         marginBottom: 5,
     },
     iconContainer: {
-        marginTop: 20
+        marginTop: 15
     }
 });
 

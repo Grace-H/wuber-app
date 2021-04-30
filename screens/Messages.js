@@ -48,7 +48,10 @@ export default class ChatScreen extends React.Component {
     render(){
     return (
       <SafeAreaView>
-        <Text style = {stylesCommon.textTitleBlue}>Messages</Text>
+      <View style={stylesCommon.appHeaderWhite}></View>
+      <Text style = {stylesCommon.appHeaderTextBlue}>
+        Messages
+      </Text>
         <Text>{"\n"}</Text>
       <FlatList
         data={MessagesList}

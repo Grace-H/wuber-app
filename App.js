@@ -316,9 +316,21 @@ function MessagesStackScreens() {
 function MainStackNavigator() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="Sign Up" component={SignUp} />
+      <Stack.Navigator
+        screenOptions={{
+          headerTitle: null,
+        }}
+      >
+        <Stack.Screen 
+          name="Login" 
+          component={LoginScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen 
+          name="Sign Up" 
+          component={SignUp} 
+          options={{ headerShown: false }}
+        />
         <Stack.Screen
           name="App"
           component={BottomTabNavigator}

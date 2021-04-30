@@ -20,6 +20,10 @@ import stylesCommon from "./styles/stylesCommon";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import axios from "axios";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { LogBox } from 'react-native';
+
+// Ignore all log notifications:
+LogBox.ignoreAllLogs();
 
 //TODO if time permits, solve maps/scrollview warning
 
@@ -155,7 +159,6 @@ export default function DriverForm({ navigation }) {
       </Text>
       <KeyboardAwareScrollView keyboardShouldPersistTaps="always">
         <GooglePlacesAutocomplete
-          placeholder="Search"
           placeholder="Search"
           enablePoweredByContainer={false}
           minLength={2}
@@ -330,7 +333,7 @@ export default function DriverForm({ navigation }) {
         <Text>{"\n"}</Text>
 
         <TouchableOpacity
-          style={stylesCommon.customBtnBG}
+          style={stylesCommon.customBtnForm}
           onPress={() => {
             onSubmit();
           }}

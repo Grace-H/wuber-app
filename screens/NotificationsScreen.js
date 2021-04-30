@@ -21,7 +21,8 @@ export default function NotificationsScreen ({ navigation }) {
 
     <View style = {stylesCommon.container}>
 
-      <Text style = {stylesCommon.appHeader}>
+      <View style={stylesCommon.appHeaderWhite}></View>
+      <Text style = {stylesCommon.appHeaderTextBlue}>
         Notifications
       </Text>
 

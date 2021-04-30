@@ -33,7 +33,7 @@ class fire {
             const message = {
                 text: item.text,
                 timestamp: firebase.database.ServerValue.TIMESTAMP,
-                //user: item.user
+                user: item.user
             }
 
             this.db.push(message)
